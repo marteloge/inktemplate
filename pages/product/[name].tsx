@@ -1,12 +1,21 @@
 import { useRouter } from "next/router";
 
-export default function Product() {
+import Layout from "./../../src/components/Layout";
+import { withTranslation } from "../../i18n";
+
+const Product = () => {
   const router = useRouter();
   const { name } = router.query;
 
   return (
-    <div>
+    <Layout>
       <h1>Product - {name}</h1>
-    </div>
+    </Layout>
   );
-}
+};
+
+Product.getInitialProps = async () => ({
+  namespacesRequired: ["common"],
+});
+
+export default withTranslation("common")(Product);

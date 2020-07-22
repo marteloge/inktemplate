@@ -1,0 +1,14 @@
+{
+  "language": "English",
+  "about": {
+    "header": "About us"
+  },
+  "create": {
+    "header": "Create"
+  },
+  "products": {
+    "header": "All templates",
+    "placecard": { "name": "Place card" },
+    "invitation": { "name": "Invitation" }
+  }
+}
