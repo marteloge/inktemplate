@@ -9,11 +9,26 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang={this.props.__NEXT_DATA__.props.initialLanguage}>
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
         </body>
+        <style jsx global>{`
+          body {
+            margin: 0;
+          }
+
+          a {
+            text-decoration: none;
+            color: black;
+          }
+        `}</style>
       </Html>
     );
   }

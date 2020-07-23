@@ -9,11 +9,6 @@ const MyApp = ({ Component, pageProps }) => (
       <meta name="description" content="InkTemplate" />
     </Head>
     <Component {...pageProps} />
-    <style jsx global>{`
-      body {
-        margin: 0;
-      }
-    `}</style>
   </>
 );
 

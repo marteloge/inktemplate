@@ -3,7 +3,7 @@ import { Link, withTranslation } from "./../../i18n";
 const Navbar = ({ t }) => (
   <div>
     <Link href="/">
-      <a>{t("home.nav")}</a>
+      <a id="logo">InkTemplate</a>
     </Link>
     <Link href="/about">
       <a>{t("about.nav")}</a>
@@ -14,6 +14,15 @@ const Navbar = ({ t }) => (
     <Link href="/create">
       <a>{t("create.nav")}</a>
     </Link>
+    <style jsx>{`
+      a {
+        font-family: "Raleway", sans-serif;
+      }
+      #logo {
+        font-family: "Playfair Display", serif;
+        font-size: 40px;
+      }
+    `}</style>
   </div>
 );
 
