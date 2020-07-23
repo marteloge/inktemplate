@@ -6,6 +6,7 @@ const MyApp = ({ Component, pageProps }) => (
   <>
     <Head>
       <title>InkTemplate</title>
+      <meta name="description" content="InkTemplate" />
     </Head>
     <Component {...pageProps} />
     <style jsx global>{`

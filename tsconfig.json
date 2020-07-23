@@ -21,6 +21,6 @@
     "**/*.tsx",
     "next.config.js",
     "pages/_app.tsx",
-    "i18n.js"
+    "i18n.ts"
   ]
 }

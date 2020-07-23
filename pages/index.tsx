@@ -24,9 +24,13 @@ const Home = ({ t }) => (
 
     <button
       type="button"
-      onClick={() => i18n.changeLanguage(i18n.language === "en" ? "no" : "en")}
+      onClick={() => {
+        i18n.changeLanguage(i18n.language === "en" ? "no" : "en").then(() => {
+          location.replace("/");
+        });
+      }}
     >
-      Bytt språk
+      {t("changeLang")}
     </button>
 
     <footer></footer>

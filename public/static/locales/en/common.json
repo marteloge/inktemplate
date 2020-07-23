@@ -1,5 +1,6 @@
 {
   "language": "English",
+  "changeLang": "Change language",
   "home": {
     "nav": "Home",
     "header": "InkTemplate"

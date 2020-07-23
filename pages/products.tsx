@@ -8,6 +8,7 @@ const Products = ({ t }) => (
   <Layout>
     <Head>
       <title>{t("meta:products.title")}</title>
+      <meta name="description" content={t("meta:products.description")} />
     </Head>
     <h1>{t("products.header")}</h1>
 

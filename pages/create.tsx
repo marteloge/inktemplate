@@ -7,6 +7,7 @@ const Create = ({ t }) => (
   <Layout>
     <Head>
       <title>{t("meta:create.title")}</title>
+      <meta name="description" content={t("meta:create.description")} />
     </Head>
     <h1>{t("create.header")}</h1>
   </Layout>
