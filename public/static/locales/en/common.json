@@ -1,12 +1,19 @@
 {
   "language": "English",
+  "home": {
+    "nav": "Home",
+    "header": "InkTemplate"
+  },
   "about": {
+    "nav": "About us",
     "header": "About us"
   },
   "create": {
+    "nav": "Create new",
     "header": "Create"
   },
   "products": {
+    "nav": "Templates",
     "header": "All templates",
     "placecard": { "name": "Place card" },
     "invitation": { "name": "Invitation" }

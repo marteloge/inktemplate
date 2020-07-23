@@ -1,15 +1,18 @@
 {
   "language": "Norsk",
+  "home": {
+    "nav": "Hjem"
+  },
   "about": {
-    "nav": "",
+    "nav": "Om oss",
     "header": "Om oss"
   },
   "create": {
-    "nav": "",
+    "nav": "Lag ny",
     "header": "Lag ny"
   },
   "products": {
-    "nav": "",
+    "nav": "Templates",
     "header": "Alle templates",
     "placecard": { "name": "Bordkort" },
     "invitation": { "name": "Invitasjon" }

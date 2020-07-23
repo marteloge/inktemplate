@@ -1,20 +1,24 @@
-import { i18n, Link } from "./../../i18n";
+import { Link, withTranslation } from "./../../i18n";
 
-const Navbar = () => (
+const Navbar = ({ t }) => (
   <div>
     <Link href="/">
-      <a>{i18n.t("home")}</a>
+      <a>{t("home.nav")}</a>
     </Link>
     <Link href="/about">
-      <a>{i18n.t("about")}</a>
+      <a>{t("about.nav")}</a>
     </Link>
     <Link href="/products">
-      <a>{i18n.t("products")}</a>
+      <a>{t("products.nav")}</a>
     </Link>
     <Link href="/create">
-      <a>{i18n.t("create")}</a>
+      <a>{t("create.nav")}</a>
     </Link>
   </div>
 );
 
-export default Navbar;
+Navbar.getInitialProps = async () => ({
+  namespacesRequired: ["common"],
+});
+
+export default withTranslation("common")(Navbar);
