@@ -1,4 +1,5 @@
 import { Link, withTranslation } from "./../../i18n";
+import { calculateResponsiveSize } from "../global";
 
 const Navbar = ({ t }) => (
   <div id="navbar">
@@ -31,8 +32,8 @@ const Navbar = ({ t }) => (
       }
       a {
         font-family: "Raleway", sans-serif;
-        font-size: 2.3vmin;
-        margin: 1.5vmin;
+        font-size: ${calculateResponsiveSize(14, 18)};
+        margin: 1.8vmin;
       }
       #logo a {
         font-family: "Playfair Display", serif;

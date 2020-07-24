@@ -14,7 +14,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway&display=swap"
             as="font"
             rel="stylesheet"
-            media="all"
           />
         </Head>
         <body>
