@@ -12,7 +12,9 @@ const Home = ({ t }) => (
         content="Create free printable templates for your invitation, place cards and menus."
       />
     </Head>
-    {/* <img
+
+    {/*  */}
+    <img
       className="hero"
       srcSet="/static/images/background-flower-1-1920.jpg 1920w,
               /static/images/background-flower-1-1536.jpg 1536w,
@@ -21,12 +23,12 @@ const Home = ({ t }) => (
               /static/images/background-flower-1-1280.jpg 1280w,
               /static/images/background-flower-1-800.jpg 800w,
               /static/images/background-flower-1-480.jpg 480w"
-      sizes="100vw"
+      sizes="(min-width: 100em) 100vw, 100vw"
       src="/static/images/background-flower-1-800.jpg"
       alt="Print templates"
-    /> */}
+    />
 
-    <picture>
+    {/* <picture>
       <source
         srcSet="/static/images/background-flower-1-1920.jpg"
         media="(min-width: 1536px)"
@@ -51,7 +53,7 @@ const Home = ({ t }) => (
         src="/static/images/background-flower-1-480.jpg"
         alt="Background Image"
       />
-    </picture>
+    </picture> */}
     <div>
       <h1>Paper card print!</h1>
       <p>
@@ -79,7 +81,7 @@ const Home = ({ t }) => (
       }
 
       img {
-        max-width: 100%;
+        width: 100%;
       }
     `}</style>
   </Layout>

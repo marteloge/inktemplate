@@ -32,18 +32,18 @@ const Navbar = ({ t }) => (
       }
       a {
         font-family: "Raleway", sans-serif;
-        font-size: ${calculateResponsiveSize(14, 18)};
+        font-size: ${calculateResponsiveSize(12, 18)};
         margin: 1.8vmin;
       }
       #logo a {
         font-family: "Playfair Display", serif;
-        font-size: 6vmin;
+        font-size: ${calculateResponsiveSize(18, 45)};
         font-weight: bold;
       }
 
       .button {
         background-color: rgba(256, 256, 256, 0.7);
-        padding: 10px 20px;
+        padding: 10px 15px;
         border-radius: 10px;
       }
     `}</style>
