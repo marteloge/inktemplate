@@ -13,40 +13,6 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <style jsx global>
-          {`
-            @font-face {
-              font-family: "Raleway";
-              src: url("/static/fonts/raleway-v17-latin-regular.ttf");
-              font-weight: 400;
-              font-style: normal;
-              font-display: swap;
-            }
-            @font-face {
-              font-family: "Raleway";
-              src: url("/static/fonts/raleway-v17-latin-700.ttf");
-              font-weight: 700;
-              font-style: normal;
-              font-display: swap;
-            }
-
-            @font-face {
-              font-family: "Playfair Display";
-              src: url("/static/fonts/playfair-display-v21-latin-regular.ttf");
-              font-weight: 400;
-              font-style: normal;
-              font-display: swap;
-            }
-
-            @font-face {
-              font-family: "Playfair Display";
-              src: url("/static/fonts/playfair-display-v21-latin-700.ttf");
-              font-weight: 400;
-              font-style: normal;
-              font-display: swap;
-            }
-          `}
-        </style>
       </Html>
     );
   }
