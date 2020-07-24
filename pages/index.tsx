@@ -28,6 +28,14 @@ const Home = ({ t }) => (
 
     <picture>
       <source
+        srcSet="/static/images/background-flower-1-1920.jpg"
+        media="(min-width: 1536px)"
+      />
+      <source
+        srcSet="/static/images/background-flower-1-1536.jpg"
+        media="(min-width: 1366px)"
+      />
+      <source
         srcSet="/static/images/background-flower-1-1366.jpg"
         media="(min-width: 1280px)"
       />
@@ -35,7 +43,14 @@ const Home = ({ t }) => (
         srcSet="/static/images/background-flower-1-1280.jpg"
         media="(min-width: 800px)"
       />
-      <img src="/static/images/background-flower-1-800.jpg" />
+      <source
+        srcSet="/static/images/background-flower-1-800.jpg"
+        media="(min-width: 480px)"
+      />
+      <img
+        src="/static/images/background-flower-1-480.jpg"
+        alt="Background Image"
+      />
     </picture>
     <div>
       <h1>Paper card print!</h1>
