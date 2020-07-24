@@ -9,6 +9,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang={this.props.__NEXT_DATA__.props.initialLanguage}>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
