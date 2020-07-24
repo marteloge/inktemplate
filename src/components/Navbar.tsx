@@ -1,26 +1,49 @@
 import { Link, withTranslation } from "./../../i18n";
 
 const Navbar = ({ t }) => (
-  <div>
-    <Link href="/">
-      <a id="logo">InkTemplate</a>
-    </Link>
-    <Link href="/about">
-      <a>{t("about.nav")}</a>
-    </Link>
-    <Link href="/products">
-      <a>{t("products.nav")}</a>
-    </Link>
-    <Link href="/create">
-      <a>{t("create.nav")}</a>
-    </Link>
+  <div id="navbar">
+    <div id="logo">
+      <Link href="/">
+        <a>InkTemplate</a>
+      </Link>
+    </div>
+    <div id="nav">
+      <Link href="/about">
+        <a>{t("about.nav")}</a>
+      </Link>
+      <Link href="/products">
+        <a>{t("products.nav")}</a>
+      </Link>
+      <Link href="/create">
+        <a className="button">{t("create.nav")}</a>
+      </Link>
+    </div>
+
     <style jsx>{`
+      #navbar {
+        width: 100%;
+        top: 0;
+        background-color: rgba(256, 256, 256, 0.5);
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
       a {
         font-family: "Raleway", sans-serif;
+        font-size: 2.3vmin;
+        margin: 1.5vmin;
       }
-      #logo {
+      #logo a {
         font-family: "Playfair Display", serif;
-        font-size: 40px;
+        font-size: 6vmin;
+        font-weight: bold;
+      }
+
+      .button {
+        background-color: rgba(256, 256, 256, 0.7);
+        padding: 10px 20px;
+        border-radius: 10px;
       }
     `}</style>
   </div>

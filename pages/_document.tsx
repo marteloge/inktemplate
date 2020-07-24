@@ -13,22 +13,13 @@ class MyDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway&display=swap"
             rel="stylesheet"
+            as="font"
           />
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-        <style jsx global>{`
-          body {
-            margin: 0;
-          }
-
-          a {
-            text-decoration: none;
-            color: black;
-          }
-        `}</style>
       </Html>
     );
   }
