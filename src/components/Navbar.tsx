@@ -31,14 +31,13 @@ const Navbar = ({ t }) => (
         justify-content: space-between;
       }
       a {
-        font-family: "Raleway", sans-serif;
-        font-display: swap;
+        font-family: "Raleway";
+        font-weight: 400;
         font-size: ${calculateResponsiveSize(12, 18)};
         margin: 1.8vmin;
       }
       #logo a {
-        font-family: "Playfair Display", serif;
-        font-display: swap;
+        font-family: "Playfair Display";
         font-size: ${calculateResponsiveSize(18, 45)};
         font-weight: bold;
       }

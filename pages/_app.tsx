@@ -25,16 +25,16 @@ const MyApp = ({ Component, pageProps }) => (
       button {
         text-decoration: none;
         color: black;
-        font-family: "Raleway", sans-serif;
-        font-display: swap;
+        font-family: "Raleway";
+        font-weight: 400;
       }
 
       h1,
       h2,
       h3,
       h4 {
-        font-family: "Playfair Display", serif;
-        font-display: swap;
+        font-family: "Playfair Display";
+        font-weight: 700;
       }
     `}</style>
   </>

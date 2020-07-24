@@ -9,17 +9,44 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang={this.props.__NEXT_DATA__.props.initialLanguage}>
-        <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway&display=swap"
-            as="font"
-            rel="stylesheet"
-          />
-        </Head>
         <body>
           <Main />
           <NextScript />
         </body>
+        <style jsx global>
+          {`
+            @font-face {
+              font-family: "Raleway";
+              src: url("/static/fonts/raleway-v17-latin-regular.ttf");
+              font-weight: 400;
+              font-style: normal;
+              font-display: swap;
+            }
+            @font-face {
+              font-family: "Raleway";
+              src: url("/static/fonts/raleway-v17-latin-700.ttf");
+              font-weight: 700;
+              font-style: normal;
+              font-display: swap;
+            }
+
+            @font-face {
+              font-family: "Playfair Display";
+              src: url("/static/fonts/playfair-display-v21-latin-regular.ttf");
+              font-weight: 400;
+              font-style: normal;
+              font-display: swap;
+            }
+
+            @font-face {
+              font-family: "Playfair Display";
+              src: url("/static/fonts/playfair-display-v21-latin-700.ttf");
+              font-weight: 400;
+              font-style: normal;
+              font-display: swap;
+            }
+          `}
+        </style>
       </Html>
     );
   }
