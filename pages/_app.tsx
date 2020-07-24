@@ -26,6 +26,7 @@ const MyApp = ({ Component, pageProps }) => (
         text-decoration: none;
         color: black;
         font-family: "Raleway", sans-serif;
+        font-display: swap;
       }
 
       h1,
@@ -33,6 +34,7 @@ const MyApp = ({ Component, pageProps }) => (
       h3,
       h4 {
         font-family: "Playfair Display", serif;
+        font-display: swap;
       }
     `}</style>
   </>
