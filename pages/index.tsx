@@ -21,6 +21,7 @@ const Home = ({ t }) => (
       src={heroImg}
       webp
       sizes={[400, 800, 1080, 1200, 1900, 2500]}
+      densities={[1, 2]}
       alt="Hero background image"
     ></Img>
 
