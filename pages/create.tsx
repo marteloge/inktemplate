@@ -22,22 +22,20 @@ const Create = ({ t }) => {
     { value: "playfairdisplay", label: "Playfair Display" },
   ];
 
-  const colourStyles = {
-    option: (provided, state) => {
-      return {
-        ...provided,
-        fontFamily: state.data.label,
-      };
-    },
-    control: (styles) => ({
-      ...styles,
-      fontFamily: selectedFont1,
-      backgroundColor: "white",
-    }),
-
-    // control: {
-    //   ,
-    // },
+  const colourStyles = (font) => {
+    return {
+      option: (provided, state) => {
+        return {
+          ...provided,
+          fontFamily: state.data.label,
+        };
+      },
+      control: (styles) => ({
+        ...styles,
+        fontFamily: font,
+        backgroundColor: "white",
+      }),
+    };
   };
 
   return (
@@ -50,7 +48,7 @@ const Create = ({ t }) => {
 
       <div id="control">
         <div>
-          <span>Font:</span>
+          <span>Font 1:</span>
 
           <Select
             instanceId={"test"}
@@ -60,7 +58,21 @@ const Create = ({ t }) => {
               setSelectedFont1(font.label);
             }}
             options={options}
-            styles={colourStyles}
+            styles={colourStyles(selectedFont1)}
+          />
+        </div>
+        <div>
+          <span>Font 2:</span>
+
+          <Select
+            instanceId={"test"}
+            value={options.find((i) => i.label === selectedFont2)}
+            defaultValue={"Raleway"}
+            onChange={(font) => {
+              setSelectedFont2(font.label);
+            }}
+            options={options}
+            styles={colourStyles(selectedFont2)}
           />
         </div>
 

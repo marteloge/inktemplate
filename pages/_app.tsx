@@ -14,8 +14,7 @@ const MyApp = ({ Component, pageProps }) => (
     <style jsx global>{`
       @font-face {
         font-family: "Playfair Display";
-        src: url(""),
-          url("/static/fonts/playfair-display-v21-latin-regular.woff2")
+        src: url("/static/fonts/playfair-display-v21-latin-regular.woff2")
             format("woff2"),
           url("/static/fonts/playfair-display-v21-latin-regular.woff")
             format("woff")
@@ -28,8 +27,7 @@ const MyApp = ({ Component, pageProps }) => (
 
       @font-face {
         font-family: "Playfair Display";
-        src: url(""),
-          url("/static/fonts/playfair-display-v21-latin-700.woff2")
+        src: url("/static/fonts/playfair-display-v21-latin-700.woff2")
             format("woff2"),
           url("/static/fonts/playfair-display-v21-latin-700.woff")
             format("woff"),
@@ -42,8 +40,8 @@ const MyApp = ({ Component, pageProps }) => (
 
       @font-face {
         font-family: "Raleway";
-        src: url(""),
-          url("/static/fonts/raleway-v17-latin-regular.woff2") format("woff2"),
+        src: url("/static/fonts/raleway-v17-latin-regular.woff2")
+            format("woff2"),
           url("/static/fonts/raleway-v17-latin-regular.woff") format("woff"),
           url("/static/fonts/raleway-v17-latin-regular.ttf") format("truetype");
         font-weight: 400;
@@ -53,8 +51,7 @@ const MyApp = ({ Component, pageProps }) => (
 
       @font-face {
         font-family: "Raleway";
-        src: url(""),
-          url("/static/fonts/raleway-v17-latin-700.woff2") format("woff2"),
+        src: url("/static/fonts/raleway-v17-latin-700.woff2") format("woff2"),
           url("/static/fonts/raleway-v17-latin-700.woff") format("woff"),
           url("/static/fonts/raleway-v17-latin-700.ttf") format("truetype");
         font-weight: 700;
