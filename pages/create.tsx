@@ -2,11 +2,9 @@ import { useState } from "react";
 import Layout from "../src/components/Layout";
 
 import Select from "react-select";
-import FontPicker from "font-picker-react";
 
 import { withTranslation } from "./../i18n";
 import Head from "next/head";
-import { read } from "fs";
 
 const Create = ({ t }) => {
   const [selectedFont1, setSelectedFont1] = useState("Dawning of a New Day");
