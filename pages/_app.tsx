@@ -25,6 +25,7 @@ const MyApp = ({ Component, pageProps }) => (
         font-style: normal;
         font-display: swap;
       }
+
       @font-face {
         font-family: "Playfair Display";
         src: url(""),
@@ -38,6 +39,7 @@ const MyApp = ({ Component, pageProps }) => (
         font-style: normal;
         font-display: swap;
       }
+
       @font-face {
         font-family: "Raleway";
         src: url(""),
@@ -48,6 +50,7 @@ const MyApp = ({ Component, pageProps }) => (
         font-style: normal;
         font-display: swap;
       }
+
       @font-face {
         font-family: "Raleway";
         src: url(""),
@@ -56,6 +59,15 @@ const MyApp = ({ Component, pageProps }) => (
           url("/static/fonts/raleway-v17-latin-700.ttf") format("truetype");
         font-weight: 700;
         font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Dawning of a New Day";
+        src: url("/static/fonts/dawning-of-a-new-day-v11-latin-regular.woff2")
+          format("woff2");
+        font-style: normal;
+        font-weight: regular;
         font-display: swap;
       }
 
@@ -68,6 +80,7 @@ const MyApp = ({ Component, pageProps }) => (
       p,
       span,
       button {
+        margin: 0;
         text-decoration: none;
         color: black;
         font-family: "Raleway";
@@ -79,7 +92,7 @@ const MyApp = ({ Component, pageProps }) => (
       h3,
       h4 {
         font-family: "Playfair Display";
-        font-weight: 700;
+        font-weight: bold;
       }
     `}</style>
   </>
