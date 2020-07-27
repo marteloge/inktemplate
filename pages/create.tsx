@@ -1,163 +1,40 @@
-import { CSSProperties, useState } from "react";
-import { BlockPicker, Color } from "react-color";
+import { useState } from "react";
 import Head from "next/head";
-import Select from "react-select";
 
 import { withTranslation } from "./../i18n";
 import Layout from "../src/components/Layout";
+import { TextDesignComponent } from "../src/components/Design/TextDesign";
+
+import { cardDesigns, colorPickerStyles } from "./../src/global";
+import { TextDesign, ColorPickerDesign } from "./../src/types";
+import ColorPicker from "../src/components/Design/ColorPicker";
 
 const Create = ({ t }) => {
-  const [useDesign, setUseDesign] = useState(true);
-  const [selectedDesign, setSelectedDesign] = useState("template1");
-  const [color, setColor] = useState<Color>("#00bcd4");
-  const [openColor, setOpenColor] = useState<boolean>(false);
-
-  const [selectedFont1, setSelectedFont1] = useState("Dawning of a New Day");
-  const [text1, setText1] = useState("Janelle");
-  const [text1Color, setText1Color] = useState<Color>("#000");
-  const [openText1Color, setOpenText1Color] = useState<boolean>(false);
-
-  const [selectedFont2, setSelectedFont2] = useState("Raleway");
-  const [text2, setText2] = useState("Table 2");
-  const [text2Color, setText2Color] = useState<Color>("#000");
-  const [openText2Color, setOpenText2Color] = useState<boolean>(false);
-
   const width = 400;
   const height = 260;
   const imageRoute = "/static/images/";
 
-  const options = [
-    { value: "dawningofanewday", label: "Dawning of a New Day" },
-    { value: "raleway", label: "Raleway" },
-    { value: "playfairdisplay", label: "Playfair Display" },
-    { value: "comicsansms", label: "Comic Sans MS" },
-    { value: "impact", label: "Impact" },
-    { value: "arial", label: "Arial" },
-    { value: "trebuchetms", label: "Trebuchet MS" },
-  ];
+  const [useDesign, setUseDesign] = useState(true);
+  const [selectedDesign, setSelectedDesign] = useState("template1");
 
-  type StylesDictionary = {
-    [Key: string]: CSSProperties;
-  };
+  const [color, setColor] = useState<ColorPickerDesign>({
+    color: "#00bcd4",
+    colorPickerOpen: false,
+  });
 
-  const styles1: StylesDictionary = {
-    color: {
-      width: "36px",
-      height: "36px",
-      borderRadius: "36px",
-      background: `${text1Color}`,
-      cursor: "pointer",
-    },
-    swatch: {
-      padding: "5px",
-      background: "#fff",
-      borderRadius: "1px",
-      boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
-      display: "inline-block",
-      cursor: "pointer",
-    },
-    popover: {
-      position: "absolute",
-      zIndex: 2,
-    },
-    cover: {
-      position: "fixed",
-      top: "0px",
-      right: "0px",
-      bottom: "0px",
-      left: "0px",
-    },
-  };
+  const [nameText, setNameText] = useState<TextDesign>({
+    color: "#000",
+    font: "Dawning of a New Day",
+    text: "Janelle",
+    colorPickerOpen: false,
+  });
 
-  const styles2: StylesDictionary = {
-    color: {
-      width: "36px",
-      height: "36px",
-      borderRadius: "36px",
-      background: `${text2Color}`,
-      cursor: "pointer",
-    },
-    swatch: {
-      padding: "5px",
-      background: "#fff",
-      borderRadius: "1px",
-      boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
-      display: "inline-block",
-      cursor: "pointer",
-    },
-    popover: {
-      position: "absolute",
-      zIndex: 2,
-    },
-    cover: {
-      position: "fixed",
-      top: "0px",
-      right: "0px",
-      bottom: "0px",
-      left: "0px",
-    },
-  };
-
-  const styles: StylesDictionary = {
-    color: {
-      width: "36px",
-      height: "36px",
-      borderRadius: "36px",
-      background: `${color}`,
-      cursor: "pointer",
-      marginRight: "10px",
-    },
-    swatch: {
-      padding: "5px",
-      background: "#fff",
-      borderRadius: "1px",
-      boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
-      display: "inline-block",
-      cursor: "pointer",
-    },
-    popover: {
-      position: "absolute",
-      zIndex: 2,
-    },
-    cover: {
-      position: "fixed",
-      top: "0px",
-      right: "0px",
-      bottom: "0px",
-      left: "0px",
-    },
-  };
-
-  const design = [
-    "template1",
-    "template2",
-    "template3",
-    "template4",
-    "template5",
-    "template6",
-    "template7",
-    "template8",
-    "template9",
-    "template10",
-    "template11",
-  ];
-
-  const colourStyles = (font) => {
-    return {
-      option: (provided, state) => {
-        return {
-          ...provided,
-          fontFamily: state.data.label,
-        };
-      },
-      control: (styles) => ({
-        ...styles,
-        fontFamily: font,
-        backgroundColor: "white",
-        minWidth: "200px",
-      }),
-    };
-  };
+  const [subText, setSubText] = useState<TextDesign>({
+    color: "#000",
+    font: "Raleway",
+    text: "Table 2",
+    colorPickerOpen: false,
+  });
 
   return (
     <Layout>
@@ -178,103 +55,21 @@ const Create = ({ t }) => {
           </button>
         </div>
 
-        <div id="canvas">
-          <p id="text1">{text1}</p>
-          <p id="text2">{text2}</p>
+        <div>
+          <div id="canvas">
+            <p id="text1">{nameText.text}</p>
+            <p id="text2">{subText.text}</p>
+          </div>
         </div>
 
         <div id="control">
-          <div>
-            <div
-              className="color-display"
-              style={styles1.color}
-              onClick={() => {
-                setOpenText1Color(!openText1Color);
-              }}
-            />
-
-            {openText1Color && (
-              <div style={styles1.popover}>
-                <div
-                  style={styles1.cover}
-                  onClick={() => setOpenText1Color(!openText1Color)}
-                />
-                <BlockPicker
-                  triangle="hide"
-                  color={text1Color}
-                  onChangeComplete={(color) => {
-                    setText1Color(color.hex);
-                    setOpenText1Color(false);
-                  }}
-                />
-              </div>
-            )}
-
-            <input
-              id="text1-input"
-              value={text1}
-              onChange={(e) => setText1(e.target.value)}
-            ></input>
-
-            <Select
-              className="select"
-              instanceId="select-font-1"
-              value={options.find((i) => i.label === selectedFont1)}
-              onChange={(font) => {
-                setSelectedFont1(font.label);
-              }}
-              options={options}
-              styles={colourStyles(selectedFont1)}
-            />
-          </div>
-          <div>
-            <div
-              className="color-display"
-              style={styles2.color}
-              onClick={() => {
-                setOpenText2Color(!openText2Color);
-              }}
-            />
-
-            {openText2Color && (
-              <div style={styles2.popover}>
-                <div
-                  style={styles2.cover}
-                  onClick={() => setOpenText2Color(!openText2Color)}
-                />
-                <BlockPicker
-                  triangle="hide"
-                  color={text2Color}
-                  onChangeComplete={(color) => {
-                    setText2Color(color.hex);
-                    setOpenText2Color(false);
-                  }}
-                />
-              </div>
-            )}
-
-            <input
-              id="text2-input"
-              value={text2}
-              onChange={(e) => setText2(e.target.value)}
-            ></input>
-
-            <Select
-              className="select"
-              instanceId="select-font-2"
-              value={options.find((i) => i.label === selectedFont2)}
-              onChange={(font) => {
-                setSelectedFont2(font.label);
-              }}
-              options={options}
-              styles={colourStyles(selectedFont2)}
-            />
-          </div>
+          <TextDesignComponent design={nameText} handler={setNameText} />
+          <TextDesignComponent design={subText} handler={setSubText} />
         </div>
 
         {useDesign && (
           <div id="design">
-            {design.map((imgSrc, index) => (
+            {cardDesigns.map((imgSrc, index) => (
               <img
                 key={index}
                 onClick={() => setSelectedDesign(imgSrc)}
@@ -290,148 +85,106 @@ const Create = ({ t }) => {
           <div id="background-color">
             <div
               className="color-display"
-              style={styles.color}
-              onClick={() => {
-                setOpenColor(!openColor);
-              }}
+              style={colorPickerStyles(color.color).color}
+              onClick={() =>
+                setColor({ ...color, colorPickerOpen: !color.colorPickerOpen })
+              }
             />
 
-            {openColor && (
-              <div style={styles.popover}>
-                <div
-                  style={styles.cover}
-                  onClick={() => setOpenColor(!openColor)}
-                />
-                <BlockPicker
-                  triangle="hide"
-                  color={color}
-                  onChangeComplete={(color) => {
-                    setColor(color.hex);
-                    setOpenColor(false);
-                  }}
-                />
-              </div>
+            {color.colorPickerOpen && (
+              <ColorPicker design={color} handler={setColor} />
             )}
 
             <p>Background color</p>
           </div>
         )}
       </div>
+      <style jsx>{`
+        .container {
+          margin: 2% 5%;
+        }
+        .color-display {
+          margin-right: 10px;
+        }
 
-      <style jsx>
-        {`
-          .container {
-            margin: 20px;
-          }
+        #background-color {
+          display: flex;
+          align-items: center;
+        }
 
-          #control {
-            width: 100%;
-            margin: 20px;
-          }
+        #switch button {
+          width: 100px;
+          height: 100px;
+          border-radius: 100px;
+          margin-right: 10px;
+          outline: none;
+          cursor: pointer;
+          border: none;
+        }
 
-          #design {
-            margin: 20px;
-          }
+        #switch button:hover {
+          box-shadow: 2px 2px 2px;
+        }
 
-          #switch {
-            margin: 20px;
-          }
+        .pattern {
+          box-shadow: ${useDesign ? "2px 2px 2px grey" : "none"};
+          background-image: url(${imageRoute + cardDesigns[3] + "-small.jpg"});
+        }
 
-          #switch button {
-            width: 100px;
-            height: 100px;
-            border-radius: 100px;
-            margin-right: 10px;
-            outline: none;
-            cursor: pointer;
-            border: none;
-          }
+        .color {
+          box-shadow: ${!useDesign ? "2px 2px 2px grey" : "none"};
+          background-color: #ff8a65;
+        }
 
-          #switch button:hover {
-            box-shadow: 2px 2px 2px;
-          }
+        #canvas {
+          height: ${height}px;
+          width: ${width}px;
 
-          .pattern {
-            box-shadow: ${useDesign ? "2px 2px 2px grey" : "none"};
-            background-image: url(${imageRoute + design[3] + "-small.jpg"});
-          }
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-          .color {
-            box-shadow: ${!useDesign ? "2px 2px 2px grey" : "none"};
-            background-color: #ff8a65;
-          }
+          ${useDesign &&
+          `
+            background-image: url(${
+              imageRoute + selectedDesign + "-small.jpg"
+            });
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+          `}
 
-          #background-color {
-            margin: 20px;
-          }
+          border: grey 1px solid;
 
-          #background-color {
-            display: flex;
-            align-items: center;
-          }
+          ${!useDesign &&
+          `
+            background-color: ${color.color}
+          `}
+        }
+        #text1 {
+          font-family: ${nameText.font};
+          color: ${nameText.color};
+          font-size: 35px;
+        }
 
-          #text1-control,
-          #text2-control {
-          }
+        #text2 {
+          font-family: ${subText.font};
+          color: ${subText.color};
+          font-size: 20px;
+        }
 
-          #control > div {
-            display: flex;
-          }
+        #design img {
+          width: ${width * 0.5}px;
+          height: ${height * 0.5}px;
+          margin: 1px 2px;
+          border: 1px solid white;
+        }
 
-          input {
-            margin: 0 10px;
-          }
-
-          #canvas {
-            height: ${height}px;
-            width: ${width}px;
-            margin: 20px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            ${useDesign &&
-            `
-              background-image: url(${imageRoute + selectedDesign + ".jpg"});
-              background-repeat: no-repeat;
-              background-size: cover;
-              background-position: center;
-            `}
-
-            border: grey 1px solid;
-
-            ${!useDesign &&
-            `
-              background-color: ${color}
-            `}
-          }
-
-          #text1 {
-            font-family: ${selectedFont1};
-            color: ${text1Color};
-            font-size: 35px;
-          }
-
-          #text2 {
-            font-family: ${selectedFont2};
-            color: ${text2Color};
-            font-size: 20px;
-          }
-
-          #design img {
-            width: ${width * 0.5}px;
-            height: ${height * 0.5}px;
-            margin: 1px 2px;
-            border: 1px solid white;
-          }
-
-          #design img:hover {
-            border: 1px solid black;
-          }
-        `}
-      </style>
+        #design img:hover {
+          border: 1px solid black;
+        }
+      `}</style>
     </Layout>
   );
 };
