@@ -3,6 +3,7 @@ import Select from "react-select";
 import { fonts, colorPickerStyles, updateField } from "./../../../src/global";
 import { TextDesign } from "./../../types";
 import ColorPicker from "./ColorPicker";
+import { NONAME } from "dns";
 
 const selectStyles = (font) => {
   return {
@@ -17,6 +18,8 @@ const selectStyles = (font) => {
       fontFamily: font,
       backgroundColor: "white",
       minWidth: "200px",
+      border: "none",
+      height: "40px",
     }),
   };
 };
@@ -61,12 +64,18 @@ export const TextDesignComponent = (props: Props) => {
       <style jsx>
         {`
           display: flex;
-
-          margin-bottom: 5px;
+          margin-bottom: 7px;
 
           input {
-            margin: 0 10px;
             font-family: "Raleway";
+
+            border-radius: 5px;
+            border: none;
+            padding-left: 2px;
+            text-align: center;
+            height: 40px;
+            margin: 0 10px;
+            padding: 0;
           }
         `}
       </style>

@@ -132,13 +132,19 @@ const Create = ({ t }) => {
         </div>
       </div>
 
+      <style jsx global>{`
+        .container {
+          background-color: rgb(238, 233, 231, 0.8);
+        }
+      `}</style>
+
       <style jsx>{`
         #bottom {
           display: flex;
         }
         .content {
-          padding: 0 5%;
-          max-width: 1090px;
+          padding: 3% 5%;
+          max-width: 1030px;
           margin: 0 auto;
           margin-bottom: 10%;
         }
@@ -146,10 +152,10 @@ const Create = ({ t }) => {
           position: fixed;
           bottom: 0;
           width: 100%;
-          background-color: rgb(256, 256, 256, 0.9);
 
-          box-shadow: -10px -10px 30px rgba(238, 233, 231, 0.6);
-          background-color: rgba(238, 233, 231, 0.6);
+          // background-color: rgb(256, 256, 256, 0.9);
+          box-shadow: -10px -10px 20px rgb(242, 238, 235, 0.8);
+          background-color: rgb(242, 238, 235, 0.8);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -158,8 +164,9 @@ const Create = ({ t }) => {
         button {
           padding: 10px 20px;
           background: none;
-          border: 1px solid black;
+          border: 1px solid rgb(0, 0, 0, 0.5);
           cursor: pointer;
+          border-radius: 5px;
         }
 
         .sticky button {

@@ -25,8 +25,7 @@ const DesignImagePreview = (props: Props) => (
     <style jsx>{`
       .content {
         padding: 0 10px 10px 0;
-        box-shadow: 3px 3px 2px rgb(0, 0, 0, 0.1);
-
+        box-shadow: 2px 2px 3px rgb(0, 0, 0, 0.1);
         height: 250px;
         overflow-y: scroll;
       }
@@ -41,8 +40,8 @@ const DesignImagePreview = (props: Props) => (
 
       .content::-webkit-scrollbar-thumb {
         border-radius: 8px;
-        border: 3px solid white;
-        background-color: rgba(0, 0, 0, 0.4);
+        border: 3px solid #f2eeeb;
+        background-color: rgb(0, 0, 0, 0.4);
       }
 
       #preview {
@@ -53,7 +52,7 @@ const DesignImagePreview = (props: Props) => (
         width: ${props.width * 0.35}px;
         height: ${props.height * 0.35}px;
         margin: 1px 2px 1px 0;
-        border: 1px solid white;
+        border: 1px solid #f2eeeb;
       }
 
       img:hover {

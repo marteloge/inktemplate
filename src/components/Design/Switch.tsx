@@ -23,18 +23,16 @@ const Switch = (props: Props) => (
       #switch button {
         width: 150px;
         height: 80px;
-        border-radius: 10px;
+        border-radius: 5px;
         outline: none;
         cursor: pointer;
         border: none;
         padding: 0;
         margin: 0 20px 0 5px;
-        border: 1px solid rgb(0, 0, 0, 0.1);
       }
 
       #switch button:hover {
         box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.6);
-        border: 1px solid rgb(0, 0, 0, 0.6);
       }
 
       .pattern {

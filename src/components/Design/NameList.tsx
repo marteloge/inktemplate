@@ -20,7 +20,10 @@ const NameList = (props: Props) => (
 
       textarea {
         width: ${calculateResponsiveSize(props.width * 0.75, props.width)};
-        height: 250px;
+        height: 240px;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
       }
     `}</style>
   </div>

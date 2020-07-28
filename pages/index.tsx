@@ -44,7 +44,7 @@ const Home = ({ t }) => (
     `}</style>
     <style jsx global>{`
       .container {
-        background-color: rgba(238, 233, 231, 0.6);
+        background-color: rgba(238, 233, 231, 0.8);
       }
     `}</style>
   </Layout>
