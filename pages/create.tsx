@@ -2,20 +2,23 @@ import { useState } from "react";
 import Head from "next/head";
 
 import { withTranslation } from "./../i18n";
-import Layout from "../src/components/Layout";
-import { TextDesignComponent } from "../src/components/Design/TextDesign";
 
-import { cardDesigns, colorPickerStyles } from "./../src/global";
+import { TextDesignComponent } from "../src/components/Design/TextDesign";
 import { TextDesign, ColorPickerDesign } from "./../src/types";
+import { cardDesigns, colorPickerStyles, imageRoute } from "./../src/global";
+
 import ColorPicker from "../src/components/Design/ColorPicker";
+import Preview from "../src/components/Design/Preview";
+import Layout from "../src/components/Layout";
+import Switch from "../src/components/Design/Switch";
+import DesignImagePreview from "../src/components/Design/DesignImagePreview";
 
 const Create = ({ t }) => {
   const width = 400;
   const height = 260;
-  const imageRoute = "/static/images/";
 
-  const [useDesign, setUseDesign] = useState(true);
-  const [selectedDesign, setSelectedDesign] = useState("template1");
+  const [useDesign, setUseDesign] = useState<boolean>(true);
+  const [selectedDesign, setSelectedDesign] = useState<string>("template4");
 
   const [color, setColor] = useState<ColorPickerDesign>({
     color: "#00bcd4",
@@ -46,39 +49,27 @@ const Create = ({ t }) => {
       <div className="container">
         <h1>{t("create.header")}</h1>
 
-        <div id="switch">
-          <button className="pattern" onClick={() => setUseDesign(true)}>
-            Pattern
-          </button>
-          <button className="color" onClick={() => setUseDesign(false)}>
-            Color
-          </button>
-        </div>
+        <Switch setUseDesign={setUseDesign} useDesign={useDesign} />
 
-        <div>
-          <div id="canvas">
-            <p id="text1">{nameText.text}</p>
-            <p id="text2">{subText.text}</p>
-          </div>
-        </div>
+        <Preview
+          nameText={nameText}
+          subText={subText}
+          width={width}
+          height={height}
+          useDesign={useDesign}
+          backgroundColor={color.color}
+          selectedDesign={selectedDesign}
+        />
 
-        <div id="control">
-          <TextDesignComponent design={nameText} handler={setNameText} />
-          <TextDesignComponent design={subText} handler={setSubText} />
-        </div>
+        <TextDesignComponent id="1" design={nameText} handler={setNameText} />
+        <TextDesignComponent id="2" design={subText} handler={setSubText} />
 
         {useDesign && (
-          <div id="design">
-            {cardDesigns.map((imgSrc, index) => (
-              <img
-                key={index}
-                onClick={() => setSelectedDesign(imgSrc)}
-                src={require("../public/static/images/" +
-                  imgSrc +
-                  "-small.jpg")}
-              />
-            ))}
-          </div>
+          <DesignImagePreview
+            setSelectedDesign={setSelectedDesign}
+            width={width}
+            height={height}
+          />
         )}
 
         {!useDesign && (
@@ -103,6 +94,7 @@ const Create = ({ t }) => {
         .container {
           margin: 2% 5%;
         }
+
         .color-display {
           margin-right: 10px;
         }
@@ -110,79 +102,6 @@ const Create = ({ t }) => {
         #background-color {
           display: flex;
           align-items: center;
-        }
-
-        #switch button {
-          width: 100px;
-          height: 100px;
-          border-radius: 100px;
-          margin-right: 10px;
-          outline: none;
-          cursor: pointer;
-          border: none;
-        }
-
-        #switch button:hover {
-          box-shadow: 2px 2px 2px;
-        }
-
-        .pattern {
-          box-shadow: ${useDesign ? "2px 2px 2px grey" : "none"};
-          background-image: url(${imageRoute + cardDesigns[3] + "-small.jpg"});
-        }
-
-        .color {
-          box-shadow: ${!useDesign ? "2px 2px 2px grey" : "none"};
-          background-color: #ff8a65;
-        }
-
-        #canvas {
-          height: ${height}px;
-          width: ${width}px;
-
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-
-          ${useDesign &&
-          `
-            background-image: url(${
-              imageRoute + selectedDesign + "-small.jpg"
-            });
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-          `}
-
-          border: grey 1px solid;
-
-          ${!useDesign &&
-          `
-            background-color: ${color.color}
-          `}
-        }
-        #text1 {
-          font-family: ${nameText.font};
-          color: ${nameText.color};
-          font-size: 35px;
-        }
-
-        #text2 {
-          font-family: ${subText.font};
-          color: ${subText.color};
-          font-size: 20px;
-        }
-
-        #design img {
-          width: ${width * 0.5}px;
-          height: ${height * 0.5}px;
-          margin: 1px 2px;
-          border: 1px solid white;
-        }
-
-        #design img:hover {
-          border: 1px solid black;
         }
       `}</style>
     </Layout>

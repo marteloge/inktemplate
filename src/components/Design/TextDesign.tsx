@@ -22,12 +22,13 @@ const selectStyles = (font) => {
 };
 
 type Props = {
+  id: string;
   design: TextDesign;
   handler: Function;
 };
 
 export const TextDesignComponent = (props: Props) => {
-  const { design, handler } = props;
+  const { design, handler, id } = props;
   const { color, font, text, colorPickerOpen } = design;
 
   return (
@@ -47,7 +48,7 @@ export const TextDesignComponent = (props: Props) => {
       ></input>
 
       <Select
-        instanceId="select-font"
+        instanceId={"select-font-" + id}
         className="select"
         value={fonts.find((i) => i.label === font)}
         onChange={(f) => {

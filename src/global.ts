@@ -27,6 +27,8 @@ export const cardDesigns = [
   "template11",
 ];
 
+export const imageRoute = "/static/images/";
+
 export const updateField = (state, handler, field, value) =>
   handler({ ...state, [field]: value });
 
