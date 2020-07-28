@@ -46,7 +46,8 @@ const Preview = (props: Props) => {
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;
-          border: grey 1px solid;
+          border: rgb(0,0,0, 0.1) 1px solid;
+          box-shadow: 2px 2px 4px rgb(0,0,0, 0.3);
           background-color: ${!useDesign ? `${backgroundColor}` : "initial"}
         }
         

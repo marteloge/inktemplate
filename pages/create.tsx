@@ -47,30 +47,34 @@ const Create = ({ t }) => {
       </Head>
 
       <div className="container">
-        <h1>{t("create.header")}</h1>
+        <div className="hero">
+          <div id="preview">
+            <Preview
+              nameText={nameText}
+              subText={subText}
+              width={width}
+              height={height}
+              useDesign={useDesign}
+              backgroundColor={color.color}
+              selectedDesign={selectedDesign}
+            />
+          </div>
+          <div id="intro">
+            <h1>{t("create.header")}</h1>
+            <p>
+              Create your own design for your print! Maybe you find some nice
+              designs from our library? Play with fonts, text and colors to get
+              your own custom design! Click on the preview button when you are
+              ready.
+            </p>
+
+            <button>Preview print</button>
+          </div>
+        </div>
 
         <Switch setUseDesign={setUseDesign} useDesign={useDesign} />
-
-        <Preview
-          nameText={nameText}
-          subText={subText}
-          width={width}
-          height={height}
-          useDesign={useDesign}
-          backgroundColor={color.color}
-          selectedDesign={selectedDesign}
-        />
-
         <TextDesignComponent id="1" design={nameText} handler={setNameText} />
         <TextDesignComponent id="2" design={subText} handler={setSubText} />
-
-        {useDesign && (
-          <DesignImagePreview
-            setSelectedDesign={setSelectedDesign}
-            width={width}
-            height={height}
-          />
-        )}
 
         {!useDesign && (
           <div id="background-color">
@@ -78,7 +82,10 @@ const Create = ({ t }) => {
               className="color-display"
               style={colorPickerStyles(color.color).color}
               onClick={() =>
-                setColor({ ...color, colorPickerOpen: !color.colorPickerOpen })
+                setColor({
+                  ...color,
+                  colorPickerOpen: !color.colorPickerOpen,
+                })
               }
             />
 
@@ -89,10 +96,35 @@ const Create = ({ t }) => {
             <p>Background color</p>
           </div>
         )}
+        <div>
+          {useDesign && (
+            <DesignImagePreview
+              setSelectedDesign={setSelectedDesign}
+              width={width}
+              height={height}
+            />
+          )}
+        </div>
       </div>
       <style jsx>{`
+        #intro {
+          padding: 20px;
+        }
+        #intro h1 {
+          margin: 0;
+        }
+
+        #intro p {
+          margin: 10px 0;
+        }
+
         .container {
           margin: 2% 5%;
+        }
+
+        .hero {
+          display: flex;
+          align-items: center;
         }
 
         .color-display {

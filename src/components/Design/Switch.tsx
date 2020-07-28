@@ -26,16 +26,16 @@ const Switch = (props: Props) => (
       }
 
       #switch button:hover {
-        box-shadow: 2px 2px 2px;
+        box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.5);
       }
 
       .pattern {
-        box-shadow: ${props.useDesign ? "2px 2px 2px grey" : "none"};
+        box-shadow: ${props.useDesign ? "3px 3px 3px rgb(0,0,0,0.3)" : "none"};
         background-image: url(${imageRoute + cardDesigns[3] + "-small.jpg"});
       }
 
       .color {
-        box-shadow: ${!props.useDesign ? "2px 2px 2px grey" : "none"};
+        box-shadow: ${!props.useDesign ? "3px 3px 3px rgb(0,0,0,0.3)" : "none"};
         background-color: #2fc1b0;
       }
     `}</style>

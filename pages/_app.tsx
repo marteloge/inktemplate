@@ -70,7 +70,7 @@ const MyApp = ({ Component, pageProps }) => (
 
       body {
         margin: 0;
-        font-size: ${calculateResponsiveSize(12, 14)};
+        font-size: ${calculateResponsiveSize(12, 16)};
       }
 
       a,
