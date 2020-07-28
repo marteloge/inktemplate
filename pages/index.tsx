@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { i18n, withTranslation } from "../i18n";
 
-import heroImg from "./../public/static/images/hero.jpg";
+import heroImg from "./../public/static/images/hero2.jpg";
 
 import Img from "react-optimized-image";
 
@@ -20,7 +20,8 @@ const Home = ({ t }) => (
     <Img
       src={heroImg}
       webp
-      sizes={[450, 800, 1200, 1400, 1600, 1900, 2500]}
+      sizes={[400, 500, 800, 1000]}
+      densities={[1, 1.5]}
       alt="Hero background image"
     ></Img>
 
@@ -49,7 +50,7 @@ const Home = ({ t }) => (
       }
 
       img {
-        width: 100%;
+        width: 100vw;
       }
     `}</style>
   </Layout>
