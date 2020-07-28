@@ -38,23 +38,18 @@ const Preview = (props: Props) => {
           justify-content: center;
           align-items: center;
 
-          ${useDesign &&
-          `
-            background-image: url(${
-              imageRoute + selectedDesign + "-small.jpg"
-            });
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-          `}
-
+          background-image: ${
+            useDesign
+              ? `url(${imageRoute + selectedDesign}-small.jpg);`
+              : "none;"
+          }
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
           border: grey 1px solid;
-
-          ${!useDesign &&
-          `
-            background-color: ${backgroundColor}
-          `}
+          background-color: ${!useDesign ? `${backgroundColor}` : "initial"}
         }
+        
         #text1 {
           font-family: ${nameText.font};
           color: ${nameText.color};
