@@ -10,31 +10,23 @@ const Products = ({ t }) => (
       <title>{t("meta:products.title")}</title>
       <meta name="description" content={t("meta:products.description")} />
     </Head>
-    <h1>{t("products.header")}</h1>
+    <div className="content">
+      <h1>{t("products.header")}</h1>
 
-    <Link href="/product/placecard">
-      <a>{t("products.placecard.name")}</a>
-    </Link>
+      <Link href="/product/placecard">
+        <a>{t("products.placecard.name")}</a>
+      </Link>
 
-    <Link href="/product/invitation">
-      <a>{t("products.invitation.name")}</a>
-    </Link>
+      <Link href="/product/invitation">
+        <a>{t("products.invitation.name")}</a>
+      </Link>
+    </div>
 
-    {/* <Link
-      href={
-        i18n.language == "en" ? "/product/[name]" : "/[lang]/product/[name]"
+    <style jsx>{`
+      .content {
+        margin: 10%;
       }
-      as={
-        i18n.language == "en"
-          ? "/product/test"
-          : "/" + i18n.language + "/product/test"
-      }
-    >
-      <a>Test</a>
-    </Link> */}
-    {/* <Link href="/product/[name]" as="/product/placecard">
-      <a>Place Card</a>
-    </Link> */}
+    `}</style>
   </Layout>
 );
 

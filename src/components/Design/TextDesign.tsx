@@ -62,6 +62,8 @@ export const TextDesignComponent = (props: Props) => {
         {`
           display: flex;
 
+          margin-bottom: 5px;
+
           input {
             margin: 0 10px;
             font-family: "Raleway";

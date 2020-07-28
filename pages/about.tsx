@@ -8,7 +8,15 @@ const About = ({ t }) => (
       <title>{t("meta:about.title")}</title>
       <meta name="description" content={t("meta:about.description")} />
     </Head>
-    <h1>{t("about.header")}</h1>
+    <div className="content">
+      <h1>{t("about.header")}</h1>
+    </div>
+
+    <style jsx>{`
+      .content {
+        margin: 10%;
+      }
+    `}</style>
   </Layout>
 );
 

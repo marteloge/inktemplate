@@ -6,8 +6,6 @@ let localeSubpaths = {
   no: "no",
 };
 
-module.exports = {};
-
 module.exports = withPlugins([
   [
     optimizedImages,

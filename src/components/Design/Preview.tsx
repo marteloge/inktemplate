@@ -1,6 +1,6 @@
 import { TextDesign } from "../../types";
 
-import { imageRoute } from "./../../../src/global";
+import { imageRoute, calculateResponsiveSize } from "./../../../src/global";
 
 type Props = {
   nameText: TextDesign;
@@ -30,8 +30,8 @@ const Preview = (props: Props) => {
       </div>
       <style jsx>{`
         #canvas {
-          height: ${height}px;
-          width: ${width}px;
+          height: ${calculateResponsiveSize(height * 0.75, height)};
+          width: ${calculateResponsiveSize(width * 0.75, width)};
 
           display: flex;
           flex-direction: column;

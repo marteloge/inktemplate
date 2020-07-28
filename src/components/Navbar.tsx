@@ -24,11 +24,13 @@ const Navbar = ({ t }) => (
       #navbar {
         width: 100%;
         top: 0;
-        background-color: rgba(256, 256, 256, 0.5);
+        background-color: white;
         padding: 10px 0;
+        margin-bottom: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        box-shadow: 20px 20px 30px rgba(255, 255, 255, 1);
       }
       a {
         font-family: "Raleway";

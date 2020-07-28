@@ -11,7 +11,14 @@ const MyApp = ({ Component, pageProps }) => (
       <meta name="description" content="InkTemplate" />
     </Head>
     <Component {...pageProps} />
+
     <style jsx global>{`
+      .container {
+        position: absolute;
+        min-height: 100%;
+        width: 100%;
+      }
+
       @font-face {
         font-family: "Playfair Display";
         src: url("/static/fonts/playfair-display-v21-latin-regular.woff2")
@@ -69,6 +76,7 @@ const MyApp = ({ Component, pageProps }) => (
       }
 
       body {
+        min-height: 100vh;
         margin: 0;
         font-size: ${calculateResponsiveSize(12, 16)};
       }
@@ -82,6 +90,7 @@ const MyApp = ({ Component, pageProps }) => (
         color: black;
         font-family: "Raleway";
         font-weight: 400;
+        font-size: ${calculateResponsiveSize(12, 16)};
       }
 
       h1,
@@ -90,6 +99,14 @@ const MyApp = ({ Component, pageProps }) => (
       h4 {
         font-family: "Playfair Display";
         font-weight: bold;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        font-family: "Raleway";
+        font-size: ${calculateResponsiveSize(12, 16)};
       }
     `}</style>
   </>

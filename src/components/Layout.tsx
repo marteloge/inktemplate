@@ -6,12 +6,7 @@ const Layout = ({ children }) => (
 
     {children}
 
-    <style jsx>{`
-      .container {
-        height: 100%;
-        width: 100%;
-      }
-    `}</style>
+    <style jsx>{``}</style>
   </div>
 );
 
