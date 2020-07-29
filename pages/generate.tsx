@@ -83,7 +83,7 @@ const Generate = ({ t }) => (
         width: 100vw;
         height: 100vh;
         position: fixed;
-        background-color: white;
+        background-color: rgb(242, 238, 235);
         top: 0;
         left: 0;
         display: flex;
