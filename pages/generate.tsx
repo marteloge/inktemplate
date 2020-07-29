@@ -3,10 +3,52 @@ import Layout from "./../src/components/Layout";
 import Head from "next/head";
 
 import dynamic from "next/dynamic";
+import { PDFProps } from "../src/types";
 
 const PreviewPDF = dynamic(import("./../src/components/Print/PreviewPDF"), {
   ssr: false,
 });
+
+const Download = dynamic(import("./../src/components/Print/Download"), {
+  ssr: false,
+});
+
+const pdfprops: PDFProps = {
+  width: 8.5 * 0.92,
+  height: 5.5 * 0.92,
+  text: [
+    "Ola, bord1",
+    "kari, bord2",
+    "Håkon, bord3",
+    "jepp, bord4",
+    "test, bord5",
+    "lll,  bord6",
+    "olaaa, bord7",
+    "kariaa, bord8",
+    "Håkonaa, bord9",
+    "jeppaa, bord10",
+    "testaa, bord11",
+    "lllaa, bord12",
+    "kk, bord13",
+    "kk3323, bord14",
+  ],
+  backgroundColor: "#f2eeeb",
+
+  // backgroundColor: "#FF8A65",
+  // backgroundImage:"/static/images/template9.jpg",
+  nameText: {
+    font: "Dawning of a New Day",
+    fontSrc: "/static/fonts/dawning-of-a-new-day-v11-latin-regular.ttf",
+    fontSize: 35 * 0.6,
+    color: "hotpink",
+  },
+  subText: {
+    font: "Raleway",
+    fontSrc: "/static/fonts/raleway-v17-latin-regular.ttf",
+    fontSize: 20 * 0.6,
+    color: "yellow",
+  },
+};
 
 const Generate = ({ t }) => (
   <Layout>
@@ -20,29 +62,12 @@ const Generate = ({ t }) => (
 
     <div className="content">
       <div>
-        <PreviewPDF
-          backgroundImage="/static/images/template4.jpg"
-          text={[
-            "ola, bord1",
-            "kari, bord2",
-            "Håkon, bord3",
-            "jepp, bord5",
-            "test, bord1",
-            "lll,  bord3",
-            "olaaa, bord1",
-            "kariaa, bord2",
-            "Håkonaa, bord3",
-            "jeppaa, bord5",
-            "testaa, bord1",
-            "lllaa,  bord3",
-          ]}
-          nameText={{ font: "Raleway", fontSize: 35 * 0.6, color: "hotpink" }}
-          subText={{ font: "Raleway", fontSize: 20 * 0.6, color: "yellow" }}
-        ></PreviewPDF>
+        <PreviewPDF {...pdfprops}></PreviewPDF>
       </div>
       <div>
         <h1>{t("generate.header")}</h1>
         <p>Here is your PDF preview! Do you like it?</p>
+        {/* <Download {...pdfprops}></Download> */}
         <button>Remove commercial</button>
       </div>
     </div>

@@ -179,6 +179,7 @@ const Create = ({ t }) => {
       <style jsx>{`
         #render {
           margin: 5% 0;
+          min-height: 40vh;
         }
         .cards {
           display: flex;
