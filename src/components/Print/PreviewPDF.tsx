@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Page,
   Text,
@@ -7,8 +8,10 @@ import {
   PDFViewer,
   Image,
   Font,
+  BlobProvider,
 } from "@react-pdf/renderer";
-import { Test2, Test, App } from "./Test";
+
+import { Document as DocumentView, Page as PageView } from "react-pdf";
 
 type Text = {
   font: string;
@@ -90,11 +93,7 @@ const styles = (props: StyleProps) =>
     },
   });
 
-const PreviewPDF = (props: PDFProps) => {
-  // const width = 321 * 0.7; //273
-  // const height = 208 * 0.7; //177
-  // 595cm x 842cm
-
+const PDF = (props: PDFProps) => {
   const width = 8.5 * 0.92;
   const height = 5.5 * 0.92;
 
@@ -114,82 +113,159 @@ const PreviewPDF = (props: PDFProps) => {
   });
 
   return (
-    <div id="content">
-      <App></App>
-
-      {/* <PDFViewer>
-        <Document>
-          {[...Array(12 / 6)].map((a, b) => {
-            return (
-              <Page
-                key={"page-" + b}
-                size="A4"
-                orientation="landscape"
-                style={style.page}
-              >
-                {[...Array(6)].map((e, i) => {
-                  return (
-                    <View style={style.test} key={"page-" + i}>
-                      <View style={style.testFront}></View>
-                      <View>
-                        <View style={{ position: "relative" }}>
-                          <Image
-                            style={{ maxHeight: height - 0.03 + "cm" }}
-                            src={props.backgroundImage}
-                          ></Image>
-                        </View>
-                        <View
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            position: "absolute",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Text
-                            style={{
-                              fontSize: props.nameText.fontSize,
-                              fontFamily: "Dawning of a New Day",
-                            }}
-                          >
-                            Janelle
-                          </Text>
-                          <Text
-                            style={{
-                              fontSize: props.subText.fontSize,
-                              fontFamily: "Raleway",
-                            }}
-                          >
-                            Table 2
-                          </Text>
-                        </View>
-                      </View>
+    <Document>
+      {[...Array(12 / 6)].map((a, b) => {
+        return (
+          <Page
+            key={"page-" + b}
+            size="A4"
+            orientation="landscape"
+            style={style.page}
+          >
+            {[...Array(6)].map((e, i) => {
+              return (
+                <View style={style.test} key={"page-" + i}>
+                  <View style={style.testFront}></View>
+                  <View>
+                    <View style={{ position: "relative" }}>
+                      <Image
+                        style={{ maxHeight: height - 0.03 + "cm" }}
+                        src={props.backgroundImage}
+                      ></Image>
                     </View>
-                  );
-                })}
-              </Page>
-            );
-          })}
-        </Document>
-      </PDFViewer> */}
+                    <View
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        position: "absolute",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: props.nameText.fontSize,
+                          fontFamily: "Dawning of a New Day",
+                        }}
+                      >
+                        Janelle
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: props.subText.fontSize,
+                          fontFamily: "Raleway",
+                        }}
+                      >
+                        Table 2
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              );
+            })}
+          </Page>
+        );
+      })}
+    </Document>
+  );
+};
 
+const PDFNavigator = (link, blob) => {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+    setPageNumber(1);
+  };
+
+  const changePage = (offset) => {
+    setPageNumber((prevPageNumber) => prevPageNumber + offset);
+  };
+
+  const previousPage = () => {
+    changePage(-1);
+  };
+
+  const nextPage = () => {
+    changePage(1);
+  };
+
+  return (
+    <div className="viewer">
+      <div className="navigator">
+        <div>
+          <p>
+            Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
+          </p>
+        </div>
+        <div>
+          <button
+            type="button"
+            disabled={pageNumber <= 1}
+            onClick={previousPage}
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            disabled={pageNumber >= numPages}
+            onClick={nextPage}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+      <DocumentView
+        width="200px"
+        file={link.link}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <PageView
+          renderMode="svg"
+          renderTextLayer={false}
+          pageNumber={pageNumber}
+        />
+      </DocumentView>
       <style jsx global>{`
-        iframe {
-          width: 100%;
-          height: 400px;
+        .wallpaper {
+          display: none;
         }
-        .react-pdf__Page__textContent {
-          visibility: hidden;
+      `}</style>
+      <style jsx>{`
+        .navigator {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
         }
       `}</style>
     </div>
   );
 };
 
-// In centimeters: 21cm x 29.7cm ( 7.35 x 4.95)
-// 5.5 x 8.5 cm
+const PreviewPDF = (props: PDFProps) => (
+  <div className="preview">
+    <BlobProvider document={<PDF {...props}></PDF>}>
+      {({ blob, url, loading, error }) => {
+        return loading ? (
+          <div>
+            <h1>Painting your PDF</h1>
+          </div>
+        ) : (
+          <div>
+            <PDFNavigator link={url} blob={blob}></PDFNavigator>
+          </div>
+        );
+      }}
+    </BlobProvider>
+    <style jsx global>
+      {``}
+    </style>
+  </div>
+);
 
 export default PreviewPDF;
