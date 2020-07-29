@@ -1,6 +1,41 @@
 import { useState } from "react";
 import { Document, Page } from "react-pdf";
 
+import {
+  PDFDownloadLink,
+  Document as Doc,
+  Page as Pagg,
+  View,
+  Text,
+  BlobProvider,
+} from "@react-pdf/renderer";
+
+const MyDoc = () => (
+  <Doc>
+    <Pagg size="A4">
+      <View>
+        <Text>Hello</Text>
+      </View>
+    </Pagg>
+  </Doc>
+);
+
+export const App = () => (
+  <div>
+    <BlobProvider document={<MyDoc></MyDoc>}>
+      {({ blob, url, loading, error }) => {
+        // Do whatever you need with blob here
+        console.log(url);
+        return loading ? (
+          <h1>Loading</h1>
+        ) : (
+          <Test2 link={url} blob={blob}></Test2>
+        );
+      }}
+    </BlobProvider>
+  </div>
+);
+
 export function Test() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(2);
@@ -22,7 +57,7 @@ export function Test() {
   );
 }
 
-export function Test2() {
+export const Test2 = (link, blob) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -43,9 +78,12 @@ export function Test2() {
     changePage(1);
   };
 
+  console.log("GOT THE LINK", link);
+  console.log("GOT THE BLOB", blob);
+
   return (
     <>
-      <Document file="/static/test2.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={link.link} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>
       <div>
@@ -65,4 +103,4 @@ export function Test2() {
       </div>
     </>
   );
-}
+};

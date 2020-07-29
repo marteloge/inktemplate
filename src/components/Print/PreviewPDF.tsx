@@ -8,7 +8,7 @@ import {
   Image,
   Font,
 } from "@react-pdf/renderer";
-import { Test2, Test } from "./Test";
+import { Test2, Test, App } from "./Test";
 
 type Text = {
   font: string;
@@ -115,16 +115,21 @@ const PreviewPDF = (props: PDFProps) => {
 
   return (
     <div id="content">
-      <Test2></Test2>
+      <App></App>
 
-      <PDFViewer>
+      {/* <PDFViewer>
         <Document>
           {[...Array(12 / 6)].map((a, b) => {
             return (
-              <Page size="A4" orientation="landscape" style={style.page}>
+              <Page
+                key={"page-" + b}
+                size="A4"
+                orientation="landscape"
+                style={style.page}
+              >
                 {[...Array(6)].map((e, i) => {
                   return (
-                    <View style={style.test}>
+                    <View style={style.test} key={"page-" + i}>
                       <View style={style.testFront}></View>
                       <View>
                         <View style={{ position: "relative" }}>
@@ -169,7 +174,7 @@ const PreviewPDF = (props: PDFProps) => {
             );
           })}
         </Document>
-      </PDFViewer>
+      </PDFViewer> */}
 
       <style jsx global>{`
         iframe {
