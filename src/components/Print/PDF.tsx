@@ -8,9 +8,9 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
-import { StyleProps, PDFProps } from "./../../types";
+import { PDFProps } from "./../../types";
 
-const styles = (props: StyleProps) =>
+const styles = (props: PDFProps) =>
   StyleSheet.create({
     page: {
       height: "100%",
@@ -20,59 +20,59 @@ const styles = (props: StyleProps) =>
       flexWrap: "wrap",
       justifyContent: "center",
     },
-    test: {
-      width: props.cardWidth + "cm",
-      height: 2 * props.cardHeight + "cm",
+
+    card: {
+      width: props.width + "cm",
+      height: 2 * props.height + "cm",
       display: "table",
       border: 0.5,
       borderStyle: "dotted",
       borderColor: "grey",
       backgroundColor: "white",
     },
-    testFront: {
+    back: {
       backgroundColor: "white",
-      width: props.cardWidth + "cm",
-      height: props.cardHeight + "cm",
+      width: props.width + "cm",
+      height: props.height + "cm",
     },
-    testBack: {
-      backgroundColor: "white",
-      width: props.cardWidth + "cm",
-      height: props.cardHeight + "cm",
-    },
-    card: {
-      backgroundColor: "white",
-      width: props.cardWidth + "pt",
-      height: 2 * props.cardHeight + 4 + "cm",
+    front: {
+      position: "relative",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      margin: "0",
-      padding: "0",
     },
-    cardBack: {
-      width: props.cardWidth + "cm",
-      height: props.cardHeight + "cm",
-      backgroundColor: "white",
-      borderTop: "1cm",
-      borderRight: "1pt",
-      borderLeft: "1",
-      margin: "0",
-      padding: "0",
+    image: {
+      minWidth: props.width + "cm",
+      minHeight: props.height + "cm",
     },
-    cardFront: {
-      width: props.cardWidth + "cm",
-      height: props.cardHeight + "cm",
-      backgroundColor: "white",
-      borderBottom: "1pt",
-      borderRight: "1pt",
-      borderLeft: "1pt",
-      margin: "0",
-      padding: "0",
+    background: {
+      minWidth: props.width + "cm",
+      minHeight: props.height + "cm",
+      backgroundColor: props.backgroundColor,
+    },
+    nameText: {
+      fontSize: props.nameText.fontSize,
+      fontFamily: props.nameText.font,
+      color: props.nameText.color,
+    },
+    subText: {
+      fontSize: props.subText.fontSize,
+      fontFamily: props.subText.font,
+      color: props.subText.color,
+    },
+    content: {
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     },
   });
 
 const PDF = (props: PDFProps) => {
-  const style = styles({ cardWidth: props.width, cardHeight: props.height });
+  const style = styles({ ...props });
 
   Font.register({
     family: props.subText.font,
@@ -100,68 +100,27 @@ const PDF = (props: PDFProps) => {
               }
               return (
                 <View
-                  style={style.test}
+                  style={style.card}
                   key={"card-" + pageNum + "-" + cardNum}
                 >
-                  <View style={style.testFront}></View>
-
+                  <View style={style.back}></View>
                   <View>
-                    <View
-                      style={{
-                        position: "relative",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
+                    <View style={style.front}>
                       {props.backgroundImage ? (
                         <Image
-                          style={{
-                            minWidth: props.width + "cm",
-                            minHeight: props.height + "cm",
-                          }}
+                          style={style.image}
                           src={props.backgroundImage}
                         ></Image>
                       ) : (
-                        <View
-                          style={{
-                            minWidth: props.width + "cm",
-                            minHeight: props.height + "cm",
-                            backgroundColor: props.backgroundColor,
-                          }}
-                        ></View>
+                        <View style={style.background}></View>
                       )}
                     </View>
-                    <View
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        position: "absolute",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: props.nameText.fontSize,
-                          fontFamily: props.nameText.font,
-                          color: props.nameText.color,
-                        }}
-                      >
-                        {props.text[6 * pageNum + cardNum] &&
-                          props.text[6 * pageNum + cardNum].split(",")[0]}
+                    <View style={style.content}>
+                      <Text style={style.nameText}>
+                        {props.text[6 * pageNum + cardNum].split(",")[0]}
                       </Text>
-                      <Text
-                        style={{
-                          fontSize: props.subText.fontSize,
-                          fontFamily: props.subText.font,
-                          color: props.subText.color,
-                        }}
-                      >
-                        {props.text[6 * pageNum + cardNum] &&
-                          props.text[6 * pageNum + cardNum].split(",")[1]}
+                      <Text style={style.subText}>
+                        {props.text[6 * pageNum + cardNum].split(",")[1]}
                       </Text>
                     </View>
                   </View>

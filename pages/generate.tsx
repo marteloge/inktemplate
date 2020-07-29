@@ -9,9 +9,9 @@ const PreviewPDF = dynamic(import("./../src/components/Print/PreviewPDF"), {
   ssr: false,
 });
 
-const Download = dynamic(import("./../src/components/Print/Download"), {
-  ssr: false,
-});
+// const Download = dynamic(import("./../src/components/Print/Download"), {
+//   ssr: false,
+// });
 
 const pdfprops: PDFProps = {
   width: 8.5 * 0.92,

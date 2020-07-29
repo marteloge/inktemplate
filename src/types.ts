@@ -18,11 +18,6 @@ export type Text = {
   fontSrc: string;
 };
 
-export type StyleProps = {
-  cardWidth: number;
-  cardHeight: number;
-};
-
 export type PDFProps = {
   text: Array<string>;
   width: number;
