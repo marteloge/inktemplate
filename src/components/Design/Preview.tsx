@@ -1,70 +1,47 @@
-import { TextDesign } from "../../types";
-
-import { imageRoute, calculateResponsiveSize } from "./../../../src/global";
+import { imageRoute } from "../../global";
 
 type Props = {
-  nameText: TextDesign;
-  subText: TextDesign;
   width: number;
   height: number;
+  list: string;
+  color: string;
+  image: string;
   useDesign: boolean;
-  selectedDesign: string;
-  backgroundColor?: string;
 };
-const Preview = (props: Props) => {
-  const {
-    width,
-    height,
-    nameText,
-    subText,
-    selectedDesign,
-    useDesign,
-    backgroundColor,
-  } = props;
 
-  return (
-    <div id="preview">
-      <div id="canvas">
-        <p id="text1">{nameText.text}</p>
-        <p id="text2">{subText.text}</p>
-      </div>
-      <style jsx>{`
-        #canvas {
-          height: ${calculateResponsiveSize(height * 0.75, height)};
-          width: ${calculateResponsiveSize(width * 0.75, width)};
+const Preview = (props: Props) => (
+  <div>
+    {props.list.endsWith(";") &&
+      props.list
+        .slice(0, props.list.length - 1)
+        .split(";")
+        .map((c, i) => {
+          console.log(c, i);
+          return (
+            <div className="card" key={i}>
+              <p>{c.split(",")[0]}</p>
+              <p>{c.split(",")[1]}</p>
+            </div>
+          );
+        })}
 
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+    <style jsx>{`
+      display: flex;
 
-          background-image: ${
-            useDesign
-              ? `url(${imageRoute + selectedDesign}-small.jpg);`
-              : "none;"
-          }
-          background-repeat: no-repeat;
-          background-size: cover;
-          background-position: center;
-          // border: rgb(0,0,0, 0.1) 1px solid;
-          box-shadow: 2px 2px 4px rgb(0,0,0, 0.3);
-          background-color: ${!useDesign ? `${backgroundColor}` : "initial"}
-        }
-        
-        #text1 {
-          font-family: ${nameText.font};
-          color: ${nameText.color};
-          font-size: 35px;
-        }
-
-        #text2 {
-          font-family: ${subText.font};
-          color: ${subText.color};
-          font-size: 20px;
-        }
-      `}</style>
-    </div>
-  );
-};
+      .card {
+        margin-right: 10px;
+        width: ${props.width * 0.5}px;
+        height: ${props.height * 0.5}px;
+        background-color: ${props.useDesign ? "none" : props.color};
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-image: ${props.useDesign
+          ? `url(${imageRoute + props.image}-small.jpg)`
+          : "none"};
+      }
+    `}</style>
+  </div>
+);
 
 export default Preview;

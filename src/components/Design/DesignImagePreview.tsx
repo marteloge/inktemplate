@@ -49,8 +49,8 @@ const DesignImagePreview = (props: Props) => (
       }
 
       img {
-        width: ${props.width * 0.35}px;
-        height: ${props.height * 0.35}px;
+        width: ${props.width * 0.4}px;
+        height: ${props.height * 0.4}px;
         margin: 1px 2px 1px 0;
         border: 1px solid #f2eeeb;
       }

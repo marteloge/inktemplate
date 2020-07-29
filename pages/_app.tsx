@@ -97,7 +97,7 @@ const MyApp = ({ Component, pageProps }) => (
       h2,
       h3,
       h4 {
-        font-family: "Playfair Display";
+        font-family: "Raleway";
         font-weight: bold;
       }
 

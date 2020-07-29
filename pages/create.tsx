@@ -8,20 +8,22 @@ import { TextDesign, ColorPickerDesign } from "./../src/types";
 import { colorPickerStyles } from "./../src/global";
 
 import ColorPicker from "../src/components/Design/ColorPicker";
-import Preview from "../src/components/Design/Preview";
+import Canvas from "../src/components/Design/Canvas";
 import Layout from "../src/components/Layout";
 import Switch from "../src/components/Design/Switch";
 import DesignImagePreview from "../src/components/Design/DesignImagePreview";
 import NameList from "../src/components/Design/NameList";
+import Preview from "../src/components/Design/Preview";
+import Link from "next/link";
 
 const Create = ({ t }) => {
   const width = 400;
-  const height = 260;
+  const height = 256;
 
   const [useDesign, setUseDesign] = useState<boolean>(true);
   const [selectedDesign, setSelectedDesign] = useState<string>("template4");
   const [content, setContent] = useState<string>(
-    "Janelle, Table 4; Rory, Table6;"
+    "Janelle, Table 1; Harold, Table2; Jeff, Table 3;"
   );
 
   const [color, setColor] = useState<ColorPickerDesign>({
@@ -34,6 +36,7 @@ const Create = ({ t }) => {
     font: "Dawning of a New Day",
     text: "Janelle",
     colorPickerOpen: false,
+    fontSize: 35,
   });
 
   const [subText, setSubText] = useState<TextDesign>({
@@ -41,6 +44,7 @@ const Create = ({ t }) => {
     font: "Raleway",
     text: "Table 2",
     colorPickerOpen: false,
+    fontSize: 20,
   });
 
   return (
@@ -50,8 +54,12 @@ const Create = ({ t }) => {
         <meta name="description" content={t("meta:create.description")} />
       </Head>
       <div className="sticky">
-        <button>Generate PDF</button>
-        <button>Priview Print</button>
+        <Link href="/generate">
+          <a className="button">Generate PDF</a>
+        </Link>
+        <a className="button" href="#render">
+          Preview Print
+        </a>
       </div>
 
       <div className="content">
@@ -63,7 +71,7 @@ const Create = ({ t }) => {
         </p>
         <div className="hero">
           <div id="preview">
-            <Preview
+            <Canvas
               nameText={nameText}
               subText={subText}
               width={width}
@@ -115,7 +123,6 @@ const Create = ({ t }) => {
             </div>
           </div>
         </div>
-
         <div id="bottom">
           <div>
             <NameList list={content} handler={setContent} width={width} />
@@ -130,6 +137,38 @@ const Create = ({ t }) => {
             )}
           </div>
         </div>
+
+        <div id="render">
+          <h2>Preview print</h2>
+          <div className="cards">
+            {content
+              .slice(0, content.length - 1)
+              .split(";")
+              .map((c, i) => {
+                return (
+                  <div className="card">
+                    <Canvas
+                      width={width * 0.6}
+                      height={height * 0.6}
+                      backgroundColor={color.color}
+                      selectedDesign={selectedDesign}
+                      useDesign={useDesign}
+                      nameText={{
+                        ...nameText,
+                        fontSize: nameText.fontSize * 0.6,
+                        text: c.split(",")[0],
+                      }}
+                      subText={{
+                        ...subText,
+                        fontSize: subText.fontSize * 0.6,
+                        text: c.split(",")[1],
+                      }}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
 
       <style jsx global>{`
@@ -139,21 +178,35 @@ const Create = ({ t }) => {
       `}</style>
 
       <style jsx>{`
+        #render {
+          margin: 5% 0;
+        }
+        .cards {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .card {
+          margin-right: 3px;
+          margin-top: 3px;
+        }
+
         #bottom {
           display: flex;
         }
+
         .content {
           padding: 3% 5%;
           max-width: 1030px;
           margin: 0 auto;
           margin-bottom: 10%;
         }
+
         .sticky {
           position: fixed;
           bottom: 0;
           width: 100%;
 
-          // background-color: rgb(256, 256, 256, 0.9);
           box-shadow: -10px -10px 20px rgb(242, 238, 235, 0.8);
           background-color: rgb(242, 238, 235, 0.8);
           display: flex;
@@ -161,8 +214,9 @@ const Create = ({ t }) => {
           align-items: center;
         }
 
-        button {
-          padding: 10px 20px;
+        .button {
+          margin: 10px;
+          padding: 15px 25px;
           background: none;
           border: 1px solid rgb(0, 0, 0, 0.5);
           cursor: pointer;

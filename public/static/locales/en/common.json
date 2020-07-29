@@ -13,6 +13,10 @@
     "nav": "Create new",
     "header": "Create your own design"
   },
+  "generate": {
+    "nav": "Generate PDF",
+    "header": "Generate PDF"
+  },
   "products": {
     "nav": "Templates",
     "header": "All templates",

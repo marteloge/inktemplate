@@ -12,6 +12,10 @@
     "nav": "Lag ny",
     "header": "Lag ny"
   },
+  "generate": {
+    "nav": "Lag PDF",
+    "header": "Lag PDF"
+  },
   "products": {
     "nav": "Templates",
     "header": "Alle templates",

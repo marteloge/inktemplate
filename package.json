@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^1.6.10",
     "@types/node": "^14.0.24",
     "@types/react-color": "^3.0.4",
     "next": "9.4.4",
