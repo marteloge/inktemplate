@@ -283,9 +283,6 @@ const PreviewPDF = (props: PDFProps) => (
         );
       }}
     </BlobProvider>
-    <style jsx global>
-      {``}
-    </style>
   </div>
 );
 

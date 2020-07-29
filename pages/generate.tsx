@@ -42,15 +42,17 @@ const Generate = ({ t }) => (
       </div>
       <div className="test2">
         <h1>{t("generate.header")}</h1>
-        <p>
-          Lalalalalalalalalalla al slasadla lds la flaf laf alf laf lfal f al
-        </p>
+        <p>Here is your PDF preview! Do you like it?</p>
+        <button>Remove commercial</button>
       </div>
     </div>
 
     <style jsx global>{`
+      .container {
+        background-color: rgb(242, 238, 235);
+      }
       .content {
-        padding: 1%;
+        padding: 3% 1%;
         display: flex;
         flex-direction: row;
         // background-color: salmon;
@@ -91,39 +93,24 @@ const Generate = ({ t }) => (
         z-index: 1;
       }
 
-      .react-pdf__Document {
-        border-radius: 5px;
-      }
-
       .react-pdf__Page {
         max-width: 50vw;
-        height: auto;
         display: fixed;
         overflow: visible;
-        // background-color: salmon;
-        border-radius: 5px;
       }
 
       .react-pdf__Page__svg {
         max-width: 50vw;
         height: auto;
         overflow: visible;
-        // background-color: salmon;
         border-radius: 5px;
+        background-color: rgb(242, 238, 235) !important;
       }
 
       .react-pdf__Page__svg svg {
         max-width: 50vw;
         height: auto;
         overflow: visible;
-        // background-color: salmon;
-      }
-
-      svg {
-        box-shadow: 0 8px 15px 0 rgba(62, 62, 62, 0.15);
-        border-top: 0.5px solid rgb(0, 0, 0, 0.1);
-        border-left: 0.5px solid rgb(0, 0, 0, 0.1);
-        width: 98%;
       }
     `}</style>
   </Layout>
