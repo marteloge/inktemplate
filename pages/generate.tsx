@@ -19,7 +19,7 @@ const Generate = ({ t }) => (
     </div>
 
     <div className="content">
-      <div className="test1">
+      <div>
         <PreviewPDF
           backgroundImage="/static/images/template4.jpg"
           text={[
@@ -40,39 +40,18 @@ const Generate = ({ t }) => (
           subText={{ font: "Raleway", fontSize: 20 * 0.6, color: "yellow" }}
         ></PreviewPDF>
       </div>
-      <div className="test2">
+      <div>
         <h1>{t("generate.header")}</h1>
         <p>Here is your PDF preview! Do you like it?</p>
         <button>Remove commercial</button>
       </div>
     </div>
 
-    <style jsx global>{`
-      .container {
-        background-color: rgb(242, 238, 235);
-      }
-      .content {
-        padding: 3% 1%;
-        display: flex;
-        flex-direction: row;
-        // background-color: salmon;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-      }
-
-      .test1 {
-        width: 50%;
-        padding-left: 2%;
-      }
-      .test2 {
-        width: 50%;
-        padding-left: 2%;
-      }
-
+    <style jsx>{`
       h1 {
         margin: 0;
       }
+
       p {
         margin: 20px 0;
       }
@@ -93,24 +72,34 @@ const Generate = ({ t }) => (
         z-index: 1;
       }
 
-      .react-pdf__Page {
-        max-width: 50vw;
-        display: fixed;
-        overflow: visible;
+      .container {
+        background-color: rgb(242, 238, 235);
+      }
+
+      .content {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin: 3% 0;
+      }
+
+      .content > div {
+        width: 50%;
+        padding-left: 4%;
       }
 
       .react-pdf__Page__svg {
         max-width: 50vw;
         height: auto;
-        overflow: visible;
         border-radius: 5px;
         background-color: rgb(242, 238, 235) !important;
       }
 
-      .react-pdf__Page__svg svg {
+      svg {
         max-width: 50vw;
         height: auto;
-        overflow: visible;
       }
     `}</style>
   </Layout>

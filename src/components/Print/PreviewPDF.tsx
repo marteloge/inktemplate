@@ -5,7 +5,6 @@ import {
   View,
   Document,
   StyleSheet,
-  PDFViewer,
   Image,
   Font,
   BlobProvider,
@@ -232,8 +231,6 @@ const PDFNavigator = (link, blob) => {
         .wallpaper {
           display: none;
         }
-      `}</style>
-      <style jsx global>{`
         .navigator {
           width: 100%;
           display: flex;
