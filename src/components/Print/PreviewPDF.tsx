@@ -196,12 +196,7 @@ const PDFNavigator = (link, blob) => {
   return (
     <div className="viewer">
       <div className="navigator">
-        <div>
-          <p>
-            Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
-          </p>
-        </div>
-        <div>
+        <div className="navbar">
           <button
             type="button"
             disabled={pageNumber <= 1}
@@ -209,6 +204,9 @@ const PDFNavigator = (link, blob) => {
           >
             Previous
           </button>
+          <p>
+            Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
+          </p>
           <button
             type="button"
             disabled={pageNumber >= numPages}
@@ -219,13 +217,14 @@ const PDFNavigator = (link, blob) => {
         </div>
       </div>
       <DocumentView
-        width="200px"
+        className="document-view"
         file={link.link}
         onLoadSuccess={onDocumentLoadSuccess}
       >
         <PageView
           renderMode="svg"
           renderTextLayer={false}
+          scale={1}
           pageNumber={pageNumber}
         />
       </DocumentView>
@@ -234,11 +233,33 @@ const PDFNavigator = (link, blob) => {
           display: none;
         }
       `}</style>
-      <style jsx>{`
+      <style jsx global>{`
         .navigator {
           width: 100%;
           display: flex;
           justify-content: center;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .navbar {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .navigator button {
+          padding: 10px 20px;
+          background: white;
+          border-radius: 5px;
+          outline: none;
+          box-shadow: none;
+          border: 1px solid black;
+          cursor: pointer;
+          margin: 5px 20px 5px 20px;
+        }
+        .viewer {
+          display: flex;
           flex-direction: column;
           align-items: center;
         }
