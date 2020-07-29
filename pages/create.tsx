@@ -13,7 +13,6 @@ import Layout from "../src/components/Layout";
 import Switch from "../src/components/Design/Switch";
 import DesignImagePreview from "../src/components/Design/DesignImagePreview";
 import NameList from "../src/components/Design/NameList";
-import Preview from "../src/components/Design/Preview";
 import Link from "next/link";
 
 const Create = ({ t }) => {
@@ -55,7 +54,7 @@ const Create = ({ t }) => {
       </Head>
       <div className="sticky">
         <Link href="/generate">
-          <a className="button">Generate PDF</a>
+          <a className="button">Preview PDF</a>
         </Link>
         <a className="button" href="#render">
           Preview Print
@@ -146,7 +145,7 @@ const Create = ({ t }) => {
               .split(";")
               .map((c, i) => {
                 return (
-                  <div className="card">
+                  <div key={"canvas-" + i} className="card">
                     <Canvas
                       width={width * 0.6}
                       height={height * 0.6}

@@ -8,6 +8,7 @@ import {
   Image,
   Font,
 } from "@react-pdf/renderer";
+import { Test2, Test } from "./Test";
 
 type Text = {
   font: string;
@@ -114,6 +115,8 @@ const PreviewPDF = (props: PDFProps) => {
 
   return (
     <div id="content">
+      <Test2></Test2>
+
       <PDFViewer>
         <Document>
           {[...Array(12 / 6)].map((a, b) => {
@@ -172,6 +175,9 @@ const PreviewPDF = (props: PDFProps) => {
         iframe {
           width: 100%;
           height: 400px;
+        }
+        .react-pdf__Page__textContent {
+          visibility: hidden;
         }
       `}</style>
     </div>
