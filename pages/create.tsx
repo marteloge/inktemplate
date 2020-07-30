@@ -4,7 +4,7 @@ import Head from "next/head";
 import { withTranslation } from "./../i18n";
 
 import { TextDesignComponent } from "../src/components/Design/TextDesign";
-import { TextDesign, ColorPickerDesign } from "./../src/types";
+import { TextDesign, ColorPickerDesign, PDFProps } from "./../src/types";
 import { colorPickerStyles } from "./../src/global";
 
 import ColorPicker from "../src/components/Design/ColorPicker";
@@ -13,7 +13,24 @@ import Layout from "../src/components/Layout";
 import Switch from "../src/components/Design/Switch";
 import DesignImagePreview from "../src/components/Design/DesignImagePreview";
 import NameList from "../src/components/Design/NameList";
-import Link from "next/link";
+
+import { Router } from "./../i18n";
+
+const toLocalStore = (key, value) => {
+  localStorage.setItem(key, value);
+};
+
+const generatePreview = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+  Router.push("/generate");
+};
+
+const toTextArray = (text: string): Array<string> => {
+  if (text.slice(-1) === ";") {
+    return text.slice(0, text.length - 1).split(";");
+  }
+  return text.split(";");
+};
 
 const Create = ({ t }) => {
   const width = 400;
@@ -33,6 +50,7 @@ const Create = ({ t }) => {
   const [nameText, setNameText] = useState<TextDesign>({
     color: "#000",
     font: "Dawning of a New Day",
+    fontSrc: "/static/fonts/dawning-of-a-new-day-v11-latin-regular.ttf",
     text: "Janelle",
     colorPickerOpen: false,
     fontSize: 35,
@@ -42,9 +60,20 @@ const Create = ({ t }) => {
     color: "#000",
     font: "Raleway",
     text: "Table 2",
+    fontSrc: "/static/fonts/raleway-v17-latin-regular.ttf",
     colorPickerOpen: false,
     fontSize: 20,
   });
+
+  const pdfData: PDFProps = {
+    width: 8.5 * 0.92,
+    height: 5.5 * 0.92,
+    nameText: nameText,
+    subText: subText,
+    backgroundColor: useDesign ? null : color.color,
+    backgroundImage: useDesign ? selectedDesign : null,
+    text: toTextArray(content),
+  };
 
   return (
     <Layout>
@@ -53,9 +82,16 @@ const Create = ({ t }) => {
         <meta name="description" content={t("meta:create.description")} />
       </Head>
       <div className="sticky">
-        <Link href="/generate">
-          <a className="button">Preview PDF</a>
-        </Link>
+        {/* <Link href="/generate">
+          
+        </Link> */}
+
+        <button
+          onClick={() => generatePreview("card", pdfData)}
+          className="button"
+        >
+          Preview PDF
+        </button>
         <a className="button" href="#render">
           Preview Print
         </a>

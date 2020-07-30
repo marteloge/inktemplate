@@ -4,6 +4,7 @@ export type TextDesign = {
   text: string;
   colorPickerOpen: boolean;
   fontSize: number;
+  fontSrc: string;
 };
 
 export type ColorPickerDesign = {

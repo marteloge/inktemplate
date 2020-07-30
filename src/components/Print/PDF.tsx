@@ -10,8 +10,9 @@ import {
 
 import { PDFProps } from "./../../types";
 
-const styles = (props: PDFProps) =>
-  StyleSheet.create({
+const styles = (props: PDFProps) => {
+  console.log("props PDF", props);
+  return StyleSheet.create({
     page: {
       height: "100%",
       backgroundColor: "white",
@@ -51,12 +52,12 @@ const styles = (props: PDFProps) =>
       backgroundColor: props.backgroundColor,
     },
     nameText: {
-      fontSize: props.nameText.fontSize,
+      fontSize: props.nameText.fontSize * 0.6,
       fontFamily: props.nameText.font,
       color: props.nameText.color,
     },
     subText: {
-      fontSize: props.subText.fontSize,
+      fontSize: props.subText.fontSize * 0.6,
       fontFamily: props.subText.font,
       color: props.subText.color,
     },
@@ -70,6 +71,7 @@ const styles = (props: PDFProps) =>
       alignItems: "center",
     },
   });
+};
 
 const PDF = (props: PDFProps) => {
   const style = styles({ ...props });
@@ -109,7 +111,9 @@ const PDF = (props: PDFProps) => {
                       {props.backgroundImage ? (
                         <Image
                           style={style.image}
-                          src={props.backgroundImage}
+                          src={
+                            "/static/images/" + props.backgroundImage + ".jpg"
+                          }
                         ></Image>
                       ) : (
                         <View style={style.background}></View>

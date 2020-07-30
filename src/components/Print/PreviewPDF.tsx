@@ -99,22 +99,26 @@ const PDFNavigator = (link, blob) => {
   );
 };
 
-const PreviewPDF = (props: PDFProps) => (
-  <div className="preview">
-    <BlobProvider document={<PDF {...props}></PDF>}>
-      {({ blob, url, loading, error }) => {
-        return loading ? (
-          <div>
-            <h1>Painting your PDF</h1>
-          </div>
-        ) : (
-          <div>
-            <PDFNavigator link={url} blob={blob}></PDFNavigator>
-          </div>
-        );
-      }}
-    </BlobProvider>
-  </div>
-);
+const PreviewPDF = () => {
+  const pdfprops: PDFProps = JSON.parse(localStorage.getItem("card"));
+
+  return (
+    <div className="preview">
+      <BlobProvider document={<PDF {...pdfprops}></PDF>}>
+        {({ blob, url, loading, error }) => {
+          return loading ? (
+            <div>
+              <h1>Painting your PDF</h1>
+            </div>
+          ) : (
+            <div>
+              <PDFNavigator link={url} blob={blob}></PDFNavigator>
+            </div>
+          );
+        }}
+      </BlobProvider>
+    </div>
+  );
+};
 
 export default PreviewPDF;
