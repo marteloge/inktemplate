@@ -45,6 +45,7 @@ const styles = (props: PDFProps) => {
     image: {
       minWidth: props.width + "cm",
       minHeight: props.height + "cm",
+      maxHeight: props.height + "cm",
     },
     background: {
       minWidth: props.width + "cm",

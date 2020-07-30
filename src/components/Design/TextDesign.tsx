@@ -1,9 +1,13 @@
 import Select from "react-select";
 
-import { fonts, colorPickerStyles, updateField } from "./../../../src/global";
+import {
+  fonts,
+  colorPickerStyles,
+  updateField,
+  update,
+} from "./../../../src/global";
 import { TextDesign } from "./../../types";
 import ColorPicker from "./ColorPicker";
-import { NONAME } from "dns";
 
 const selectStyles = (font) => {
   return {
@@ -54,8 +58,8 @@ export const TextDesignComponent = (props: Props) => {
         instanceId={"select-font-" + id}
         className="select"
         value={fonts.find((i) => i.label === font)}
-        onChange={(f) => {
-          updateField(design, handler, "font", f.label);
+        onChange={(font) => {
+          update(handler, { ...design, font: font.label, fontSrc: font.src });
         }}
         options={fonts}
         styles={selectStyles(font)}
