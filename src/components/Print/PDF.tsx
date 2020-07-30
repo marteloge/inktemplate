@@ -35,6 +35,8 @@ const styles = (props: PDFProps) => {
       backgroundColor: "white",
       width: props.width + "cm",
       height: props.height + "cm",
+      paddingTop: 5,
+      fontSize: 15,
     },
     front: {
       position: "relative",
@@ -106,7 +108,16 @@ const PDF = (props: PDFProps) => {
                   style={style.card}
                   key={"card-" + pageNum + "-" + cardNum}
                 >
-                  <View style={style.back}></View>
+                  <View style={style.back}>
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        transform: "rotate(-180deg)",
+                      }}
+                    >
+                      www.inktemplate.com
+                    </Text>
+                  </View>
                   <View>
                     <View style={style.front}>
                       {props.backgroundImage ? (
