@@ -208,6 +208,12 @@ export const fonts = [
   },
 ];
 
+// Italianno
+// Dosis
+// Alex Brush
+// Bilbo
+// League Script
+
 export const cardDesigns = [
   "template1",
   "template2",
