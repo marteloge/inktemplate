@@ -13,42 +13,6 @@ const PreviewPDF = dynamic(import("./../src/components/Print/PreviewPDF"), {
 //   ssr: false,
 // });
 
-//   width: 8.5 * 0.92,
-//   height: 5.5 * 0.92,
-//   text: [
-//     "Ola, bord1",
-//     "kari, bord2",
-//     "Håkon, bord3",
-//     "jepp, bord4",
-//     "test, bord5",
-//     "lll,  bord6",
-//     "olaaa, bord7",
-//     "kariaa, bord8",
-//     "Håkonaa, bord9",
-//     "jeppaa, bord10",
-//     "testaa, bord11",
-//     "lllaa, bord12",
-//     "kk, bord13",
-//     "kk3323, bord14",
-//   ],
-//   backgroundColor: "#f2eeeb",
-
-//   // backgroundColor: "#FF8A65",
-//   // backgroundImage:"/static/images/template9.jpg",
-//   nameText: {
-//     font: "Dawning of a New Day",
-//     fontSrc: "/static/fonts/dawning-of-a-new-day-v11-latin-regular.ttf",
-//     fontSize: 35 * 0.6,
-//     color: "hotpink",
-//   },
-//   subText: {
-//     font: "Raleway",
-//     fontSrc: "/static/fonts/raleway-v17-latin-regular.ttf",
-//     fontSize: 20 * 0.6,
-//     color: "yellow",
-//   },
-// };
-
 const Generate = ({ t }) => {
   return (
     <Layout>
