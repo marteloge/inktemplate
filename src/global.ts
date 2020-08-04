@@ -239,6 +239,13 @@ type StylesDictionary = {
   [Key: string]: CSSProperties;
 };
 
+export const toTextArray = (text: string): Array<string> => {
+  if (text.slice(-1) === ";") {
+    return text.slice(0, text.length - 1).split(";");
+  }
+  return text.split(";");
+};
+
 export const colorPickerStyles = (color: string): StylesDictionary => {
   return {
     color: {

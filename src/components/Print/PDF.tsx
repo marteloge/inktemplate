@@ -8,10 +8,13 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
-import { PDFProps } from "./../../types";
+import { Draft, Content } from "./../../types";
+import { toTextArray } from "../../global";
 
-const styles = (props: PDFProps) => {
-  console.log("props PDF", props);
+const styles = (draft: Draft) => {
+  const { background_color } = draft;
+  const { print_width, print_height } = draft.product;
+
   return StyleSheet.create({
     page: {
       height: "100%",
@@ -21,10 +24,9 @@ const styles = (props: PDFProps) => {
       flexWrap: "wrap",
       justifyContent: "center",
     },
-
     card: {
-      width: props.width + "cm",
-      height: 2 * props.height + "cm",
+      width: print_width + "cm",
+      height: 2 * parseFloat(print_height) + "cm",
       display: "table",
       border: 0.5,
       borderStyle: "dotted",
@@ -33,8 +35,8 @@ const styles = (props: PDFProps) => {
     },
     back: {
       backgroundColor: "white",
-      width: props.width + "cm",
-      height: props.height + "cm",
+      width: print_width + "cm",
+      height: print_height + "cm",
       paddingTop: 5,
       fontSize: 15,
     },
@@ -45,24 +47,14 @@ const styles = (props: PDFProps) => {
       alignItems: "center",
     },
     image: {
-      minWidth: props.width + "cm",
-      minHeight: props.height + "cm",
-      maxHeight: props.height + "cm",
+      minWidth: print_width + "cm",
+      minHeight: print_height + "cm",
+      maxHeight: print_height + "cm",
     },
     background: {
-      minWidth: props.width + "cm",
-      minHeight: props.height + "cm",
-      backgroundColor: props.backgroundColor,
-    },
-    nameText: {
-      fontSize: props.nameText.fontSize * 0.6,
-      fontFamily: props.nameText.font,
-      color: props.nameText.color,
-    },
-    subText: {
-      fontSize: props.subText.fontSize * 0.6,
-      fontFamily: props.subText.font,
-      color: props.subText.color,
+      minWidth: print_width + "cm",
+      minHeight: print_height + "cm",
+      backgroundColor: background_color,
     },
     content: {
       width: "100%",
@@ -76,22 +68,30 @@ const styles = (props: PDFProps) => {
   });
 };
 
-const PDF = (props: PDFProps) => {
-  const style = styles({ ...props });
+const PDF = (draft: Draft) => {
+  let style = styles(draft);
 
-  Font.register({
-    family: props.subText.font,
-    src: props.subText.fontSrc,
+  draft.content.forEach((content: Content) => {
+    Font.register({
+      family: content.font,
+      src: "/static/fonts/" + content.font_src + ".ttf",
+    });
+
+    style = {
+      ...style,
+      [content.name]: {
+        fontSize: content.font_size * 0.6,
+        fontFamily: content.font,
+        color: content.color,
+      },
+    };
   });
 
-  Font.register({
-    family: props.nameText.font,
-    src: props.nameText.fontSrc,
-  });
+  const text = toTextArray(draft.text);
 
   return (
     <Document>
-      {[...Array(Math.ceil(props.text.length / 6))].map((p, pageNum) => {
+      {[...Array(Math.ceil(text.length / 6))].map((p, pageNum) => {
         return (
           <Page
             key={"page-" + pageNum}
@@ -100,7 +100,7 @@ const PDF = (props: PDFProps) => {
             style={style.page}
           >
             {[...Array(6)].map((e, cardNum) => {
-              if (pageNum * 6 + cardNum + 1 > props.text.length) {
+              if (pageNum * 6 + cardNum + 1 > text.length) {
                 return;
               }
               return (
@@ -120,12 +120,10 @@ const PDF = (props: PDFProps) => {
                   </View>
                   <View>
                     <View style={style.front}>
-                      {props.backgroundImage ? (
+                      {draft.background_image ? (
                         <Image
                           style={style.image}
-                          src={
-                            "/static/images/" + props.backgroundImage + ".jpg"
-                          }
+                          src={`/static/images/${draft.background_image}.jpg`}
                         ></Image>
                       ) : (
                         <View style={style.background}></View>
@@ -133,10 +131,10 @@ const PDF = (props: PDFProps) => {
                     </View>
                     <View style={style.content}>
                       <Text style={style.nameText}>
-                        {props.text[6 * pageNum + cardNum].split(",")[0]}
+                        {text[6 * pageNum + cardNum].split(",")[0]}
                       </Text>
                       <Text style={style.subText}>
-                        {props.text[6 * pageNum + cardNum].split(",")[1]}
+                        {text[6 * pageNum + cardNum].split(",")[1]}
                       </Text>
                     </View>
                   </View>

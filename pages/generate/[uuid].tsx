@@ -1,11 +1,11 @@
-import { withTranslation } from "./../i18n";
-import Layout from "./../src/components/Layout";
+import { withTranslation } from "../../i18n";
+import Layout from "../../src/components/Layout";
 import Head from "next/head";
 
 import dynamic from "next/dynamic";
-import { PDFProps } from "../src/types";
+import { Draft } from "../../src/types";
 
-const PreviewPDF = dynamic(import("./../src/components/Print/PreviewPDF"), {
+const PreviewPDF = dynamic(import("../../src/components/Print/PreviewPDF"), {
   ssr: false,
 });
 
@@ -13,7 +13,14 @@ const PreviewPDF = dynamic(import("./../src/components/Print/PreviewPDF"), {
 //   ssr: false,
 // });
 
-const Generate = ({ t }) => {
+type Props = {
+  draft: Draft;
+  t: any;
+};
+
+const Generate = (props) => {
+  const { t, draft }: Props = props;
+
   return (
     <Layout>
       <Head>
@@ -26,7 +33,7 @@ const Generate = ({ t }) => {
 
       <div className="content">
         <div>
-          <PreviewPDF></PreviewPDF>
+          <PreviewPDF draft={draft}></PreviewPDF>
         </div>
         <div>
           <h1>{t("generate.header")}</h1>
@@ -95,8 +102,14 @@ const Generate = ({ t }) => {
   );
 };
 
-Generate.getInitialProps = async () => ({
-  namespacesRequired: ["common", "meta"],
-});
+Generate.getInitialProps = async ({ query }) => {
+  const res = await fetch("http://localhost:8000/draft/" + query.uuid);
+  const draft: Draft = await res.json();
+
+  return {
+    namespacesRequired: ["common", "meta"],
+    draft: draft,
+  };
+};
 
 export default withTranslation("common")(Generate);

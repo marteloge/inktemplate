@@ -5,7 +5,7 @@ import { withTranslation } from "./../i18n";
 
 import { TextDesignComponent } from "../src/components/Design/TextDesign";
 import { TextDesign, ColorPickerDesign, PDFProps } from "./../src/types";
-import { colorPickerStyles, fonts } from "./../src/global";
+import { colorPickerStyles, fonts, toTextArray } from "./../src/global";
 
 import ColorPicker from "../src/components/Design/ColorPicker";
 import Canvas from "../src/components/Design/Canvas";
@@ -23,13 +23,6 @@ const toLocalStore = (key, value) => {
 const generatePreview = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
   Router.push("/generate");
-};
-
-const toTextArray = (text: string): Array<string> => {
-  if (text.slice(-1) === ";") {
-    return text.slice(0, text.length - 1).split(";");
-  }
-  return text.split(";");
 };
 
 const Create = ({ t }) => {

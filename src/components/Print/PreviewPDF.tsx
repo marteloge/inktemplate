@@ -3,7 +3,7 @@ import { BlobProvider } from "@react-pdf/renderer";
 
 import PDF from "./PDF";
 import { Document, Page } from "react-pdf";
-import { PDFProps } from "./../../types";
+import { PDFProps, Draft } from "./../../types";
 
 const PDFNavigator = (link, blob) => {
   const [numPages, setNumPages] = useState(null);
@@ -99,12 +99,14 @@ const PDFNavigator = (link, blob) => {
   );
 };
 
-const PreviewPDF = () => {
-  const pdfprops: PDFProps = JSON.parse(localStorage.getItem("card"));
-
+type Props = {
+  draft: Draft;
+};
+const PreviewPDF = (props: Props) => {
+  const { draft } = props;
   return (
     <div className="preview">
-      <BlobProvider document={<PDF {...pdfprops}></PDF>}>
+      <BlobProvider document={<PDF {...draft}></PDF>}>
         {({ blob, url, loading, error }) => {
           return loading ? (
             <div>
