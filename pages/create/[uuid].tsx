@@ -1,71 +1,98 @@
 import { useState } from "react";
 import Head from "next/head";
 
-import { withTranslation } from "./../i18n";
+import { Router, withTranslation } from "../../i18n";
 
-import { TextDesignComponent } from "../src/components/Design/TextDesign";
-import { TextDesign, ColorPickerDesign, PDFProps } from "./../src/types";
-import { colorPickerStyles, fonts, toTextArray } from "./../src/global";
+import { TextDesignComponent } from "../../src/components/Design/TextDesign";
+import { ColorPickerDesign, Draft, Content } from "../../src/types";
+import { colorPickerStyles } from "../../src/global";
 
-import ColorPicker from "../src/components/Design/ColorPicker";
-import Canvas from "../src/components/Design/Canvas";
-import Layout from "../src/components/Layout";
-import Switch from "../src/components/Design/Switch";
-import DesignImagePreview from "../src/components/Design/DesignImagePreview";
-import NameList from "../src/components/Design/NameList";
+import ColorPicker from "../../src/components/Design/ColorPicker";
+import Canvas from "../../src/components/Design/Canvas";
+import Layout from "../../src/components/Layout";
+import Switch from "../../src/components/Design/Switch";
+import DesignImagePreview from "../../src/components/Design/DesignImagePreview";
+import NameList from "../../src/components/Design/NameList";
 
-import { Router } from "./../i18n";
-
-const toLocalStore = (key, value) => {
-  localStorage.setItem(key, value);
+const saveDraft = (draft) => {
+  return fetch("http://localhost:8000/draft/" + draft.uuid, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(draft),
+  });
 };
 
-const generatePreview = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
-  Router.push("/generate");
+const generatePreview = (draft) => {
+  saveDraft(draft).then(() => {
+    Router.push("/preview/" + draft.uuid);
+  });
 };
 
-const Create = ({ t }) => {
-  const width = 400;
-  const height = 256;
+const Create = (props) => {
+  const { t, draft } = props;
 
-  const [useDesign, setUseDesign] = useState<boolean>(true);
-  const [selectedDesign, setSelectedDesign] = useState<string>("template4");
-  const [content, setContent] = useState<string>(
-    "Janelle, Table 1; Harold, Table2; Jeff, Table 3;"
+  const width = draft.product.width;
+  const height = draft.product.height;
+
+  const [selectedDesign, setSelectedDesign] = useState<string>(
+    !(draft.background_image || draft.background_color)
+      ? "template4"
+      : draft.background_image
   );
 
-  const [color, setColor] = useState<ColorPickerDesign>({
-    color: "#00bcd4",
-    colorPickerOpen: false,
-  });
+  const [text, setText] = useState<string>(
+    draft.text ? draft.text : "Janelle, Table 1; Harold, Table2; Jeff, Table 3;"
+  );
 
-  const [nameText, setNameText] = useState<TextDesign>({
-    color: "#000",
-    font: "Dawning of a New Day",
-    fontSrc: "/static/fonts/dawning-of-a-new-day-v11-latin-regular.ttf",
-    text: "Janelle",
-    colorPickerOpen: false,
-    fontSize: 35,
-  });
+  const [useDesign, setUseDesign] = useState<boolean>(!!selectedDesign);
 
-  const [subText, setSubText] = useState<TextDesign>({
-    color: "#000",
-    font: "Raleway",
-    text: "Table 2",
-    fontSrc: "/static/fonts/raleway-v17-latin-regular.ttf",
-    colorPickerOpen: false,
-    fontSize: 20,
-  });
+  const [color, setColor] = useState<ColorPickerDesign>(
+    draft.background_color
+      ? {
+          color: draft.background_color,
+          colorPickerOpen: false,
+        }
+      : {
+          color: "#00bcd4",
+          colorPickerOpen: false,
+        }
+  );
 
-  const pdfData: PDFProps = {
-    width: 8.5 * 0.92,
-    height: 5.5 * 0.92,
-    nameText: nameText,
-    subText: subText,
-    backgroundColor: useDesign ? null : color.color,
-    backgroundImage: useDesign ? selectedDesign : null,
-    text: toTextArray(content),
+  const [content, setContent] = useState<Array<Content>>(
+    draft.content.length > 0
+      ? draft.content.map((c) => {
+          return { ...c, colorPickerOpen: false };
+        })
+      : [
+          {
+            name: "nameText",
+            color: "#000",
+            font: "Dawning of a New Day",
+            font_src: "dawning-of-a-new-day-v11-latin-regular",
+            font_size: 35,
+            text: t("product:nameText"),
+          },
+          {
+            name: "subText",
+            color: "#000",
+            font: "Raleway",
+            font_src: "raleway-v17-latin-regular",
+            font_size: 20,
+            text: t("product:subText"),
+          },
+        ]
+  );
+
+  const pdfData = {
+    id: draft.id,
+    uuid: draft.uuid,
+    background_image: useDesign ? selectedDesign : null,
+    background_color: useDesign ? null : color.color,
+    text: text,
+    content: content,
   };
 
   return (
@@ -75,16 +102,14 @@ const Create = ({ t }) => {
         <meta name="description" content={t("meta:create.description")} />
       </Head>
       <div className="sticky">
-        {/* <Link href="/generate">
-          
-        </Link> */}
-
-        <button
-          onClick={() => generatePreview("card", pdfData)}
-          className="button"
-        >
+        <button onClick={() => generatePreview(pdfData)} className="button">
           Preview PDF
         </button>
+
+        {/* <button onClick={() => saveDraft(pdfData)} className="button">
+          Save
+        </button> */}
+
         <a className="button" href="#render">
           Preview Print
         </a>
@@ -100,8 +125,7 @@ const Create = ({ t }) => {
         <div className="hero">
           <div id="preview">
             <Canvas
-              nameText={nameText}
-              subText={subText}
+              content={content}
               width={width}
               height={height}
               useDesign={useDesign}
@@ -117,16 +141,15 @@ const Create = ({ t }) => {
               image={selectedDesign}
             />
             <div>
-              <TextDesignComponent
-                id="1"
-                design={nameText}
-                handler={setNameText}
-              />
-              <TextDesignComponent
-                id="2"
-                design={subText}
-                handler={setSubText}
-              />
+              {content.map((c: Content, i: number) => (
+                <TextDesignComponent
+                  key={i}
+                  index={i}
+                  content={c}
+                  setContent={setContent}
+                  contents={content}
+                />
+              ))}
             </div>
 
             <div>
@@ -141,11 +164,14 @@ const Create = ({ t }) => {
                     })
                   }
                 />
-
                 {color.colorPickerOpen && (
-                  <ColorPicker design={color} handler={setColor} />
+                  <ColorPicker
+                    design={color}
+                    color={color.color}
+                    colorPickerOpen={color.colorPickerOpen}
+                    handler={setColor}
+                  />
                 )}
-
                 <p>Background color</p>
               </div>
             </div>
@@ -153,7 +179,7 @@ const Create = ({ t }) => {
         </div>
         <div id="bottom">
           <div>
-            <NameList list={content} handler={setContent} width={width} />
+            <NameList list={text} handler={setText} width={width} />
           </div>
           <div>
             {useDesign && (
@@ -169,10 +195,10 @@ const Create = ({ t }) => {
         <div id="render">
           <h2>Preview print</h2>
           <div className="cards">
-            {content
-              .slice(0, content.length - 1)
+            {text
+              .slice(0, text.length - 1)
               .split(";")
-              .map((c, i) => {
+              .map((t, i) => {
                 return (
                   <div key={"canvas-" + i} className="card">
                     <Canvas
@@ -181,16 +207,13 @@ const Create = ({ t }) => {
                       backgroundColor={color.color}
                       selectedDesign={selectedDesign}
                       useDesign={useDesign}
-                      nameText={{
-                        ...nameText,
-                        fontSize: nameText.fontSize * 0.6,
-                        text: c.split(",")[0],
-                      }}
-                      subText={{
-                        ...subText,
-                        fontSize: subText.fontSize * 0.6,
-                        text: c.split(",")[1],
-                      }}
+                      content={content.map((c, i) => {
+                        return {
+                          ...c,
+                          font_size: c.font_size * 0.6,
+                          text: t.split(",")[i],
+                        };
+                      })}
                     />
                   </div>
                 );
@@ -204,7 +227,6 @@ const Create = ({ t }) => {
           background-color: rgb(238, 233, 231, 0.8);
         }
       `}</style>
-
       <style jsx>
         {`
           @font-face {
@@ -693,8 +715,21 @@ const Create = ({ t }) => {
   );
 };
 
-Create.getInitialProps = async () => ({
-  namespacesRequired: ["common", "meta"],
-});
+Create.getInitialProps = async ({ query }) => {
+  const res = await fetch("http://localhost:8000/draft/" + query.uuid, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  const draft: Draft = await res.json();
+
+  return {
+    draft: draft,
+    namespacesRequired: ["common", "meta", "product"],
+  };
+};
 
 export default withTranslation("common")(Create);

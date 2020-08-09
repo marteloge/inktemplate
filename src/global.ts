@@ -3,208 +3,211 @@ import { CSSProperties } from "react";
 export const calculateResponsiveSize = (min: number, max: number) =>
   `calc(${min}px + (${max} - ${min}) * ((100vw - 300px) / (1600 - 300)))`;
 
+export const updateContent = (handler, contents, content, index) => {
+  return handler(contents.map((c, i) => (i !== index ? c : content)));
+};
 export const fonts = [
   {
     value: "dawningofanewday",
     label: "Dawning of a New Day",
-    src: "/static/fonts/dawning-of-a-new-day-v11-latin-regular.ttf",
+    src: "dawning-of-a-new-day-v11-latin-regular",
   },
   {
     value: "raleway",
     label: "Raleway",
-    src: "/static/fonts/raleway-v17-latin-regular.ttf",
+    src: "raleway-v17-latin-regular",
   },
   {
     value: "playfairdisplay",
     label: "Playfair Display",
-    src: "/static/fonts/playfair-display-v21-latin-regular.ttf",
+    src: "playfair-display-v21-latin-regular",
   },
   {
     value: "quicksand",
     label: "Quicksand",
-    src: "/static/fonts/quicksand-v21-latin-regular.ttf",
+    src: "quicksand-v21-latin-regular",
   },
   {
     value: "anton",
     label: "Anton",
-    src: "/static/fonts/anton-v11-latin-regular.ttf",
+    src: "anton-v11-latin-regular",
   },
   {
     value: "dancingscript",
     label: "Dancing Script",
-    src: "/static/fonts/dancing-script-v15-latin-regular.ttf",
+    src: "dancing-script-v15-latin-regular",
   },
   {
     value: "lobster",
     label: "Lobster",
-    src: "/static/fonts/lobster-v22-latin-regular.ttf",
+    src: "lobster-v22-latin-regular",
   },
 
   {
     value: "indieflower",
     label: "Indie Flower",
-    src: "/static/fonts/indie-flower-v11-latin-regular.ttf",
+    src: "indie-flower-v11-latin-regular",
   },
   {
     value: "pacifico",
     label: "Pacifico",
-    src: "/static/fonts/pacifico-v16-latin-regular.ttf",
+    src: "pacifico-v16-latin-regular",
   },
   {
     value: "shadowsintolight",
     label: "Shadows Into Light",
-    src: "/static/fonts/shadows-into-light-v9-latin-regular.ttf",
+    src: "shadows-into-light-v9-latin-regular",
   },
   {
     value: "amaticsc",
     label: "Amatic SC",
-    src: "/static/fonts/amatic-sc-v13-latin-regular.ttf",
+    src: "amatic-sc-v13-latin-regular",
   },
   {
     value: "satisfy",
     label: "Satisfy",
-    src: "/static/fonts/satisfy-v10-latin-regular.ttf",
+    src: "satisfy-v10-latin-regular",
   },
   {
     value: "courgette",
     label: "Courgette",
-    src: "/static/fonts/courgette-v7-latin-regular.ttf",
+    src: "courgette-v7-latin-regular",
   },
   {
     value: "greatvibes",
     label: "Great Vibes",
-    src: "/static/fonts/great-vibes-v7-latin-regular.ttf",
+    src: "great-vibes-v7-latin-regular",
   },
   {
     value: "sacramento",
     label: "Sacramento",
-    src: "/static/fonts/sacramento-v7-latin-regular.ttf",
+    src: "sacramento-v7-latin-regular",
   },
   {
     value: "prata",
     label: "Prata",
-    src: "/static/fonts/prata-v11-latin-regular.ttf",
+    src: "prata-v11-latin-regular",
   },
   {
     value: "poiretone",
     label: "Poiret One",
-    src: "/static/fonts/poiret-one-v8-latin-regular.ttf",
+    src: "poiret-one-v8-latin-regular",
   },
   {
     value: "arapey",
     label: "Arapey",
-    src: "/static/fonts/arapey-v8-latin-regular.ttf",
+    src: "arapey-v8-latin-regular",
   },
   {
     value: "marckscript",
     label: "Marck Script",
-    src: "/static/fonts/marck-script-v10-latin-regular.ttf",
+    src: "marck-script-v10-latin-regular",
   },
   {
     value: "handlee",
     label: "Handlee",
-    src: "/static/fonts/handlee-v8-latin-regular.ttf",
+    src: "handlee-v8-latin-regular",
   },
   {
     value: "openSans",
     label: "Open Sans",
-    src: "/static/fonts/open-sans-v17-latin-regular.ttf",
+    src: "open-sans-v17-latin-regular",
   },
   {
     value: "opensanscondensed",
     label: "Open Sans Condensed",
-    src: "/static/fonts/open-sans-condensed-v14-latin-300.ttf",
+    src: "open-sans-condensed-v14-latin-300",
   },
 
   {
     value: "lora",
     label: "Lora",
-    src: "/static/fonts/lora-v16-latin-regular.ttf",
+    src: "lora-v16-latin-regular",
   },
   {
     value: "chewy",
     label: "Chewy",
-    src: "/static/fonts/chewy-v11-latin-regular.ttf",
+    src: "chewy-v11-latin-regular",
   },
   {
     value: "annieuseyourtelescope",
     label: "Annie Use Your Telescope",
-    src: "/static/fonts/annie-use-your-telescope-v10-latin-regular.ttf",
+    src: "annie-use-your-telescope-v10-latin-regular",
   },
   {
     value: "rocksalt",
     label: "Rock Salt",
-    src: "/static/fonts/rock-salt-v10-latin-regular.ttf",
+    src: "rock-salt-v10-latin-regular",
   },
   {
     value: "homemadeapple",
     label: "Homemade Apple",
-    src: "/static/fonts/homemade-apple-v10-latin-regular.ttf",
+    src: "homemade-apple-v10-latin-regular",
   },
   {
     value: "cedarvillecursive",
     label: "Cedarville Cursive",
-    src: "/static/fonts/cedarville-cursive-v11-latin-regular.ttf",
+    src: "cedarville-cursive-v11-latin-regular",
   },
   {
     value: "almendradisplay",
     label: "Almendra Display",
-    src: "/static/fonts/almendra-display-v11-latin-regular.ttf",
+    src: "almendra-display-v11-latin-regular",
   },
   {
     value: "bellota",
     label: "Bellota",
-    src: "/static/fonts/bellota-v2-latin-regular.ttf",
+    src: "bellota-v2-latin-regular",
   },
   {
     value: "barriecito",
     label: "Barriecito",
-    src: "/static/fonts/barriecito-v3-latin-regular.ttf",
+    src: "barriecito-v3-latin-regular",
   },
   {
     value: "mashanzheng",
     label: "Ma Shan Zheng",
-    src: "/static/fonts/ma-shan-zheng-v5-latin-regular.ttf",
+    src: "ma-shan-zheng-v5-latin-regular",
   },
   {
     value: "bungeehairline",
     label: "Bungee Hairline",
-    src: "/static/fonts/bungee-hairline-v6-latin-regular.ttf",
+    src: "bungee-hairline-v6-latin-regular",
   },
   {
     value: "katibeh",
     label: "Katibeh",
-    src: "/static/fonts/katibeh-v7-latin-regular.ttf",
+    src: "katibeh-v7-latin-regular",
   },
   {
     value: "spacemono",
     label: "Space Mono",
-    src: "/static/fonts/space-mono-v5-latin-regular.ttf",
+    src: "space-mono-v5-latin-regular",
   },
   {
     value: "ranga",
     label: "Ranga",
-    src: "/static/fonts/ranga-v6-latin-regular.ttf",
+    src: "ranga-v6-latin-regular",
   },
   {
     value: "snowburstone",
     label: "Snowburst One",
-    src: "/static/fonts/snowburst-one-v8-latin-regular.ttf",
+    src: "snowburst-one-v8-latin-regular",
   },
   {
     value: "clickerscript",
     label: "Clicker Script",
-    src: "/static/fonts/clicker-script-v8-latin-regular.ttf",
+    src: "clicker-script-v8-latin-regular",
   },
   {
     value: "molle",
     label: "Molle",
-    src: "/static/fonts/molle-v9-latin-italic.ttf",
+    src: "molle-v9-latin-italic",
   },
   {
     value: "petitformalscript",
     label: "Petit Formal Script",
-    src: "/static/fonts/petit-formal-script-v8-latin-regular.ttf",
+    src: "petit-formal-script-v8-latin-regular",
   },
 ];
 

@@ -1,22 +1,23 @@
-import { TextDesign } from "../../types";
+import { Content } from "../../types";
 
 import { imageRoute, calculateResponsiveSize } from "../../global";
+import { withTranslation } from "../../../i18n";
 
 type Props = {
-  nameText: TextDesign;
-  subText: TextDesign;
   width: number;
   height: number;
   useDesign: boolean;
   selectedDesign: string;
   backgroundColor?: string;
+  content?: Array<Content>;
+  text?: string;
 };
+
 const Canvas = (props: Props) => {
   const {
     width,
     height,
-    nameText,
-    subText,
+    content,
     selectedDesign,
     useDesign,
     backgroundColor,
@@ -25,10 +26,23 @@ const Canvas = (props: Props) => {
   return (
     <div id="preview">
       <div id="canvas">
-        <p id="text1">{nameText.text}</p>
-        <p id="text2">{subText.text}</p>
+        {content &&
+          content.map((c, i) => (
+            <p
+              key={i}
+              style={{
+                fontFamily: c.font,
+                fontSize: c.font_size,
+                color: c.color,
+              }}
+            >
+              {c.text}
+            </p>
+          ))}
       </div>
-      <style jsx>{`
+
+      <style jsx>
+        {`
         #canvas {
           height: ${calculateResponsiveSize(height * 0.75, height)};
           width: ${calculateResponsiveSize(width * 0.75, width)};
@@ -45,29 +59,11 @@ const Canvas = (props: Props) => {
           }
           background-repeat: no-repeat;
           background-size: cover;
-          // border: rgb(0,0,0, 0.1) 1px solid;
           box-shadow: 2px 2px 4px rgb(0,0,0, 0.3);
           background-color: ${!useDesign ? `${backgroundColor}` : "initial"}
-        }
-        
-        #text1 {
-          font-family: ${nameText.font};
-          color: ${nameText.color};
-          font-size: ${calculateResponsiveSize(
-            nameText.fontSize * 0.75,
-            nameText.fontSize
-          )};
-        }
-
-        #text2 {
-          font-family: ${subText.font};
-          color: ${subText.color};
-          font-size: ${calculateResponsiveSize(
-            subText.fontSize * 0.75,
-            subText.fontSize
-          )};
-        }
-      `}</style>
+        }        
+      `}
+      </style>
     </div>
   );
 };

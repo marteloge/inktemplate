@@ -1,12 +1,7 @@
 import Select from "react-select";
 
-import {
-  fonts,
-  colorPickerStyles,
-  updateField,
-  update,
-} from "./../../../src/global";
-import { TextDesign } from "./../../types";
+import { fonts, colorPickerStyles, updateContent } from "./../../../src/global";
+import { Content } from "./../../types";
 import ColorPicker from "./ColorPicker";
 
 const selectStyles = (font) => {
@@ -29,37 +24,78 @@ const selectStyles = (font) => {
 };
 
 type Props = {
-  id: string;
-  design: TextDesign;
-  handler: Function;
+  index: number;
+  content: Content;
+  contents: Array<Content>;
+  setContent: Function;
 };
 
 export const TextDesignComponent = (props: Props) => {
-  const { design, handler, id } = props;
-  const { color, font, text, colorPickerOpen } = design;
+  const { content, contents, setContent, index } = props;
+  const { name, color, font, text, colorPickerOpen } = content;
+
+  const updateColor = (input) => {
+    updateContent(
+      setContent,
+      contents,
+      {
+        ...content,
+        color: input.color,
+        colorPickerOpen: input.colorPickerOpen,
+      },
+      index
+    );
+  };
 
   return (
     <div>
       <div
         style={colorPickerStyles(color).color}
         onClick={() =>
-          updateField(design, handler, "colorPickerOpen", !colorPickerOpen)
+          updateContent(
+            setContent,
+            contents,
+            { ...content, colorPickerOpen: !colorPickerOpen },
+            index
+          )
         }
       />
 
-      {colorPickerOpen && <ColorPicker design={design} handler={handler} />}
+      {colorPickerOpen && (
+        <ColorPicker
+          handler={updateColor}
+          design={content}
+          color={color}
+          colorPickerOpen={colorPickerOpen}
+        />
+      )}
 
       <input
         value={text}
-        onChange={(e) => updateField(design, handler, "text", e.target.value)}
+        onChange={(e) =>
+          updateContent(
+            setContent,
+            contents,
+            {
+              ...content,
+              text: e.target.value,
+            },
+            index
+          )
+        }
       ></input>
 
       <Select
-        instanceId={"select-font-" + id}
+        instanceId={"select-font-" + name}
         className="select"
         value={fonts.find((i) => i.label === font)}
         onChange={(font) => {
-          update(handler, { ...design, font: font.label, fontSrc: font.src });
+          updateContent(
+            setContent,
+            contents,
+            { ...content, font: font.label, font_src: font.src },
+            index
+          );
         }}
         options={fonts}
         styles={selectStyles(font)}

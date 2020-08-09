@@ -3,8 +3,8 @@ export type TextDesign = {
   color: string;
   text: string;
   colorPickerOpen: boolean;
-  fontSize: number;
-  fontSrc: string;
+  font_size: number;
+  font_src: string;
 };
 
 export type ColorPickerDesign = {
@@ -14,9 +14,9 @@ export type ColorPickerDesign = {
 
 export type Text = {
   font: string;
-  fontSize: number;
+  font_size: number;
   color: string;
-  fontSrc: string;
+  font_src: string;
 };
 
 export type PDFProps = {
@@ -45,6 +45,8 @@ export type Content = {
   font_size: number;
   font_src: string;
   color: string;
+  text: string;
+  colorPickerOpen: boolean;
 };
 
 export type Draft = {

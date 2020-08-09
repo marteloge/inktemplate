@@ -1,34 +1,36 @@
 import { BlockPicker } from "react-color";
 
-import { update, updateField, colorPickerStyles } from "./../../global";
-import { TextDesign, ColorPickerDesign } from "./../../types";
+import { colorPickerStyles } from "./../../global";
+import { Content, ColorPickerDesign } from "./../../types";
 
 type Props = {
-  design: TextDesign | ColorPickerDesign;
+  design: Content | ColorPickerDesign;
+  colorPickerOpen: boolean;
+  color: string;
   handler: Function;
 };
 
 const ColorPicker = (props: Props) => {
-  const { design, handler } = props;
-  const { color, colorPickerOpen } = design;
+  const { design, color, colorPickerOpen, handler } = props;
 
   return (
     <div style={colorPickerStyles(color).popover}>
       <div
         style={colorPickerStyles(color).cover}
         onClick={() =>
-          updateField(design, handler, "colorPickerOpen", colorPickerOpen)
+          handler({
+            ...design,
+            color: color,
+            colorPickerOpen: !colorPickerOpen,
+          })
         }
       />
+
       <BlockPicker
         triangle="hide"
         color={color}
         onChangeComplete={(c) => {
-          update(handler, {
-            ...design,
-            color: c.hex,
-            colorPickerOpen: false,
-          });
+          handler({ ...design, colorPickerOpen: false, color: c.hex });
         }}
       />
     </div>

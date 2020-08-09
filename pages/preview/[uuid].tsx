@@ -18,7 +18,7 @@ type Props = {
   t: any;
 };
 
-const Generate = (props) => {
+const Preview = (props) => {
   const { t, draft }: Props = props;
 
   return (
@@ -102,14 +102,14 @@ const Generate = (props) => {
   );
 };
 
-Generate.getInitialProps = async ({ query }) => {
+Preview.getInitialProps = async ({ query }) => {
   const res = await fetch("http://localhost:8000/draft/" + query.uuid);
   const draft: Draft = await res.json();
 
   return {
-    namespacesRequired: ["common", "meta"],
     draft: draft,
+    namespacesRequired: ["common", "meta"],
   };
 };
 
-export default withTranslation("common")(Generate);
+export default withTranslation("common")(Preview);

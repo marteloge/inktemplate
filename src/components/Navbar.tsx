@@ -1,5 +1,19 @@
-import { Link, withTranslation } from "./../../i18n";
+import { Link, withTranslation, Router } from "./../../i18n";
 import { calculateResponsiveSize } from "../global";
+import { Draft } from "../types";
+
+const getNewUUID = () => {
+  return fetch("http://localhost:8000/draft", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+    body: JSON.stringify({
+      product_id: 1,
+    }),
+  }).then((response) => response.json());
+};
 
 const Navbar = ({ t }) => (
   <div id="navbar">
@@ -15,9 +29,14 @@ const Navbar = ({ t }) => (
       <Link href="/products">
         <a>{t("products.nav")}</a>
       </Link>
-      <Link href="/create">
-        <a className="button">{t("create.nav")}</a>
-      </Link>
+      <a
+        className="button"
+        onClick={() => {
+          getNewUUID().then((result) => Router.push("/create/" + result.uuid));
+        }}
+      >
+        {t("create.nav")}
+      </a>
     </div>
 
     <style jsx>{`
