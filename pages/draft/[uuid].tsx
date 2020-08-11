@@ -1,4 +1,5 @@
 import { withTranslation, Router } from "../../i18n";
+import { fetchDraft } from "../../src/helpers";
 
 type Props = {
   t: any;
@@ -16,8 +17,7 @@ const Draft = (props) => {
 };
 
 Draft.getInitialProps = async ({ query }) => {
-  const res = await fetch("http://localhost:8000/draft/" + query.uuid);
-  const draft = await res.json();
+  const draft = await fetchDraft(query.uuid);
 
   return {
     namespacesRequired: ["common", "meta"],

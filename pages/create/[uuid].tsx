@@ -13,20 +13,10 @@ import Layout from "../../src/components/Layout";
 import Switch from "../../src/components/Design/Switch";
 import DesignImagePreview from "../../src/components/Design/DesignImagePreview";
 import NameList from "../../src/components/Design/NameList";
+import { saveDraft, fetchDraft } from "../../src/helpers";
 
-const saveDraft = (draft) => {
-  return fetch("http://localhost:8000/draft/" + draft.uuid, {
-    method: "PUT",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(draft),
-  });
-};
-
-const generatePreview = (draft) => {
-  saveDraft(draft).then(() => {
+const generatePreview = (pdfData) => {
+  saveDraft(pdfData).then((draft: Draft) => {
     Router.push("/preview/" + draft.uuid);
   });
 };
@@ -716,15 +706,7 @@ const Create = (props) => {
 };
 
 Create.getInitialProps = async ({ query }) => {
-  const res = await fetch("http://localhost:8000/draft/" + query.uuid, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-
-  const draft: Draft = await res.json();
+  const draft = await fetchDraft(query.uuid);
 
   return {
     draft: draft,

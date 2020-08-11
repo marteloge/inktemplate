@@ -4,6 +4,7 @@ import Head from "next/head";
 
 import dynamic from "next/dynamic";
 import { Draft } from "../../src/types";
+import { fetchDraft } from "../../src/helpers";
 
 const PreviewPDF = dynamic(import("../../src/components/Print/PreviewPDF"), {
   ssr: false,
@@ -103,8 +104,7 @@ const Preview = (props) => {
 };
 
 Preview.getInitialProps = async ({ query }) => {
-  const res = await fetch("http://localhost:8000/draft/" + query.uuid);
-  const draft: Draft = await res.json();
+  const draft = await fetchDraft(query.uuid);
 
   return {
     draft: draft,
