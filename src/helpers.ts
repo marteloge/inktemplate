@@ -1,6 +1,24 @@
 import { Router } from "../i18n";
 import { Draft } from "./types";
 import { PRODUCTS } from "./global";
+import firebase from "./../lib/db";
+
+export const getDraft = async (uuid: string) => {
+  return await firebase
+    .firestore()
+    .collection("drafts")
+    .doc(uuid)
+    .get()
+    .then((snapshot) => snapshot.data());
+};
+
+export const saveOrUpdateDraft = async (uuid: string, draft: Draft) => {
+  return await firebase
+    .firestore()
+    .collection("drafts")
+    .doc(uuid)
+    .set(draft, { merge: true });
+};
 
 export const createNewDraft = (payload) => {
   return fetch("http://localhost:8000/draft", {
