@@ -11,17 +11,14 @@ type Props = {
   backgroundColor?: string;
   content?: Array<Content>;
   text?: string;
+  scale: number;
 };
 
 const Canvas = (props: Props) => {
-  const {
-    width,
-    height,
-    content,
-    selectedDesign,
-    useDesign,
-    backgroundColor,
-  } = props;
+  const { content, selectedDesign, useDesign, backgroundColor, scale } = props;
+
+  const width = props.width * scale;
+  const height = props.height * scale;
 
   return (
     <div id="preview">
@@ -32,7 +29,7 @@ const Canvas = (props: Props) => {
               key={i}
               style={{
                 fontFamily: c.font,
-                fontSize: c.font_size,
+                fontSize: c.fontSize * scale,
                 color: c.color,
               }}
             >

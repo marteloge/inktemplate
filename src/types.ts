@@ -3,8 +3,8 @@ export type TextDesign = {
   color: string;
   text: string;
   colorPickerOpen: boolean;
-  font_size: number;
-  font_src: string;
+  fontSize: number;
+  fontSrc: string;
 };
 
 export type ColorPickerDesign = {
@@ -14,9 +14,9 @@ export type ColorPickerDesign = {
 
 export type Text = {
   font: string;
-  font_size: number;
+  fontSize: number;
   color: string;
-  font_src: string;
+  fontSrc: string;
 };
 
 export type PDFProps = {
@@ -31,33 +31,39 @@ export type PDFProps = {
 
 export type Product = {
   name: string;
-  print_width: string;
-  print_height: string;
+  printWidth: string;
+  printHeight: string;
   height: number;
   width: number;
-  twosided: boolean;
-  paper_size: string;
 };
 
 export type Content = {
+  order?: number;
   name: string;
   font: string;
-  font_size: number;
-  font_src: string;
+  fontSize: number;
+  fontSrc: string;
   color: string;
   text: string;
   colorPickerOpen: boolean;
 };
 
+export type Papersize = "A4" | "A5";
+export type Rotation = "landscape" | "portrait";
+
 export type Draft = {
-  id: 1;
   uuid: string;
-  product_id?: number;
-  background_image?: string;
-  background_color?: string;
+  useDesign: boolean;
+  backgroundImage?: string;
+  backgroundColor?: {
+    colorPickerOpen: boolean;
+    color: string;
+  };
   email?: string;
   text: string;
-  paid: boolean;
   content: Array<Content>;
   product: Product;
+  twosided: boolean;
+  paper_size: Papersize;
+  rotation: Rotation;
 };

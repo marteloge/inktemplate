@@ -1,51 +1,50 @@
 import { imageRoute } from "./../../global";
+import { withTranslation } from "../../../i18n";
 
-type Props = {
-  setUseDesign: Function;
-  useDesign: boolean;
-  color: string;
-  image: string;
+const Switch = (props) => {
+  const { setUseDesign, useDesign, color, image, t } = props;
+
+  return (
+    <div id="switch">
+      <button className="color" onClick={() => setUseDesign(false)}>
+        {t("product:color")}
+      </button>
+      <button className="pattern" onClick={() => setUseDesign(true)}>
+        {t("product:pattern")}
+      </button>
+
+      <style jsx>{`
+        #switch {
+          margin: 0 0 20px 10%;
+        }
+
+        #switch button {
+          width: 150px;
+          height: 80px;
+          border-radius: 5px;
+          outline: none;
+          cursor: pointer;
+          border: none;
+          padding: 0;
+          margin: 0 20px 0 5px;
+        }
+
+        #switch button:hover {
+          box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.6);
+        }
+
+        .pattern {
+          box-shadow: ${useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
+          background-image: url(${imageRoute + image + "-small.jpg"});
+        }
+
+        .color {
+          box-shadow: ${!useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
+          background-color: ${color};
+        }
+      `}</style>
+    </div>
+  );
 };
-const Switch = (props: Props) => (
-  <div id="switch">
-    <button className="color" onClick={() => props.setUseDesign(false)}>
-      Color
-    </button>
-    <button className="pattern" onClick={() => props.setUseDesign(true)}>
-      Pattern
-    </button>
 
-    <style jsx>{`
-      #switch {
-        margin: 0 0 20px 10%;
-      }
-
-      #switch button {
-        width: 150px;
-        height: 80px;
-        border-radius: 5px;
-        outline: none;
-        cursor: pointer;
-        border: none;
-        padding: 0;
-        margin: 0 20px 0 5px;
-      }
-
-      #switch button:hover {
-        box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.6);
-      }
-
-      .pattern {
-        box-shadow: ${props.useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
-        background-image: url(${imageRoute + props.image + "-small.jpg"});
-      }
-
-      .color {
-        box-shadow: ${!props.useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
-        background-color: ${props.color};
-      }
-    `}</style>
-  </div>
-);
-
-export default Switch;
+export default withTranslation("common")(Switch);

@@ -11,15 +11,15 @@
     "@react-pdf/renderer": "^1.6.10",
     "@types/node": "^14.0.24",
     "@types/react-color": "^3.0.4",
-    "next": "9.4.4",
-    "next-compose-plugins": "^2.2.0",
-    "next-i18next": "^5.0.0-beta.4",
-    "next-optimized-images": "^3.0.0-canary.2",
+    "firebase": "^7.17.2",
+    "next": "9.5.2",
+    "next-i18next": "^6.0.2",
     "react": "16.13.1",
     "react-color": "^2.18.1",
     "react-dom": "16.13.1",
     "react-pdf": "^4.2.0",
-    "react-select": "^3.1.0"
+    "react-select": "^3.1.0",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.43",

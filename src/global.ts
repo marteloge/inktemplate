@@ -1,9 +1,5 @@
-export const PRODUCTS = {
-  PLACECARD: {
-    id: 1,
-    name: "PLACECARD",
-  },
-};
+import { CSSProperties } from "react";
+const createUuid = require("uuid");
 
 export const calculateResponsiveSize = (min: number, max: number) =>
   `calc(${min}px + (${max} - ${min}) * ((100vw - 300px) / (1600 - 300)))`;
@@ -11,6 +7,9 @@ export const calculateResponsiveSize = (min: number, max: number) =>
 export const updateContent = (handler, contents, content, index) => {
   return handler(contents.map((c, i) => (i !== index ? c : content)));
 };
+
+export const newUUID = () => createUuid.v4();
+
 export const fonts = [
   {
     value: "dawningofanewday",
@@ -243,15 +242,15 @@ export const updateField = (state, handler, field, value) =>
 
 export const update = (handler, nextState) => handler(nextState);
 
-type StylesDictionary = {
-  [Key: string]: CSSProperties;
-};
-
 export const toTextArray = (text: string): Array<string> => {
   if (text.slice(-1) === ";") {
     return text.slice(0, text.length - 1).split(";");
   }
   return text.split(";");
+};
+
+type StylesDictionary = {
+  [Key: string]: CSSProperties;
 };
 
 export const colorPickerStyles = (color: string): StylesDictionary => {

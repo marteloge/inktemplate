@@ -9,39 +9,42 @@ type Props = {
   useDesign: boolean;
 };
 
-const Preview = (props: Props) => (
-  <div>
-    {props.list.endsWith(";") &&
-      props.list
-        .slice(0, props.list.length - 1)
-        .split(";")
-        .map((c, i) => {
-          console.log(c, i);
-          return (
-            <div className="card" key={i}>
-              <p>{c.split(",")[0]}</p>
-              <p>{c.split(",")[1]}</p>
-            </div>
-          );
-        })}
+const Preview = (props: Props) => {
+  const { width, height, list, color, image, useDesign } = props;
 
-    <style jsx>{`
-      display: flex;
+  return (
+    <div>
+      {list.endsWith(";") &&
+        list
+          .slice(0, list.length - 1)
+          .split(";")
+          .map((c, i) => {
+            return (
+              <div className="card" key={i}>
+                <p>{c.split(",")[0]}</p>
+                <p>{c.split(",")[1]}</p>
+              </div>
+            );
+          })}
 
-      .card {
-        margin-right: 10px;
-        width: ${props.width * 0.5}px;
-        height: ${props.height * 0.5}px;
-        background-color: ${props.useDesign ? "none" : props.color};
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-image: ${props.useDesign
-          ? `url(${imageRoute + props.image}-small.jpg)`
-          : "none"};
-      }
-    `}</style>
-  </div>
-);
+      <style jsx>{`
+        display: flex;
+
+        .card {
+          margin-right: 10px;
+          width: ${width * 0.5}px;
+          height: ${height * 0.5}px;
+          background-color: ${useDesign ? "none" : color};
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          background-image: ${useDesign
+            ? `url(${imageRoute + image}-small.jpg)`
+            : "none"};
+        }
+      `}</style>
+    </div>
+  );
+};
 
 export default Preview;

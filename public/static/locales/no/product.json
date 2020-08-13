@@ -1,4 +1,24 @@
 {
-  "nameText": "Janelle",
-  "subText": "Bord 4"
+  "nameText": "Marte",
+  "subText": "Bord 1",
+  "defaultText": "Marte, Bord 1; Håkon, Bord 2; Ole, Bord 3;",
+  "backgroundColor": "Bakgrunnsfarge",
+  "painting": "Tegner skisser for print!",
+  "selectDesign": "Velg design",
+  "textHeader": "List tekst for print",
+  "color": "Farge",
+  "design": "Mønster",
+  "loadingPrint": "Laster pdf...",
+  "download": "Last ned pdf!",
+  "previous": "Forrige",
+  "next": "Neste",
+  "page": "Side",
+  "create": {
+    "button": {
+      "previewPDF": "Lag PDF",
+      "previewPrint": "Se forhåndsvisning",
+      "saveDraft": "Lagre",
+      "savingDraft": "...Lagrer"
+    }
+  }
 }

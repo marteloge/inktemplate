@@ -3,8 +3,7 @@ import Layout from "../../src/components/Layout";
 import Head from "next/head";
 
 import dynamic from "next/dynamic";
-import { Draft } from "../../src/types";
-import { fetchDraft } from "../../src/helpers";
+import { getDraft } from "../../src/api";
 
 const PreviewPDF = dynamic(import("../../src/components/Print/PreviewPDF"), {
   ssr: false,
@@ -14,13 +13,8 @@ const PreviewPDF = dynamic(import("../../src/components/Print/PreviewPDF"), {
 //   ssr: false,
 // });
 
-type Props = {
-  draft: Draft;
-  t: any;
-};
-
 const Preview = (props) => {
-  const { t, draft }: Props = props;
+  const { t, draft } = props;
 
   return (
     <Layout>
@@ -29,7 +23,7 @@ const Preview = (props) => {
         <meta name="description" content={t("meta:generate.description")} />
       </Head>
       <div className="wallpaper">
-        <h2>Painting your print!</h2>
+        <h2>{t("product:painting")}</h2>
       </div>
 
       <div className="content">
@@ -38,9 +32,6 @@ const Preview = (props) => {
         </div>
         <div>
           <h1>{t("generate.header")}</h1>
-          <p>Here is your PDF preview! Do you like it?</p>
-          {/* <Download {...pdfprops}></Download> */}
-          <button>Remove commercial</button>
         </div>
       </div>
 
@@ -104,11 +95,11 @@ const Preview = (props) => {
 };
 
 Preview.getInitialProps = async ({ query }) => {
-  const draft = await fetchDraft(query.uuid);
+  const draft = await getDraft(query.uuid);
 
   return {
     draft: draft,
-    namespacesRequired: ["common", "meta"],
+    namespacesRequired: ["common", "meta", "product"],
   };
 };
 

@@ -12,8 +12,8 @@ import { Draft, Content } from "./../../types";
 import { toTextArray } from "../../global";
 
 const styles = (draft: Draft) => {
-  const { background_color } = draft;
-  const { print_width, print_height } = draft.product;
+  const { backgroundColor } = draft;
+  const { printWidth, printHeight } = draft.product;
 
   return StyleSheet.create({
     page: {
@@ -25,8 +25,8 @@ const styles = (draft: Draft) => {
       justifyContent: "center",
     },
     card: {
-      width: print_width + "cm",
-      height: 2 * parseFloat(print_height) + "cm",
+      width: printWidth + "cm",
+      height: 2 * parseFloat(printHeight) + "cm",
       display: "table",
       border: 0.5,
       borderStyle: "dotted",
@@ -35,8 +35,8 @@ const styles = (draft: Draft) => {
     },
     back: {
       backgroundColor: "white",
-      width: print_width + "cm",
-      height: print_height + "cm",
+      width: printWidth + "cm",
+      height: printHeight + "cm",
       paddingTop: 5,
       fontSize: 15,
     },
@@ -47,14 +47,14 @@ const styles = (draft: Draft) => {
       alignItems: "center",
     },
     image: {
-      minWidth: print_width + "cm",
-      minHeight: print_height + "cm",
-      maxHeight: print_height + "cm",
+      minWidth: printWidth + "cm",
+      minHeight: printHeight + "cm",
+      maxHeight: printHeight + "cm",
     },
     background: {
-      minWidth: print_width + "cm",
-      minHeight: print_height + "cm",
-      backgroundColor: background_color,
+      minWidth: printWidth + "cm",
+      minHeight: printHeight + "cm",
+      backgroundColor: backgroundColor.color,
     },
     content: {
       width: "100%",
@@ -74,13 +74,13 @@ const PDF = (draft: Draft) => {
   draft.content.forEach((content: Content) => {
     Font.register({
       family: content.font,
-      src: "/static/fonts/" + content.font_src + ".ttf",
+      src: "/static/fonts/" + content.fontSrc + ".ttf",
     });
 
     style = {
       ...style,
       [content.name]: {
-        fontSize: content.font_size * 0.6,
+        fontSize: content.fontSize * 0.6,
         fontFamily: content.font,
         color: content.color,
       },
@@ -120,10 +120,10 @@ const PDF = (draft: Draft) => {
                   </View>
                   <View>
                     <View style={style.front}>
-                      {draft.background_image ? (
+                      {draft.backgroundImage ? (
                         <Image
                           style={style.image}
-                          src={`/static/images/${draft.background_image}.jpg`}
+                          src={`/static/images/${draft.backgroundImage}.jpg`}
                         ></Image>
                       ) : (
                         <View style={style.background}></View>

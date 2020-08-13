@@ -11,7 +11,8 @@
   },
   "create": {
     "nav": "Create new",
-    "header": "Create your own design"
+    "header": "Create your own design",
+    "intro": "Create your own design for your print! Maybe you find some nice designs from our library? Play with fonts, text and colors to get your own custom design! Click on the preview button when you are ready."
   },
   "generate": {
     "nav": "Generate PDF",

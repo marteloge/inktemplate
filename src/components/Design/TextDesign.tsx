@@ -30,7 +30,7 @@ type Props = {
   setContent: Function;
 };
 
-export const TextDesignComponent = (props: Props) => {
+const TextDesignComponent = (props: Props) => {
   const { content, contents, setContent, index } = props;
   const { name, color, font, text, colorPickerOpen } = content;
 
@@ -93,7 +93,7 @@ export const TextDesignComponent = (props: Props) => {
           updateContent(
             setContent,
             contents,
-            { ...content, font: font.label, font_src: font.src },
+            { ...content, font: font.label, fontSrc: font.src },
             index
           );
         }}
@@ -108,7 +108,6 @@ export const TextDesignComponent = (props: Props) => {
 
           input {
             font-family: "Raleway";
-
             border-radius: 5px;
             border: none;
             padding-left: 2px;
@@ -122,3 +121,5 @@ export const TextDesignComponent = (props: Props) => {
     </div>
   );
 };
+
+export default TextDesignComponent;

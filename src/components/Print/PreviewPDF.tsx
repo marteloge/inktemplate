@@ -4,6 +4,7 @@ import { BlobProvider } from "@react-pdf/renderer";
 import PDF from "./PDF";
 import { Document, Page } from "react-pdf";
 import { Draft } from "./../../types";
+import { i18n } from "./../../../i18n";
 
 const PDFNavigator = (link, blob) => {
   const [numPages, setNumPages] = useState(null);
@@ -35,17 +36,19 @@ const PDFNavigator = (link, blob) => {
             disabled={pageNumber <= 1}
             onClick={previousPage}
           >
-            Previous
+            {i18n.t("product:previous")}
           </button>
           <p>
-            Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
+            {`${i18n.t("product:page")} ${
+              pageNumber || (numPages ? 1 : "--")
+            }/${numPages || "--"}`}
           </p>
           <button
             type="button"
             disabled={pageNumber >= numPages}
             onClick={nextPage}
           >
-            Next
+            {i18n.t("product:next")}
           </button>
         </div>
       </div>
@@ -102,7 +105,7 @@ const PDFNavigator = (link, blob) => {
 type Props = {
   draft: Draft;
 };
-const PreviewPDF = (props: Props) => {
+const PreviewPDF = (props) => {
   const { draft } = props;
 
   return (
@@ -110,9 +113,7 @@ const PreviewPDF = (props: Props) => {
       <BlobProvider document={<PDF {...draft}></PDF>}>
         {({ blob, url, loading, error }) => {
           return loading ? (
-            <div>
-              <h1>Painting your PDF</h1>
-            </div>
+            <></>
           ) : (
             <div>
               <PDFNavigator link={url} blob={blob}></PDFNavigator>

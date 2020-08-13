@@ -10,7 +10,8 @@
   },
   "create": {
     "nav": "Lag ny",
-    "header": "Lag ny"
+    "header": "Lag ny",
+    "intro": "Lag ditt eget design for print! Velg mellom flotte bakgrunnsfarger og bilder. Lek deg med tekst, fonter og farger for sette ditt personlige preg."
   },
   "generate": {
     "nav": "Lag PDF",

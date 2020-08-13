@@ -2,87 +2,45 @@ import { useState } from "react";
 import Head from "next/head";
 
 import { Router, withTranslation } from "../../i18n";
-
-import { TextDesignComponent } from "../../src/components/Design/TextDesign";
 import { ColorPickerDesign, Draft, Content } from "../../src/types";
 import { colorPickerStyles } from "../../src/global";
+import { getDraft, createOrUpdateDraft } from "../../src/api";
 
+import TextDesignComponent from "../../src/components/Design/TextDesign";
 import ColorPicker from "../../src/components/Design/ColorPicker";
 import Canvas from "../../src/components/Design/Canvas";
 import Layout from "../../src/components/Layout";
 import Switch from "../../src/components/Design/Switch";
 import DesignImagePreview from "../../src/components/Design/DesignImagePreview";
 import NameList from "../../src/components/Design/NameList";
-import { saveDraft, fetchDraft } from "../../src/helpers";
-
-const generatePreview = (pdfData) => {
-  saveDraft(pdfData).then((draft: Draft) => {
-    Router.push("/preview/" + draft.uuid);
-  });
-};
 
 const Create = (props) => {
-  const { t, draft } = props;
-
-  const width = draft.product.width;
-  const height = draft.product.height;
+  const t = props.t;
+  const draft: Draft = props.draft;
 
   const [selectedDesign, setSelectedDesign] = useState<string>(
-    !(draft.background_image || draft.background_color)
-      ? "template4"
-      : draft.background_image
+    draft.backgroundImage
   );
+  const [text, setText] = useState<string>(draft.text);
+  const [useDesign, setUseDesign] = useState<boolean>(draft.useDesign);
+  const [color, setColor] = useState<ColorPickerDesign>(draft.backgroundColor);
+  const [content, setContent] = useState<Array<Content>>(draft.content);
 
-  const [text, setText] = useState<string>(
-    draft.text ? draft.text : "Janelle, Table 1; Harold, Table2; Jeff, Table 3;"
-  );
+  const [savingDraft, setSavingDraft] = useState<boolean>(false);
 
-  const [useDesign, setUseDesign] = useState<boolean>(!!selectedDesign);
+  const pdfData: Draft = {
+    ...draft,
+    useDesign,
+    backgroundImage: selectedDesign,
+    backgroundColor: color,
+    text,
+    content,
+  };
 
-  const [color, setColor] = useState<ColorPickerDesign>(
-    draft.background_color
-      ? {
-          color: draft.background_color,
-          colorPickerOpen: false,
-        }
-      : {
-          color: "#00bcd4",
-          colorPickerOpen: false,
-        }
-  );
-
-  const [content, setContent] = useState<Array<Content>>(
-    draft.content.length > 0
-      ? draft.content.map((c) => {
-          return { ...c, colorPickerOpen: false };
-        })
-      : [
-          {
-            name: "nameText",
-            color: "#000",
-            font: "Dawning of a New Day",
-            font_src: "dawning-of-a-new-day-v11-latin-regular",
-            font_size: 35,
-            text: t("product:nameText"),
-          },
-          {
-            name: "subText",
-            color: "#000",
-            font: "Raleway",
-            font_src: "raleway-v17-latin-regular",
-            font_size: 20,
-            text: t("product:subText"),
-          },
-        ]
-  );
-
-  const pdfData = {
-    id: draft.id,
-    uuid: draft.uuid,
-    background_image: useDesign ? selectedDesign : null,
-    background_color: useDesign ? null : color.color,
-    text: text,
-    content: content,
+  const generatePreviewAndRedirect = (pdfData: Draft) => {
+    createOrUpdateDraft(pdfData.uuid, pdfData).then(() => {
+      Router.push("/preview/" + pdfData.uuid);
+    });
   };
 
   return (
@@ -92,32 +50,43 @@ const Create = (props) => {
         <meta name="description" content={t("meta:create.description")} />
       </Head>
       <div className="sticky">
-        <button onClick={() => generatePreview(pdfData)} className="button">
-          Preview PDF
+        <button
+          onClick={() => generatePreviewAndRedirect(pdfData)}
+          className="button"
+        >
+          {t("product:create.button.previewPDF")}
         </button>
 
-        {/* <button onClick={() => saveDraft(pdfData)} className="button">
-          Save
-        </button> */}
+        <button
+          onClick={() => {
+            setSavingDraft(true);
+            createOrUpdateDraft(pdfData.uuid, pdfData).then(() =>
+              setSavingDraft(false)
+            );
+          }}
+          disabled={savingDraft}
+          className="button"
+        >
+          {savingDraft
+            ? t("product:create.button.savingDraft")
+            : t("product:create.button.saveDraft")}
+        </button>
 
         <a className="button" href="#render">
-          Preview Print
+          {t("product:create.button.previewPrint")}
         </a>
       </div>
 
       <div className="content">
         <h1>{t("create.header")}</h1>
-        <p>
-          Create your own design for your print! Maybe you find some nice
-          designs from our library? Play with fonts, text and colors to get your
-          own custom design! Click on the preview button when you are ready.
-        </p>
+        <p>{t("create.intro")}</p>
         <div className="hero">
           <div id="preview">
             <Canvas
+              scale={1}
               content={content}
-              width={width}
-              height={height}
+              width={draft.product.width}
+              height={draft.product.height}
               useDesign={useDesign}
               backgroundColor={color.color}
               selectedDesign={selectedDesign}
@@ -162,21 +131,25 @@ const Create = (props) => {
                     handler={setColor}
                   />
                 )}
-                <p>Background color</p>
+                <p>{t("product:backgroundColor")}</p>
               </div>
             </div>
           </div>
         </div>
         <div id="bottom">
           <div>
-            <NameList list={text} handler={setText} width={width} />
+            <NameList
+              list={text}
+              handler={setText}
+              width={draft.product.width}
+            />
           </div>
           <div>
             {useDesign && (
               <DesignImagePreview
                 setSelectedDesign={setSelectedDesign}
-                width={width}
-                height={height}
+                width={draft.product.width}
+                height={draft.product.height}
               />
             )}
           </div>
@@ -192,15 +165,16 @@ const Create = (props) => {
                 return (
                   <div key={"canvas-" + i} className="card">
                     <Canvas
-                      width={width * 0.6}
-                      height={height * 0.6}
+                      scale={0.6}
+                      width={draft.product.width}
+                      height={draft.product.height}
                       backgroundColor={color.color}
                       selectedDesign={selectedDesign}
                       useDesign={useDesign}
                       content={content.map((c, i) => {
                         return {
                           ...c,
-                          font_size: c.font_size * 0.6,
+                          fontSize: c.fontSize,
                           text: t.split(",")[i],
                         };
                       })}
@@ -706,7 +680,7 @@ const Create = (props) => {
 };
 
 Create.getInitialProps = async ({ query }) => {
-  const draft = await fetchDraft(query.uuid);
+  const draft = await getDraft(query.uuid);
 
   return {
     draft: draft,
