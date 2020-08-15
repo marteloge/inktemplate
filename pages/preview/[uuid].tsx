@@ -1,4 +1,4 @@
-import { withTranslation } from "../../i18n";
+import { withTranslation, Link } from "../../i18n";
 import Layout from "../../src/components/Layout";
 import Head from "next/head";
 
@@ -32,6 +32,9 @@ const Preview = (props) => {
         </div>
         <div>
           <h1>{t("generate.header")}</h1>
+          <Link href={`/checkout/${draft.uuid}`}>
+            <a>To checkout</a>
+          </Link>
         </div>
       </div>
 
