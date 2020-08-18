@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { withTranslation } from "../../i18n";
 import { getDraft } from "../../src/api";
 import Layout from "../../src/components/Layout";
+import { generatePdfDocument } from "./../../src/components/print/Download";
 
 const PreviewPDF = dynamic(import("../../src/components/print/PreviewPDF"), {
   ssr: false,
@@ -49,6 +50,7 @@ const Preview = (props) => {
           <button role="link" onClick={() => toCheckout(draft.uuid)}>
             Checkout
           </button>
+          <button onClick={() => generatePdfDocument(draft)}>Download</button>
         </div>
       </div>
 
