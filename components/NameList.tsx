@@ -1,5 +1,5 @@
-import { calculateResponsiveSize } from "../../global";
-import { withTranslation } from "../../../i18n";
+import { calculateResponsiveSize } from "../helpers/global";
+import { withTranslation } from "../helpers/i18n";
 
 const NameList = (props) => {
   const { list, handler, width, t } = props;

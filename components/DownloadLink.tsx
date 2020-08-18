@@ -1,4 +1,4 @@
-import { Draft } from "../../types";
+import { Draft } from "../helpers/types";
 import PDF from "./PDF";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 

@@ -1,5 +1,5 @@
-import { imageRoute } from "../../global";
-import { withTranslation } from "../../../i18n";
+import { imageRoute } from "../helpers/global";
+import { withTranslation } from "../helpers/i18n";
 
 const Switch = (props) => {
   const { setUseDesign, useDesign, color, image, t } = props;

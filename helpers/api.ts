@@ -1,5 +1,5 @@
 import { Draft } from "./types";
-import firebase from "../db";
+import firebase from "./db";
 
 export const getDraft = (uuid: string) => {
   return firebase

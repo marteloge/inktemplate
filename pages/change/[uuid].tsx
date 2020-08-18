@@ -1,4 +1,4 @@
-import { withTranslation } from "../../i18n";
+import { withTranslation } from "../../helpers/i18n";
 
 const Change = () => {
   return (

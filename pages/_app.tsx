@@ -1,8 +1,8 @@
 import App from "next/app";
-import { appWithTranslation } from "../i18n";
+import { appWithTranslation } from "../helpers/i18n";
 import Head from "next/head";
 
-import { calculateResponsiveSize } from "./../src/global";
+import { calculateResponsiveSize } from "../helpers/global";
 
 const MyApp = ({ Component, pageProps }) => (
   <>

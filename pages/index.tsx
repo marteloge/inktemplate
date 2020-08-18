@@ -1,7 +1,7 @@
-import Layout from "../src/components/Layout";
+import Layout from "../components/Layout";
 import Head from "next/head";
 
-import { i18n, withTranslation } from "../i18n";
+import { i18n, withTranslation } from "../helpers/i18n";
 
 const Home = ({ t }) => (
   <Layout>

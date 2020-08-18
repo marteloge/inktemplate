@@ -1,8 +1,8 @@
-import { Link, withTranslation } from "./../../i18n";
-import { calculateResponsiveSize, newUUID } from "../global";
-import { createOrUpdateDraft } from "../api";
-import { Router } from "./../../i18n";
-import { newDraft } from "../products";
+import { Link, withTranslation } from "../helpers/i18n";
+import { calculateResponsiveSize, newUUID } from "../helpers/global";
+import { createOrUpdateDraft } from "../helpers/api";
+import { Router } from "../helpers/i18n";
+import { newDraft } from "../helpers/products";
 
 const Navbar = (props) => {
   const { t } = props;

@@ -1,14 +1,11 @@
-import Layout from "../../src/components/Layout";
-import { getDraft } from "../../src/api";
-import { withTranslation } from "../../i18n";
+import Layout from "../../components/Layout";
+import { getDraft } from "../../helpers/api";
+import { withTranslation } from "../../helpers/i18n";
 import dynamic from "next/dynamic";
 
-const DownloadLink = dynamic(
-  import("./../../src/components/print/DownloadLink"),
-  {
-    ssr: false,
-  }
-);
+const DownloadLink = dynamic(import("../../components/DownloadLink"), {
+  ssr: false,
+});
 
 const Download = (props) => {
   const { t, draft } = props;

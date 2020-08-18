@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 import sendgrid from "@sendgrid/mail";
 
-import { getDraft, createOrUpdateDraft } from "./../../../src/api";
-import { Draft } from "../../../src/types";
+import { getDraft, createOrUpdateDraft } from "../../../helpers/api";
+import { Draft } from "../../../helpers/types";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2020-03-02",

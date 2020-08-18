@@ -1,5 +1,5 @@
-import { withTranslation } from "./../i18n";
-import Layout from "./../src/components/Layout";
+import { withTranslation } from "../helpers/i18n";
+import Layout from "../components/Layout";
 import Head from "next/head";
 
 const About = ({ t }) => (

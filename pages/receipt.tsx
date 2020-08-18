@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { useOrder } from "./../src/hooks";
-import { withTranslation } from "../i18n";
+import { useOrder } from "../helpers/hooks";
+import { withTranslation } from "../helpers/i18n";
 
 const Receipt = (props) => {
   const router = useRouter();

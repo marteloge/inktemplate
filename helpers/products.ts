@@ -1,4 +1,4 @@
-import { i18n } from "./../i18n";
+import { i18n } from "./i18n";
 import { Draft } from "./types";
 
 export const PRODUCTS = {

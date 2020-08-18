@@ -1,7 +1,7 @@
-import { Link } from "./../i18n";
-import { withTranslation } from "./../i18n";
+import { Link } from "../helpers/i18n";
+import { withTranslation } from "../helpers/i18n";
 
-import Layout from "./../src/components/Layout";
+import Layout from "../components/Layout";
 import Head from "next/head";
 
 const Products = ({ t }) => (

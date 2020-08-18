@@ -1,7 +1,7 @@
-import { Content } from "../../types";
+import { Content } from "../helpers/types";
 
-import { imageRoute, calculateResponsiveSize } from "../../global";
-import { withTranslation } from "../../../i18n";
+import { imageRoute, calculateResponsiveSize } from "../helpers/global";
+import { withTranslation } from "../helpers/i18n";
 
 type Props = {
   width: number;

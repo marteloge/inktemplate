@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Head from "next/head";
 
-import { Router, withTranslation } from "./../../i18n";
-import { ColorPickerDesign, Draft, Content } from "../../src/types";
-import { colorPickerStyles } from "./../../src/global";
-import { getDraft, createOrUpdateDraft } from "./../../src/api";
+import { Router, withTranslation } from "../../helpers/i18n";
+import { ColorPickerDesign, Draft, Content } from "../../helpers/types";
+import { colorPickerStyles } from "../../helpers/global";
+import { getDraft, createOrUpdateDraft } from "../../helpers/api";
 
-import TextDesignComponent from "./../../src/components/design/TextDesign";
-import ColorPicker from "./../../src/components/design/ColorPicker";
-import Canvas from "./../../src/components/design/Canvas";
-import Layout from "./../../src/components/Layout";
-import Switch from "./../../src/components/design/Switch";
-import DesignImagePreview from "../../src/components/design/DesignImagePreview";
-import NameList from "./../../src/components/design/NameList";
+import TextDesignComponent from "../../components/TextDesign";
+import ColorPicker from "../../components/ColorPicker";
+import Canvas from "../../components/Canvas";
+import Layout from "../../components/Layout";
+import Switch from "../../components/Switch";
+import DesignImagePreview from "../../components/DesignImagePreview";
+import NameList from "../../components/NameList";
 
 const Create = (props) => {
   const t = props.t;
@@ -25,7 +25,6 @@ const Create = (props) => {
   const [useDesign, setUseDesign] = useState<boolean>(draft.useDesign);
   const [color, setColor] = useState<ColorPickerDesign>(draft.backgroundColor);
   const [content, setContent] = useState<Array<Content>>(draft.content);
-
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
 
   const pdfData: Draft = {

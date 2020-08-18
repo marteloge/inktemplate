@@ -2,12 +2,12 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { withTranslation } from "../../i18n";
-import { getDraft } from "../../src/api";
-import Layout from "../../src/components/Layout";
-import { generatePdfDocument } from "./../../src/components/print/Download";
+import { withTranslation } from "../../helpers/i18n";
+import { getDraft } from "../../helpers/api";
+import Layout from "../../components/Layout";
+import { generatePdfDocument } from "../../components/Download";
 
-const PreviewPDF = dynamic(import("../../src/components/print/PreviewPDF"), {
+const PreviewPDF = dynamic(import("../../components/PreviewPDF"), {
   ssr: false,
 });
 

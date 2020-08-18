@@ -1,5 +1,5 @@
-import { cardDesigns } from "../../global";
-import { withTranslation } from "../../../i18n";
+import { cardDesigns } from "../helpers/global";
+import { withTranslation } from "../helpers/i18n";
 
 const DesignImagePreview = (props) => {
   const { setSelectedDesign, width, height, t } = props;

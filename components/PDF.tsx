@@ -8,8 +8,8 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
-import { Draft, Content } from "../../types";
-import { toTextArray } from "../../global";
+import { Draft, Content } from "../helpers/types";
+import { toTextArray } from "../helpers/global";
 
 const styles = (draft: Draft) => {
   const { backgroundColor } = draft;

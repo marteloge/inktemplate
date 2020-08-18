@@ -1,4 +1,4 @@
-import { imageRoute } from "../../global";
+import { imageRoute } from "../helpers/global";
 
 type Props = {
   width: number;
