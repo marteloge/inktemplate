@@ -8,7 +8,7 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
-import { Draft, Content } from "./../../types";
+import { Draft, Content } from "../../types";
 import { toTextArray } from "../../global";
 
 const styles = (draft: Draft) => {
@@ -120,7 +120,7 @@ const PDF = (draft: Draft) => {
                   </View>
                   <View>
                     <View style={style.front}>
-                      {draft.backgroundImage ? (
+                      {draft.useDesign ? (
                         <Image
                           style={style.image}
                           src={`/static/images/${draft.backgroundImage}.jpg`}

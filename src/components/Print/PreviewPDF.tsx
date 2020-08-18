@@ -3,8 +3,8 @@ import { BlobProvider } from "@react-pdf/renderer";
 
 import PDF from "./PDF";
 import { Document, Page } from "react-pdf";
-import { Draft } from "./../../types";
-import { i18n } from "./../../../i18n";
+import { Draft } from "../../types";
+import { i18n } from "../../../i18n";
 
 const PDFNavigator = (link, blob) => {
   const [numPages, setNumPages] = useState(null);
