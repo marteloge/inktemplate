@@ -1,17 +1,31 @@
-import { withTranslation, Link } from "../../i18n";
-import Layout from "../../src/components/Layout";
 import Head from "next/head";
-
 import dynamic from "next/dynamic";
-import { getDraft } from "../../src/api";
+import { loadStripe } from "@stripe/stripe-js";
 
-const PreviewPDF = dynamic(import("../../src/components/Print/PreviewPDF"), {
+import { withTranslation } from "../../i18n";
+import { getDraft } from "../../src/api";
+import Layout from "../../src/components/Layout";
+
+const PreviewPDF = dynamic(import("../../src/components/print/PreviewPDF"), {
   ssr: false,
 });
 
-// const Download = dynamic(import("./../src/components/Print/Download"), {
-//   ssr: false,
-// });
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
+const toCheckout = async (uuid) => {
+  const { session_id } = await fetch("/api/checkout/session", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      uuid,
+    }),
+  }).then((res) => res.json());
+
+  const stripe = await stripePromise;
+  const { error } = await stripe.redirectToCheckout({
+    sessionId: session_id,
+  });
+};
 
 const Preview = (props) => {
   const { t, draft } = props;
@@ -32,9 +46,9 @@ const Preview = (props) => {
         </div>
         <div>
           <h1>{t("generate.header")}</h1>
-          <Link href={`/checkout/${draft.uuid}`}>
-            <a>To checkout</a>
-          </Link>
+          <button role="link" onClick={() => toCheckout(draft.uuid)}>
+            Checkout
+          </button>
         </div>
       </div>
 

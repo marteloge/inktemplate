@@ -22,15 +22,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (!draft.sentReceipt) {
     draft.sentReceipt = true;
+    draft.paid = true;
 
     sendgrid.setApiKey(process.env.EMAIL_SENDGRID_API_KEY);
 
     const msg = {
       to: (order.customer as Stripe.Customer).email,
       from: process.env.EMAIL,
-      subject: "InkTemplate - Your print is ready!",
-      text: "Hello, ",
-      html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+      subject: "payment.success.subject",
+      text: "InkTemplate - Print is ready!",
+      // html: t("payment.success.html", {
+      //   uuid: draft.uuid,
+      //   edit: `http://${req.headers.host}/${draft.language}/change/${draft.uuid}`,
+      //   download: `http://${req.headers.host}/${draft.language}/download/${draft.uuid}`,
+      // }),
+      html: `Hello, \n\n Here is your print! http://localhost:3000/${draft.language}/${draft.uuid}`,
     };
 
     (async () => {
@@ -49,3 +55,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.status(200).json({ order: { ...order }, draft });
 };
+
+//TODO: Translate all email

@@ -1,4 +1,4 @@
-import { cardDesigns } from "./../../global";
+import { cardDesigns } from "../../global";
 import { withTranslation } from "../../../i18n";
 
 const DesignImagePreview = (props) => {

@@ -1,0 +1,9 @@
+{
+  "payment": {
+    "success": {
+      "html": "Hei,<br><br> Du kan laste ned print <a href={{download}}>her</a> og redigere tekst til print <a href={{edit}}>her</a>.",
+      "text": "Hei, Her er din uuid: {{uuid}}",
+      "subject": "InkTemplate - Last ned din print!"
+    }
+  }
+}

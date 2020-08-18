@@ -1,4 +1,4 @@
-import { imageRoute } from "./../../global";
+import { imageRoute } from "../../global";
 import { withTranslation } from "../../../i18n";
 
 const Switch = (props) => {

@@ -1,6 +1,6 @@
 import Select from "react-select";
 
-import { fonts, colorPickerStyles, updateContent } from "./../../../src/global";
+import { fonts, colorPickerStyles, updateContent } from "../../global";
 import { Content } from "./../../types";
 import ColorPicker from "./ColorPicker";
 

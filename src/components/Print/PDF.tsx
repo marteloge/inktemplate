@@ -109,14 +109,16 @@ const PDF = (draft: Draft) => {
                   key={"card-" + pageNum + "-" + cardNum}
                 >
                   <View style={style.back}>
-                    <Text
-                      style={{
-                        textAlign: "center",
-                        transform: "rotate(-180deg)",
-                      }}
-                    >
-                      www.inktemplate.com
-                    </Text>
+                    {!draft.paid && (
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          transform: "rotate(-180deg)",
+                        }}
+                      >
+                        www.inktemplate.com
+                      </Text>
+                    )}
                   </View>
                   <View>
                     <View style={style.front}>

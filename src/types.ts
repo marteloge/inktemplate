@@ -70,4 +70,5 @@ export type Draft = {
   rotation: Rotation;
   sentReceipt?: boolean;
   language?: string;
+  paid?: boolean;
 };

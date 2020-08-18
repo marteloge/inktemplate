@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useOrder } from "./../src/hooks";
+import { withTranslation } from "../i18n";
 
-const Receipt = () => {
+const Receipt = (props) => {
   const router = useRouter();
   const { data, isLoading } = useOrder(router.query.session_id);
 
@@ -13,10 +14,16 @@ const Receipt = () => {
 
   return (
     <div>
-      <h2>Takk for betalingen!</h2>
+      <h2>{props.t("language")} - Takk for betalingen!</h2>
       <p>Vi har sendt print på mail til {order.customer.email}</p>
     </div>
   );
 };
 
-export default Receipt;
+Receipt.getInitialProps = ({ query }) => {
+  return {
+    namespacesRequired: ["common"],
+  };
+};
+
+export default withTranslation("common")(Receipt);

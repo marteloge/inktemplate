@@ -1,7 +1,6 @@
 import { BlockPicker } from "react-color";
-
-import { colorPickerStyles } from "./../../global";
-import { Content, ColorPickerDesign } from "./../../types";
+import { colorPickerStyles } from "../../global";
+import { Content, ColorPickerDesign } from "../../types";
 
 type Props = {
   design: Content | ColorPickerDesign;

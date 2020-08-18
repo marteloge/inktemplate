@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Head from "next/head";
 
-import { Router, withTranslation } from "../../i18n";
+import { Router, withTranslation } from "./../../i18n";
 import { ColorPickerDesign, Draft, Content } from "../../src/types";
-import { colorPickerStyles } from "../../src/global";
-import { getDraft, createOrUpdateDraft } from "../../src/api";
+import { colorPickerStyles } from "./../../src/global";
+import { getDraft, createOrUpdateDraft } from "./../../src/api";
 
-import TextDesignComponent from "../../src/components/Design/TextDesign";
-import ColorPicker from "../../src/components/Design/ColorPicker";
-import Canvas from "../../src/components/Design/Canvas";
-import Layout from "../../src/components/Layout";
-import Switch from "../../src/components/Design/Switch";
-import DesignImagePreview from "../../src/components/Design/DesignImagePreview";
-import NameList from "../../src/components/Design/NameList";
+import TextDesignComponent from "./../../src/components/design/TextDesign";
+import ColorPicker from "./../../src/components/design/ColorPicker";
+import Canvas from "./../../src/components/design/Canvas";
+import Layout from "./../../src/components/Layout";
+import Switch from "./../../src/components/design/Switch";
+import DesignImagePreview from "../../src/components/design/DesignImagePreview";
+import NameList from "./../../src/components/design/NameList";
 
 const Create = (props) => {
   const t = props.t;
@@ -689,3 +689,5 @@ Create.getInitialProps = async ({ query }) => {
 };
 
 export default withTranslation("common")(Create);
+
+//TODO: If paid for - should not be able to save draft
