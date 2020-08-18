@@ -3,16 +3,18 @@ import { useOrder } from "./../src/hooks";
 
 const Receipt = () => {
   const router = useRouter();
-  const { order, isLoading } = useOrder(router.query.session_id);
+  const { data, isLoading } = useOrder(router.query.session_id);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  const { draft, order } = data;
 
   return (
     <div>
       <h2>Takk for betalingen!</h2>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <p>Vi sender print på mail til {order.customer.email}</p>
-      )}
+      <p>Vi har sendt print på mail til {order.customer.email}</p>
     </div>
   );
 };

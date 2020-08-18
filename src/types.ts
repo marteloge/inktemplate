@@ -37,6 +37,8 @@ export type Product = {
   width: number;
 };
 
+// export type Languages = "no" | "en";
+
 export type Content = {
   order?: number;
   name: string;
@@ -66,4 +68,6 @@ export type Draft = {
   twosided: boolean;
   paper_size: Papersize;
   rotation: Rotation;
+  sentReceipt?: boolean;
+  language?: string;
 };

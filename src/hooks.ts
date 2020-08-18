@@ -6,7 +6,7 @@ export const useOrder = (session_id) => {
   );
 
   return {
-    order: data,
+    data,
     isLoading: !error && !data,
     isError: error,
   };

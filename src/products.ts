@@ -47,5 +47,6 @@ export const newDraft = (product, uuid): Draft => {
     paper_size: "A4",
     product: PRODUCTS[product],
     rotation: "landscape",
+    language: i18n.language,
   };
 };
