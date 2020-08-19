@@ -11,3 +11,17 @@ export const useOrder = (session_id) => {
     isError: error,
   };
 };
+
+export const usePrices = () => {
+  const { data, error } = useSWR(`/api/prices`, (url) =>
+    fetch(url).then((res) => {
+      return res.json();
+    })
+  );
+
+  return {
+    prices: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};

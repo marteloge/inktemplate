@@ -71,4 +71,5 @@ export type Draft = {
   sentReceipt?: boolean;
   language?: string;
   paid?: boolean;
+  premium?: boolean;
 };

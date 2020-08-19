@@ -16,7 +16,16 @@
   },
   "generate": {
     "nav": "Generate PDF",
-    "header": "Generate PDF"
+    "header": "Upgrade",
+    "intro": "Looking good! You can download your print or upgrade to premium.",
+    "premium": {
+      "benefit": {
+        "logo": "Remove inkTemplate logo",
+        "edit": "Possible to edit text later",
+        "email": "Email with print"
+      },
+      "price": "Price"
+    }
   },
   "products": {
     "nav": "Templates",

@@ -1,11 +1,17 @@
+import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { loadStripe } from "@stripe/stripe-js";
 
-import { withTranslation } from "../../helpers/i18n";
+import { withTranslation, Router } from "../../helpers/i18n";
 import { getDraft } from "../../helpers/api";
+import { downloadPdfDocument } from "../../components/Download";
+import Splash from "../../components/Splash";
 import Layout from "../../components/Layout";
-import { generatePdfDocument } from "../../components/Download";
+import Sticky from "../../components/Sticky";
+import { Draft } from "../../helpers/types";
+import { usePrices } from "../../helpers/hooks";
+import { calculateResponsiveSize } from "../../helpers/global";
 
 const PreviewPDF = dynamic(import("../../components/PreviewPDF"), {
   ssr: false,
@@ -13,12 +19,17 @@ const PreviewPDF = dynamic(import("../../components/PreviewPDF"), {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
-const toCheckout = async (uuid) => {
+const getPrice = (prices, currency) => {
+  return prices.data.find((p) => p.currency === currency);
+};
+
+const toCheckout = async (uuid, currency, prices) => {
   const { session_id } = await fetch("/api/checkout/session", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       uuid,
+      price_id: getPrice(prices, currency).id,
     }),
   }).then((res) => res.json());
 
@@ -29,31 +40,78 @@ const toCheckout = async (uuid) => {
 };
 
 const Preview = (props) => {
-  const { t, draft } = props;
+  const { t } = props;
+  const draft: Draft = props.draft;
 
+  const { prices, isLoading } = usePrices();
+
+  const [loadingPayment, setLoadingPayment] = useState(false);
+  if (loadingPayment) {
+    return <Splash content={"Forbereder betaling"}></Splash>;
+  }
   return (
     <Layout>
       <Head>
         <title>{t("meta:generate.title")}</title>
         <meta name="description" content={t("meta:generate.description")} />
       </Head>
+      <Sticky>
+        <div className="actions">
+          <button onClick={() => downloadPdfDocument(draft)}>Download</button>
+          <button
+            onClick={() =>
+              Router.push("/create/[uuid]", `/create/${draft.uuid}`)
+            }
+          >
+            Edit
+          </button>
+        </div>
+      </Sticky>
+
       <div className="wallpaper">
         <h2>{t("product:painting")}</h2>
       </div>
-
       <div className="content">
         <div>
-          <PreviewPDF draft={draft}></PreviewPDF>
+          <PreviewPDF draft={draft} />
         </div>
+
         <div>
           <h1>{t("generate.header")}</h1>
-          <button role="link" onClick={() => toCheckout(draft.uuid)}>
-            Checkout
-          </button>
-          <button onClick={() => generatePdfDocument(draft)}>Download</button>
+
+          <div className="premium">
+            <p>{t("generate.intro")}</p>
+
+            <p className="benefit">
+              {"> " + t("generate.premium.benefit.logo")}
+            </p>
+            <p className="benefit">
+              {"> " + t("generate.premium.benefit.edit")}
+            </p>
+            <p className="benefit">
+              {"> " + t("generate.premium.benefit.email")}
+            </p>
+
+            {!isLoading && (
+              <>
+                <p className="price">
+                  {t("generate.premium.price")}:
+                  {` $ ${getPrice(prices, "usd").unit_amount / 100}USD`}
+                </p>
+                <button
+                  className="checkout"
+                  onClick={() => {
+                    setLoadingPayment(true);
+                    toCheckout(draft.uuid, "usd", prices);
+                  }}
+                >
+                  Upgrade
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
-
       <style jsx>{`
         h1 {
           margin: 0;
@@ -62,8 +120,30 @@ const Preview = (props) => {
         p {
           margin: 20px 0;
         }
-      `}</style>
 
+        .benefit {
+          font-weight: bold;
+        }
+
+        .price {
+          margin: 25px 0;
+          font-weight: bold;
+          font-size: ${calculateResponsiveSize(15, 25)};
+        }
+
+        .premium {
+          border: 1px solid white;
+          background: white;
+          border-radius: 5px;
+          box-shadow: 0px 0px 10px 10px rgba(255, 255, 255);
+          margin-right: 10%;
+          max-width: 400px;
+          padding: 5%;
+        }
+        .checkout {
+          width: 100%;
+        }
+      `}</style>
       <style jsx global>{`
         .wallpaper {
           width: 100vw;

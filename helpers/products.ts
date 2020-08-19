@@ -48,5 +48,6 @@ export const newDraft = (product, uuid): Draft => {
     product: PRODUCTS[product],
     rotation: "landscape",
     language: i18n.language,
+    premium: true,
   };
 };

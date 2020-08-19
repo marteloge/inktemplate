@@ -36,7 +36,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       //   edit: `http://${req.headers.host}/${draft.language}/change/${draft.uuid}`,
       //   download: `http://${req.headers.host}/${draft.language}/download/${draft.uuid}`,
       // }),
-      html: `Hello, \n\n Here is your print! http://localhost:3000/${draft.language}/${draft.uuid}`,
+      html: `Hello, \n\n Here is your print! http://localhost:3000/${draft.language}/download/${draft.uuid}`,
     };
 
     (async () => {

@@ -3,7 +3,7 @@ import PDF from "./PDF";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const DownloadLink = (draft: Draft) => (
-  <PDFDownloadLink document={<PDF {...draft} />} fileName="preview.pdf">
+  <PDFDownloadLink document={<PDF {...draft} />} fileName="Inktemplate.pdf">
     {({ blob, url, loading, error }) =>
       loading ? "Loading document..." : "Download now!"
     }

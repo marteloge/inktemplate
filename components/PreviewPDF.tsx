@@ -3,7 +3,6 @@ import { BlobProvider } from "@react-pdf/renderer";
 
 import PDF from "./PDF";
 import { Document, Page } from "react-pdf";
-import { Draft } from "../helpers/types";
 import { i18n } from "../helpers/i18n";
 
 const PDFNavigator = (link, blob) => {
@@ -39,9 +38,11 @@ const PDFNavigator = (link, blob) => {
             {i18n.t("product:previous")}
           </button>
           <p>
-            {`${i18n.t("product:page")} ${
+            (
+            {` ${i18n.t("product:page")} ${
               pageNumber || (numPages ? 1 : "--")
-            }/${numPages || "--"}`}
+            }/${numPages || "--"} `}
+            )
           </p>
           <button
             type="button"
@@ -83,15 +84,13 @@ const PDFNavigator = (link, blob) => {
         }
 
         .navigator button {
-          padding: 10px 20px;
-          background: white;
-          border-radius: 5px;
-          outline: none;
-          box-shadow: none;
-          border: 1px solid black;
-          cursor: pointer;
           margin: 5px 20px 5px 20px;
+          padding: 0;
+          text-decoration: underline;
+          border: none;
+          background: none;
         }
+
         .viewer {
           display: flex;
           flex-direction: column;
@@ -102,9 +101,6 @@ const PDFNavigator = (link, blob) => {
   );
 };
 
-type Props = {
-  draft: Draft;
-};
 const PreviewPDF = (props) => {
   const { draft } = props;
 

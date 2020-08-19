@@ -108,6 +108,16 @@ const MyApp = ({ Component, pageProps }) => (
         font-family: "Raleway";
         font-size: ${calculateResponsiveSize(12, 16)};
       }
+
+      button {
+        padding: 10px 20px;
+        background: white;
+        border-radius: 5px;
+        outline: none;
+        box-shadow: none;
+        border: 1px solid black;
+        cursor: pointer;
+      }
     `}</style>
   </>
 );

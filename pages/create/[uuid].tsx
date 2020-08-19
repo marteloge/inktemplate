@@ -13,6 +13,8 @@ import Layout from "../../components/Layout";
 import Switch from "../../components/Switch";
 import DesignImagePreview from "../../components/DesignImagePreview";
 import NameList from "../../components/NameList";
+import Sticky from "../../components/Sticky";
+import Splash from "../../components/Splash";
 
 const Create = (props) => {
   const t = props.t;
@@ -27,6 +29,8 @@ const Create = (props) => {
   const [content, setContent] = useState<Array<Content>>(draft.content);
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
 
+  const [loadPreview, setLoadPreview] = useState(false);
+
   const pdfData: Draft = {
     ...draft,
     useDesign,
@@ -37,10 +41,15 @@ const Create = (props) => {
   };
 
   const generatePreviewAndRedirect = (pdfData: Draft) => {
+    setLoadPreview(true);
     createOrUpdateDraft(pdfData.uuid, pdfData).then(() => {
       Router.push("/preview/[uuid]", "/preview/" + pdfData.uuid);
     });
   };
+
+  if (loadPreview) {
+    return <Splash content={"Preparing your design"}></Splash>;
+  }
 
   return (
     <Layout>
@@ -48,14 +57,17 @@ const Create = (props) => {
         <title>{t("meta:create.title")}</title>
         <meta name="description" content={t("meta:create.description")} />
       </Head>
-      <div className="sticky">
+
+      <Sticky>
         <button
           onClick={() => generatePreviewAndRedirect(pdfData)}
           className="button"
         >
           {t("product:create.button.previewPDF")}
         </button>
-
+        <a className="button" href="#render">
+          {t("product:create.button.previewPrint")}
+        </a>
         <button
           onClick={() => {
             setSavingDraft(true);
@@ -70,11 +82,7 @@ const Create = (props) => {
             ? t("product:create.button.savingDraft")
             : t("product:create.button.saveDraft")}
         </button>
-
-        <a className="button" href="#render">
-          {t("product:create.button.previewPrint")}
-        </a>
-      </div>
+      </Sticky>
 
       <div className="content">
         <h1>{t("create.header")}</h1>
@@ -618,31 +626,6 @@ const Create = (props) => {
             max-width: 1030px;
             margin: 0 auto;
             margin-bottom: 10%;
-          }
-
-          .sticky {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-
-            box-shadow: -10px -10px 20px rgb(242, 238, 235, 0.8);
-            background-color: rgb(242, 238, 235, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .button {
-            margin: 10px;
-            padding: 15px 25px;
-            background: none;
-            border: 1px solid rgb(0, 0, 0, 0.5);
-            cursor: pointer;
-            border-radius: 5px;
-          }
-
-          .sticky button {
-            margin: 20px;
           }
 
           #intro {

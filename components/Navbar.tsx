@@ -1,11 +1,19 @@
-import { Link, withTranslation } from "../helpers/i18n";
+import { useState } from "react";
+
+import { Link, Router, withTranslation } from "../helpers/i18n";
 import { calculateResponsiveSize, newUUID } from "../helpers/global";
 import { createOrUpdateDraft } from "../helpers/api";
-import { Router } from "../helpers/i18n";
 import { newDraft } from "../helpers/products";
+
+import Splash from "./Splash";
 
 const Navbar = (props) => {
   const { t } = props;
+  const [loading, setLoading] = useState(false);
+
+  if (loading) {
+    return <Splash content="Finding pencils and crayons!"></Splash>;
+  }
 
   return (
     <div id="navbar">
@@ -24,6 +32,7 @@ const Navbar = (props) => {
         <a
           className="button"
           onClick={() => {
+            setLoading(true);
             const uuid = newUUID();
             createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
               (uuid) => {

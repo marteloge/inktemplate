@@ -15,7 +15,12 @@
   },
   "generate": {
     "nav": "Lag PDF",
-    "header": "Lag PDF"
+    "header": "Lag PDF",
+    "intro": "",
+    "premium": {
+      "benefits": "",
+      "price": ""
+    }
   },
   "products": {
     "nav": "Templates",
