@@ -13,11 +13,11 @@ const Products = ({ t }) => (
     <div className="content">
       <h1>{t("products.header")}</h1>
 
-      <Link href="/product/placecard">
+      <Link href="/product/[name]" as="/product/placecard">
         <a>{t("products.placecard.name")}</a>
       </Link>
 
-      <Link href="/product/invitation">
+      <Link href="/product/[name]" as="/product/invitation">
         <a>{t("products.invitation.name")}</a>
       </Link>
     </div>

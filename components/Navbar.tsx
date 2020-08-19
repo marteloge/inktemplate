@@ -27,7 +27,7 @@ const Navbar = (props) => {
             const uuid = newUUID();
             createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
               (uuid) => {
-                Router.push("/create/" + uuid);
+                Router.push("/create/[uuid]", "/create/" + uuid);
               }
             );
           }}
