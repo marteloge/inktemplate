@@ -77,9 +77,7 @@ const Preview = (props) => {
         <h2>{t("product:painting")}</h2>
       </div>
       <div className="content">
-        <div>
-          <PreviewPDF draft={draft} />
-        </div>
+        <div>{draft && prices && <PreviewPDF draft={draft} />}</div>
 
         <div>
           <h1>{t("generate.header")}</h1>
