@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Link, Router, withTranslation } from "../helpers/i18n";
+import { Link, Router, withTranslation, i18n } from "../helpers/i18n";
 import { calculateResponsiveSize, newUUID } from "../helpers/global";
 import { createOrUpdateDraft } from "../helpers/api";
 import { newDraft } from "../helpers/products";
@@ -36,7 +36,7 @@ const Navbar = (props) => {
             const uuid = newUUID();
             createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
               (uuid) => {
-                Router.push("/create/[uuid]", "/create/" + uuid);
+                Router.push(`/create/[uuid]?uuid=${uuid}`, `/create/${uuid}`);
               }
             );
           }}

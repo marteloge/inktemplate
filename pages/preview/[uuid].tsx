@@ -62,7 +62,10 @@ const Preview = (props) => {
           <button onClick={() => downloadPdfDocument(draft)}>Download</button>
           <button
             onClick={() =>
-              Router.push("/create/[uuid]", `/create/${draft.uuid}`)
+              Router.push(
+                `/create/[uuid]?uuid=${draft.uuid}`,
+                `/create/${draft.uuid}`
+              )
             }
           >
             Edit

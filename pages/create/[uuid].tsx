@@ -43,7 +43,10 @@ const Create = (props) => {
   const generatePreviewAndRedirect = (pdfData: Draft) => {
     setLoadPreview(true);
     createOrUpdateDraft(pdfData.uuid, pdfData).then(() => {
-      Router.push("/preview/[uuid]", "/preview/" + pdfData.uuid);
+      Router.push(
+        `/preview/[uuid]?uuid=${pdfData.uuid}`,
+        `/preview/${pdfData.uuid}`
+      );
     });
   };
 
