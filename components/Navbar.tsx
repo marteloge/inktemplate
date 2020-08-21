@@ -23,9 +23,6 @@ const Navbar = (props) => {
         </Link>
       </div>
       <div id="nav">
-        <Link href="/about">
-          <a>{t("about.nav")}</a>
-        </Link>
         <Link href="/products">
           <a>{t("products.nav")}</a>
         </Link>
@@ -57,12 +54,14 @@ const Navbar = (props) => {
           justify-content: space-between;
           box-shadow: 20px 20px 30px rgba(255, 255, 255, 1);
         }
+
         a {
           font-family: "Raleway";
           font-weight: 400;
           font-size: ${calculateResponsiveSize(12, 18)};
           margin: 1.8vmin;
         }
+
         #logo a {
           font-family: "Playfair Display";
           font-size: ${calculateResponsiveSize(18, 45)};

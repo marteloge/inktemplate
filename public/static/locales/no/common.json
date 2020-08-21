@@ -8,6 +8,10 @@
     "nav": "Om oss",
     "header": "Om oss"
   },
+  "contact": {
+    "nav": "Kontakt",
+    "header": "Er det noe du vil fortelle?"
+  },
   "create": {
     "nav": "Lag ny",
     "header": "Lag ny",

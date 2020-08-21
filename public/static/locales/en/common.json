@@ -9,6 +9,10 @@
     "nav": "About us",
     "header": "About us"
   },
+  "contact": {
+    "nav": "Contact",
+    "header": "Something on your mind?"
+  },
   "create": {
     "nav": "Create new",
     "header": "Create your own design",

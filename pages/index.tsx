@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import Head from "next/head";
 
-import { i18n, withTranslation } from "../helpers/i18n";
+import { i18n, withTranslation, Link } from "../helpers/i18n";
 
 const Home = ({ t }) => (
   <Layout>
@@ -32,7 +32,14 @@ const Home = ({ t }) => (
       </button>
     </div>
 
-    <footer></footer>
+    <footer>
+      <Link href="/about">
+        <a>{t("about.nav")}</a>
+      </Link>
+      <Link href="/contact">
+        <a>{t("contact.nav")}</a>
+      </Link>
+    </footer>
     <style jsx>{`
       .content {
         padding: 10%;
@@ -40,6 +47,22 @@ const Home = ({ t }) => (
 
       button {
         padding: 10px 20px;
+      }
+
+      footer {
+        bottom: 0;
+        position: fixed;
+        padding: 1%;
+        background-color: white;
+        width: 100%;
+        box-shadow: 0px 0px 20px 20px rgba(256, 256, 256, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      footer a {
+        margin: 0 2%;
       }
     `}</style>
     <style jsx global>{`
