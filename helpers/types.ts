@@ -66,7 +66,7 @@ export type Draft = {
   content: Array<Content>;
   product: Product;
   twosided: boolean;
-  paper_size: Papersize;
+  paperSize: Papersize;
   rotation: Rotation;
   sentReceipt?: boolean;
   language?: string;

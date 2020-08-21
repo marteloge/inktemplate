@@ -6,7 +6,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // const prod = await stripe.prices.retrieve(process.env.PRODUCT_PLACECARD);
   const prices = await stripe.prices.list();
   res.status(200).json(prices);
 };

@@ -44,7 +44,7 @@ export const newDraft = (product, uuid): Draft => {
     ],
     text: i18n.t("product:defaultText"),
     twosided: true,
-    paper_size: "A4",
+    paperSize: "A4",
     product: PRODUCTS[product],
     rotation: "landscape",
     language: i18n.language,

@@ -29,7 +29,6 @@ const MyApp = ({ Component, pageProps }) => (
             format("truetype");
         font-weight: 400;
         font-style: normal;
-        font-display: swap;
       }
 
       @font-face {
@@ -42,7 +41,6 @@ const MyApp = ({ Component, pageProps }) => (
             format("truetype");
         font-weight: 700;
         font-style: normal;
-        font-display: swap;
       }
 
       @font-face {
@@ -53,7 +51,6 @@ const MyApp = ({ Component, pageProps }) => (
           url("/static/fonts/raleway-v17-latin-regular.ttf") format("truetype");
         font-weight: 400;
         font-style: normal;
-        font-display: swap;
       }
 
       @font-face {
@@ -63,7 +60,6 @@ const MyApp = ({ Component, pageProps }) => (
           url("/static/fonts/raleway-v17-latin-700.ttf") format("truetype");
         font-weight: 700;
         font-style: normal;
-        font-display: swap;
       }
 
       @font-face {
@@ -72,7 +68,6 @@ const MyApp = ({ Component, pageProps }) => (
           format("woff2");
         font-style: normal;
         font-weight: regular;
-        font-display: swap;
       }
 
       body {

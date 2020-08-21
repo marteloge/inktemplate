@@ -46,9 +46,11 @@ const Preview = (props) => {
   const { prices, isLoading } = usePrices();
 
   const [loadingPayment, setLoadingPayment] = useState(false);
+
   if (loadingPayment) {
     return <Splash content={"Forbereder betaling"}></Splash>;
   }
+
   return (
     <Layout>
       <Head>
