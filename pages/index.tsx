@@ -14,22 +14,8 @@ const Home = ({ t }) => (
     </Head>
 
     <div className="content">
-      <h1>Paper card print!</h1>
-      <p>
-        Find your paper print template for all occations - weddings, birthdays
-        or celebrations. Pick a design and provide a list - we will do the rest.
-        Invitations, place cards, save the date and much more.
-      </p>
-      <button
-        type="button"
-        onClick={() => {
-          i18n.changeLanguage(i18n.language === "en" ? "no" : "en").then(() => {
-            location.replace("/");
-          });
-        }}
-      >
-        {t("changeLang")}
-      </button>
+      <h1>{t("home.header")}</h1>
+      <p>{t("home.intro")}</p>
     </div>
 
     <footer>
@@ -38,6 +24,9 @@ const Home = ({ t }) => (
       </Link>
       <Link href="/contact">
         <a>{t("contact.nav")}</a>
+      </Link>
+      <Link href="/language">
+        <a>{t("language.nav")}</a>
       </Link>
     </footer>
     <style jsx>{`

@@ -1,9 +1,9 @@
 {
-  "language": "English",
   "changeLang": "Change language",
   "home": {
     "nav": "Home",
-    "header": "InkTemplate"
+    "header": "Paper card print!",
+    "intro": "Find your paper print template for all occations - weddings, birthdays or celebrations. Pick a design and provide a list - we will do the rest. Invitations, place cards, save the date and much more."
   },
   "about": {
     "nav": "About us",
@@ -12,6 +12,10 @@
   "contact": {
     "nav": "Contact",
     "header": "Something on your mind?"
+  },
+  "language": {
+    "nav": "Language",
+    "header": "Change language"
   },
   "create": {
     "nav": "Create new",
@@ -36,5 +40,9 @@
     "header": "All templates",
     "placecard": { "name": "Place card" },
     "invitation": { "name": "Invitation" }
+  },
+  "languages": {
+    "no": "Norwegian",
+    "en": "English"
   }
 }

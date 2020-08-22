@@ -1,5 +1,4 @@
 {
-  "language": "Norsk",
   "changeLang": "Bytt språk",
   "home": {
     "nav": "Hjem"
@@ -11,6 +10,10 @@
   "contact": {
     "nav": "Kontakt",
     "header": "Er det noe du vil fortelle?"
+  },
+  "language": {
+    "nav": "Språk",
+    "header": "Bytt språk"
   },
   "create": {
     "nav": "Lag ny",
@@ -31,5 +34,9 @@
     "header": "Alle templates",
     "placecard": { "name": "Bordkort" },
     "invitation": { "name": "Invitasjon" }
+  },
+  "languages": {
+    "no": "Norsk",
+    "en": "Engelsk"
   }
 }

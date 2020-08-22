@@ -12,7 +12,7 @@ const Download = (props) => {
   return (
     <Layout>
       <div>
-        <h1>{t("language")} - Download</h1>
+        <h1>Download</h1>
         <DownloadLink {...draft}></DownloadLink>
       </div>
 
