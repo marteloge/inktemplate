@@ -110,7 +110,7 @@ const Preview = (props) => {
                     toCheckout(draft.uuid, "usd", prices);
                   }}
                 >
-                  Upgrade
+                  {t("generate.premium.upgrade")}
                 </button>
               </>
             )}

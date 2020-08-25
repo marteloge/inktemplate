@@ -36,7 +36,8 @@
         "edit": "Mulighet for å endre tekst i etterkant",
         "email": "Email med print"
       },
-      "price": "Pris"
+      "price": "Pris",
+      "upgrade": "Oppgrader"
     }
   },
   "products": {

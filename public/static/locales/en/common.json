@@ -36,7 +36,8 @@
         "edit": "Possible to edit text later",
         "email": "Email with print"
       },
-      "price": "Price"
+      "price": "Price",
+      "upgrade": "Upgrade"
     }
   },
   "products": {
