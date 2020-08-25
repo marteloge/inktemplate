@@ -168,7 +168,7 @@ const Preview = (props) => {
       `}</style>
       <style jsx global>{`
         footer {
-          display: none;
+          display: none !important;
         }
         .wallpaper {
           width: 100vw;

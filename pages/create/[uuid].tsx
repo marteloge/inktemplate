@@ -203,7 +203,7 @@ const Create = (props) => {
         }
 
         footer {
-          display: none;
+          display: none !important;
         }
       `}</style>
 
