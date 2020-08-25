@@ -72,4 +72,6 @@ export type Draft = {
   language?: string;
   paid?: boolean;
   premium?: boolean;
+  created?: Date;
+  updated?: Date;
 };

@@ -1,10 +1,15 @@
 import { Draft } from "./types";
-import firebase from "./db";
+import fire from "./db";
+
+// import firebase from "firebase/app";
+// import "firebase/firestore";
+
+export const logEvent = (event: string) => {
+  fire.analytics().logEvent(event);
+};
 
 export const getDraft = (uuid: string) => {
-  firebase.analytics().logEvent("getDraft");
-
-  return firebase
+  return fire
     .firestore()
     .collection("drafts")
     .doc(uuid)
@@ -12,13 +17,10 @@ export const getDraft = (uuid: string) => {
     .then((snapshot) => snapshot.data());
 };
 
-export const createOrUpdateDraft = (uuid: string, draft: Draft) => {
-  firebase.analytics().logEvent("createOrUpdateDraft");
-
-  return firebase
+export const createOrUpdateDraft = (uuid: string, draft: Draft) =>
+  fire
     .firestore()
     .collection("drafts")
     .doc(uuid)
     .set(draft, { merge: true })
     .then(() => uuid);
-};

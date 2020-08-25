@@ -36,6 +36,7 @@ const Create = (props) => {
     useDesign,
     backgroundImage: selectedDesign,
     backgroundColor: color,
+    updated: new Date(),
     text,
     content,
   };
@@ -147,14 +148,14 @@ const Create = (props) => {
           </div>
         </div>
         <div id="bottom">
-          <div>
+          <div className="name-list">
             <NameList
               list={text}
               handler={setText}
               width={draft.product.width}
             />
           </div>
-          <div>
+          <div className="image-preview">
             {useDesign && (
               <DesignImagePreview
                 setSelectedDesign={setSelectedDesign}
@@ -175,7 +176,7 @@ const Create = (props) => {
                 return (
                   <div key={"canvas-" + i} className="card">
                     <Canvas
-                      scale={0.6}
+                      scale={0.54}
                       width={draft.product.width}
                       height={draft.product.height}
                       backgroundColor={color.color}
@@ -645,7 +646,7 @@ const Create = (props) => {
           }
           #render {
             margin: 5% 0;
-            min-height: 40vh;
+            min-height: 20vh;
           }
           .cards {
             display: flex;
@@ -662,7 +663,7 @@ const Create = (props) => {
           }
 
           .content {
-            padding: 3% 5%;
+            padding: 5% 5%;
             max-width: 1030px;
             margin: 0 auto;
             margin-bottom: 10%;
@@ -693,7 +694,31 @@ const Create = (props) => {
           #background-color {
             display: flex;
             align-items: center;
-            visibility: ${useDesign ? "hidden" : "initial"};
+            display: ${useDesign ? "none" : "flex"};
+          }
+
+          @media (max-width: 850px) {
+            .hero {
+              flex-direction: column;
+            }
+
+            #intro {
+              width: 100%;
+              justify-content: center;
+            }
+
+            #bottom {
+              flex-direction: column;
+            }
+
+            #preview {
+              width: 100%;
+            }
+
+            #bottom .name-list {
+              order: 2;
+              margin-top: 20px;
+            }
           }
         `}
       </style>

@@ -11,7 +11,56 @@ export const PRODUCTS = {
   },
 };
 
+type Props = {
+  width?: number;
+  height?: number;
+  useDesign?: boolean;
+  selectedDesign?: string;
+  backgroundColor?: string;
+  scale?: number;
+  fonts?: Array<{ src: string; font: string; color: string }>;
+  texts?: Array<string>;
+};
+
+export const newCanvas = (props: Props) => {
+  return {
+    width: props.width || 400,
+    height: props.width || 256,
+    useDesign: props.useDesign || true,
+    selectedDesign: props.selectedDesign || "template4",
+    backgroundColor: props.backgroundColor || "#FF8A65",
+    scale: props.scale || 0.5,
+    content: [
+      {
+        order: 1,
+        name: "nameText",
+        font: (props.fonts && props.fonts[0].font) || "Dawning of a New Day",
+        fontSize: 35,
+        fontSrc:
+          (props.fonts && props.fonts[0].src) ||
+          "dawning-of-a-new-day-v11-latin-regular",
+        color: (props.fonts && props.fonts[0].color) || "#000000",
+        text: (props.texts && props.texts[0]) || i18n.t("product:nameText"),
+        colorPickerOpen: false,
+      },
+      {
+        order: 2,
+        name: "subText",
+        font: (props.fonts && props.fonts[0].font) || "Raleway",
+        fontSize: 20,
+        fontSrc:
+          (props.fonts && props.fonts[0].src) || "raleway-v17-latin-regular",
+        color: (props.fonts && props.fonts[0].color) || "#000000",
+        text: (props.texts && props.texts[0]) || i18n.t("product:subText"),
+        colorPickerOpen: false,
+      },
+    ],
+  };
+};
+
 export const newDraft = (product, uuid): Draft => {
+  const date = new Date();
+
   return {
     uuid,
     useDesign: true,
@@ -49,5 +98,7 @@ export const newDraft = (product, uuid): Draft => {
     rotation: "landscape",
     language: i18n.language,
     premium: true,
+    created: date,
+    updated: date,
   };
 };

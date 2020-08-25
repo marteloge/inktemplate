@@ -50,6 +50,7 @@ const TextDesignComponent = (props: Props) => {
   return (
     <div>
       <div
+        className="color-circle"
         style={colorPickerStyles(color).color}
         onClick={() =>
           updateContent(
@@ -115,6 +116,19 @@ const TextDesignComponent = (props: Props) => {
             height: 40px;
             margin: 0 10px;
             padding: 0;
+          }
+          @media (max-width: 850px) {
+            justify-content: start;
+
+            input {
+              display: none;
+            }
+            .select {
+              margin-left: 2%;
+            }
+            .color-circle {
+              margin-right: 10px;
+            }
           }
         `}
       </style>

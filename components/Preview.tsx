@@ -42,6 +42,13 @@ const Preview = (props: Props) => {
             ? `url(${imageRoute + image}-small.jpg)`
             : "none"};
         }
+
+        @media (max-width: 850px) {
+          .card {
+            width: ${width * 0.1}px;
+            height: ${height * 0.1}px;
+          }
+        }
       `}</style>
     </div>
   );

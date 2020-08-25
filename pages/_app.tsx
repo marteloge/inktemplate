@@ -69,7 +69,11 @@ const MyApp = ({ Component, pageProps }) => (
         font-style: normal;
         font-weight: regular;
       }
+      * {
+        margin: 0;
+      }
 
+      html,
       body {
         min-height: 100vh;
         margin: 0;
@@ -94,6 +98,7 @@ const MyApp = ({ Component, pageProps }) => (
       h4 {
         font-family: "Raleway";
         font-weight: bold;
+        margin-bottom: 10px;
       }
 
       input,
@@ -111,6 +116,10 @@ const MyApp = ({ Component, pageProps }) => (
         outline: none;
         box-shadow: none;
         border: 1px solid black;
+        cursor: pointer;
+      }
+
+      a {
         cursor: pointer;
       }
     `}</style>

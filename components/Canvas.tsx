@@ -1,7 +1,6 @@
 import { Content } from "../helpers/types";
 
 import { imageRoute, calculateResponsiveSize } from "../helpers/global";
-import { withTranslation } from "../helpers/i18n";
 
 type Props = {
   width: number;
@@ -21,7 +20,7 @@ const Canvas = (props: Props) => {
   const height = props.height * scale;
 
   return (
-    <div id="preview">
+    <div className="preview">
       <div id="canvas">
         {content &&
           content.map((c, i) => (
@@ -58,7 +57,7 @@ const Canvas = (props: Props) => {
           background-size: cover;
           box-shadow: 2px 2px 4px rgb(0,0,0, 0.3);
           background-color: ${!useDesign ? `${backgroundColor}` : "initial"}
-        }        
+        }
       `}
       </style>
     </div>

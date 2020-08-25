@@ -18,10 +18,17 @@ const NameList = (props) => {
 
         textarea {
           width: ${calculateResponsiveSize(width * 0.75, width)};
-          height: 240px;
+          height: ${calculateResponsiveSize(150, 240)};
           border: none;
           border-radius: 5px;
           padding: 10px;
+        }
+        @media (max-width: 850px) {
+          width: 100%;
+
+          textarea {
+            width: 94%;
+          }
         }
       `}</style>
     </div>

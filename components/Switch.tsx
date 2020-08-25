@@ -42,6 +42,22 @@ const Switch = (props) => {
           box-shadow: ${!useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
           background-color: ${color};
         }
+
+        @media (max-width: 850px) {
+          #switch {
+            display: flex;
+            margin: 0;
+            flex-direction: row;
+            width: 95%;
+            margin: 5% 0;
+            justify-content: start;
+          }
+          #switch button {
+            height: 45px;
+            margin: 0;
+            margin-right: 3%;
+          }
+        }
       `}</style>
     </div>
   );

@@ -10,7 +10,8 @@ const DesignImagePreview = (props) => {
 
       <div className="content">
         {cardDesigns.map((imgSrc, index) => (
-          <img
+          <div
+            className="img"
             key={index}
             onClick={() => setSelectedDesign(imgSrc)}
             style={{
@@ -26,6 +27,9 @@ const DesignImagePreview = (props) => {
           box-shadow: 2px 2px 3px rgb(0, 0, 0, 0.1);
           height: 250px;
           overflow-y: scroll;
+          display: flex;
+          flex-wrap: wrap;
+          width: 95%;
         }
 
         .content::-webkit-scrollbar {
@@ -46,15 +50,23 @@ const DesignImagePreview = (props) => {
           margin-left: 3%;
         }
 
-        img {
-          width: ${width * 0.4}px;
-          height: ${height * 0.4}px;
+        .img {
+          width: ${width * 0.37}px;
+          height: ${height * 0.37}px;
           margin: 1px 2px 1px 0;
           border: 1px solid #f2eeeb;
+          background-repeat: no-repeat;
+          background-size: cover;
         }
 
         img:hover {
           border: 1px solid black;
+        }
+
+        @media (max-width: 850px) {
+          #preview {
+            margin: 0;
+          }
         }
       `}</style>
     </div>

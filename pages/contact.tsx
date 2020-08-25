@@ -5,6 +5,7 @@ const Contact = ({ t }) => (
   <Layout>
     <div className="content">
       <h1>{t("contact.header")}</h1>
+      <p>{t("contact.intro")}</p>
     </div>
 
     <style jsx>{`

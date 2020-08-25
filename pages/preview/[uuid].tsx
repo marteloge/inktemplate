@@ -77,12 +77,14 @@ const Preview = (props) => {
         <h2>{t("product:painting")}</h2>
       </div>
       <div className="content">
-        <div>{draft && prices && <PreviewPDF draft={draft} />}</div>
+        <div className="pdf">
+          {draft && prices && <PreviewPDF draft={draft} />}
+        </div>
 
-        <div>
-          <h1>{t("generate.header")}</h1>
-
+        <div className="upgrade">
           <div className="premium">
+            <h1>{t("generate.header")}</h1>
+
             <p>{t("generate.intro")}</p>
 
             <p className="benefit">
@@ -142,9 +144,26 @@ const Preview = (props) => {
           margin-right: 10%;
           max-width: 400px;
           padding: 5%;
+          margin-top: 5%;
         }
+
         .checkout {
           width: 100%;
+        }
+
+        @media (max-width: 750px) {
+          .upgrade {
+            width: 100%;
+            margin-bottom: 10vh;
+          }
+          .premium {
+            padding: 0 5%;
+            margin: 0 auto;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            width: 90%;
+          }
         }
       `}</style>
       <style jsx global>{`
@@ -169,10 +188,9 @@ const Preview = (props) => {
         .content {
           height: 100%;
           width: 100%;
-          position: relative;
           display: flex;
           flex-direction: row;
-          margin: 3% 0;
+          margin-top: 5%;
         }
 
         .content > div {
@@ -182,7 +200,6 @@ const Preview = (props) => {
 
         .react-pdf__Page__svg {
           max-width: 50vw;
-          height: auto;
           border-radius: 5px;
           background-color: rgb(242, 238, 235) !important;
         }
@@ -190,6 +207,70 @@ const Preview = (props) => {
         svg {
           max-width: 50vw;
           height: auto;
+        }
+
+        @media (max-width: 750px) {
+          .content > div {
+            width: 100%;
+            padding: 0;
+          }
+
+          .content {
+            flex-direction: column;
+          }
+
+          .react-pdf__Page__svg {
+            max-width: 90vw;
+          }
+          svg {
+            max-width: 90vw;
+          }
+
+          .react-pdf__Page__svg {
+            max-height: 65vh;
+          }
+        }
+
+        @media (max-width: 700px) {
+          .react-pdf__Page__svg {
+            max-height: 60vh;
+          }
+        }
+
+        @media (max-width: 650px) {
+          .react-pdf__Page__svg {
+            max-height: 55vh;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .react-pdf__Page__svg {
+            max-height: 52vh;
+          }
+        }
+
+        @media (max-width: 550px) {
+          .react-pdf__Page__svg {
+            max-height: 47vh;
+          }
+        }
+
+        @media (max-width: 500px) {
+          .react-pdf__Page__svg {
+            max-height: 42vh;
+          }
+        }
+
+        @media (max-width: 450px) {
+          .react-pdf__Page__svg {
+            max-height: 37vh;
+          }
+        }
+
+        @media (max-width: 350px) {
+          .react-pdf__Page__svg {
+            max-height: 30vh;
+          }
         }
       `}</style>
     </Layout>

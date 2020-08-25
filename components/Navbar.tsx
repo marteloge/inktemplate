@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    return <Splash content="Finding pencils and crayons!"></Splash>;
+    return <Splash confetti={true} content={t("confetti")}></Splash>;
   }
 
   return (
@@ -26,14 +26,23 @@ const Navbar = (props) => {
         <Link href="/products">
           <a>{t("products.nav")}</a>
         </Link>
+
         <a
-          className="button"
           onClick={() => {
             setLoading(true);
             const uuid = newUUID();
+            const start = new Date();
+
             createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
               (uuid) => {
-                Router.push(`/create/[uuid]?uuid=${uuid}`, `/create/${uuid}`);
+                setTimeout(
+                  () =>
+                    Router.push(
+                      `/create/[uuid]?uuid=${uuid}`,
+                      `/create/${uuid}`
+                    ),
+                  2500 - (new Date().getTime() - start.getTime())
+                );
               }
             );
           }}
@@ -52,26 +61,20 @@ const Navbar = (props) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          box-shadow: 20px 20px 30px rgba(255, 255, 255, 1);
+          box-shadow: 0px 0px 20px 20px rgba(255, 255, 255, 1);
         }
 
         a {
           font-family: "Raleway";
           font-weight: 400;
-          font-size: ${calculateResponsiveSize(12, 18)};
+          font-size: ${calculateResponsiveSize(14, 18)};
           margin: 1.8vmin;
         }
 
         #logo a {
           font-family: "Playfair Display";
-          font-size: ${calculateResponsiveSize(18, 45)};
+          font-size: ${calculateResponsiveSize(25, 45)};
           font-weight: bold;
-        }
-
-        .button {
-          background-color: rgba(256, 256, 256, 0.7);
-          padding: 10px 15px;
-          border-radius: 10px;
         }
       `}</style>
     </div>

@@ -23,6 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!draft.sentReceipt) {
     draft.sentReceipt = true;
     draft.paid = true;
+    draft.updated = new Date();
 
     sendgrid.setApiKey(process.env.EMAIL_SENDGRID_API_KEY);
 
