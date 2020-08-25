@@ -29,7 +29,7 @@ const Home = ({ t }) => {
       </Head>
 
       <div className="content">
-        <div>
+        <div className="preview">
           <Canvas
             width={draft.product.width}
             height={draft.product.height}
@@ -61,7 +61,7 @@ const Home = ({ t }) => {
             ]}
           ></Canvas>
         </div>
-        <div>
+        <div className="start">
           <h1>{t("home.header")}</h1>
           <p>{t("home.intro")}</p>
           <button
@@ -214,6 +214,9 @@ const Home = ({ t }) => {
         .content div {
           margin: 10px;
         }
+        .start button {
+          width: 95%;
+        }
 
         button {
           border: none;
@@ -239,11 +242,25 @@ const Home = ({ t }) => {
           }
 
           .content div {
-            margin-top: 10%;
+            margin-top: 5%;
           }
 
           .carousel {
             display: none;
+          }
+
+          .start {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .start p {
+            width: 70%;
+          }
+          .start button {
+            width: 70%;
           }
         }
       `}</style>

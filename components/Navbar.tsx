@@ -23,9 +23,9 @@ const Navbar = (props) => {
         </Link>
       </div>
       <div id="nav">
-        <Link href="/products">
+        {/* <Link href="/products">
           <a>{t("products.nav")}</a>
-        </Link>
+        </Link> */}
 
         <a
           onClick={() => {

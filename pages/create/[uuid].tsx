@@ -69,9 +69,9 @@ const Create = (props) => {
         >
           {t("product:create.button.previewPDF")}
         </button>
-        <a className="button" href="#render">
+        {/* <a className="button" href="#render">
           {t("product:create.button.previewPrint")}
-        </a>
+        </a> */}
         <button
           onClick={() => {
             setSavingDraft(true);
