@@ -150,23 +150,6 @@ const Home = ({ t }) => {
         </div>
       </div>
 
-      <footer>
-        <div>
-          <Link href="/about">
-            <a>{t("about.nav")}</a>
-          </Link>
-          <Link href="/contact">
-            <a>{t("contact.nav")}</a>
-          </Link>
-          <Link href="/language">
-            <a>{t("language.nav")}</a>
-          </Link>
-        </div>
-        <div className="copyrights">
-          <p>Copyright {new Date().getFullYear()} - InkTemplate</p>
-        </div>
-      </footer>
-
       <style jsx>{`
         .scroll {
           position: absolute;
@@ -219,11 +202,6 @@ const Home = ({ t }) => {
           align-items: center;
         }
 
-        .copyrights p {
-          color: #c1b8af;
-          margin: 10px;
-        }
-
         .content {
           padding-top: 5%;
           display: flex;
@@ -240,40 +218,16 @@ const Home = ({ t }) => {
         button {
           border: none;
           background: transparent;
-          font-size: 18px;
-          // text-decoration: underline;
-          padding: 10px;
-          background: white;
-          box-shadow: 0 0 10px 10px rgb(255 255 255);
+          padding: 10px 40px;
+          box-shadow: 5px 5px 15px rgb(255 255 255);
+          border: 2px solid rgb(256, 256, 256, 0.6);
+          border-radius: 10px;
         }
 
         .create {
           margin-top: 5%;
           font-family: "Dawning of a New Day";
           font-size: ${calculateResponsiveSize(25, 35)};
-        }
-
-        footer {
-          bottom: 0;
-          position: absolute;
-          background-color: white;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          background-color: #f2eeeb;
-        }
-
-        footer div {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          margin-bottom: 10px;
-        }
-
-        footer a {
-          margin: 0 2%;
         }
 
         @media (max-width: 750px) {
@@ -286,16 +240,6 @@ const Home = ({ t }) => {
 
           .content div {
             margin-top: 10%;
-          }
-
-          button.create {
-            margin-top: 30px;
-            box-shadow: 0 0 10px 10px rgb(50, 192, 176);
-            text-decoration: none;
-            padding: 10px 20px;
-            color: white;
-            font-weight: bold;
-            background-color: #32c0b0;
           }
 
           .carousel {
@@ -317,6 +261,11 @@ const Home = ({ t }) => {
           .examples div.preview {
             margin-right: 0;
           }
+        }
+
+        .container div#navbar {
+          box-shadow: none;
+          background-color: transparent;
         }
       `}</style>
     </Layout>

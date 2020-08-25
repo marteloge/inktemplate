@@ -201,6 +201,10 @@ const Create = (props) => {
         .container {
           background-color: rgb(238, 233, 231, 0.8);
         }
+
+        footer {
+          display: none;
+        }
       `}</style>
 
       <style jsx>
@@ -684,7 +688,7 @@ const Create = (props) => {
           .hero {
             display: flex;
             align-items: center;
-            margin: 5% 0 2% 0;
+            margin: 5% 0 5% 0;
           }
 
           .color-display {
