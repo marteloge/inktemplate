@@ -125,7 +125,7 @@ const PDF = (draft: Draft) => {
                       {draft.useDesign ? (
                         <Image
                           style={style.image}
-                          src={`/static/images/${draft.backgroundImage}.jpg`}
+                          src={`/static/templates/${draft.backgroundImage}.jpg`}
                         ></Image>
                       ) : (
                         <View style={style.background}></View>

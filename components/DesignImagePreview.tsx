@@ -13,7 +13,9 @@ const DesignImagePreview = (props) => {
           <img
             key={index}
             onClick={() => setSelectedDesign(imgSrc)}
-            src={"/static/images/" + imgSrc + "-small.jpg"}
+            style={{
+              backgroundImage: `url(/static/templates/${imgSrc}-small.jpg)`,
+            }}
           />
         ))}
       </div>
