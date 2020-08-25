@@ -2,8 +2,11 @@
   "changeLang": "Change language",
   "home": {
     "nav": "Home",
-    "header": "Paper card print!",
-    "intro": "Find your paper print template for all occations - weddings, birthdays or celebrations. Pick a design and provide a list - we will do the rest. Invitations, place cards, save the date and much more."
+    "header": "Free card print!",
+    "intro": "Find your paper print template for all occations - weddings, birthdays or celebrations. Pick a design and provide a list - we will do the rest. Invitations, place cards, save the date and much more.",
+    "button": {
+      "create": "Create your own"
+    }
   },
   "about": {
     "nav": "About us",
@@ -11,7 +14,8 @@
   },
   "contact": {
     "nav": "Contact",
-    "header": "Something on your mind?"
+    "header": "Something on your mind?",
+    "intro": "Send us an email to hello (at) inktemplate.com."
   },
   "language": {
     "nav": "Language",
@@ -44,5 +48,6 @@
   "languages": {
     "no": "Norwegian",
     "en": "English"
-  }
+  },
+  "confetti": "Finding pencils and crayons!"
 }
