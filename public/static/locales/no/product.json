@@ -13,10 +13,12 @@
   "previous": "Forrige",
   "next": "Neste",
   "page": "Side",
+  "preview": "Forhåndsvisning",
+
   "create": {
     "button": {
       "previewPDF": "Lag PDF",
-      "previewPrint": "Se forhåndsvisning",
+      "previewPrint": "Forhåndsvis",
       "saveDraft": "Lagre",
       "savingDraft": "...Lagrer"
     }

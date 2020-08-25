@@ -5,6 +5,21 @@ import sendgrid from "@sendgrid/mail";
 import { getDraft, createOrUpdateDraft } from "../../../helpers/api";
 import { Draft } from "../../../helpers/types";
 
+const emails = {
+  en: {
+    subject: "InkTemplate - Print is ready!",
+    download: "Download",
+    change: "Change",
+    intro: "Hello, <br><br>Your print is ready for you :) Happy printing! <br>",
+  },
+  no: {
+    subject: "InkTemplate - Klar for printeren!",
+    download: "Last ned",
+    change: "Endre",
+    intro: "Hello, <br>Ditt trykk er nå klar for å printes! Lykke til! <br>",
+  },
+};
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2020-03-02",
 });
@@ -26,18 +41,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     draft.updated = new Date();
 
     sendgrid.setApiKey(process.env.EMAIL_SENDGRID_API_KEY);
+    const trans = emails[draft.language || "en"];
 
     const msg = {
       to: (order.customer as Stripe.Customer).email,
       from: process.env.EMAIL,
-      subject: "payment.success.subject",
-      text: "InkTemplate - Print is ready!",
-      // html: t("payment.success.html", {
-      //   uuid: draft.uuid,
-      //   edit: `http://${req.headers.host}/${draft.language}/change/${draft.uuid}`,
-      //   download: `http://${req.headers.host}/${draft.language}/download/${draft.uuid}`,
-      // }),
-      html: `Hello, \n\n Here is your print! http://localhost:3000/${draft.language}/download/${draft.uuid}`,
+      subject: trans.subject,
+      html: `${trans.intro} <ul><li><a href="http://${req.headers.host}/${
+        draft.language !== "en" ? draft.language + "/" : ""
+      }download/${draft.uuid}">${trans.download}</a></li><li><a href="http://${
+        req.headers.host
+      }/${draft.language !== "en" ? draft.language + "/" : ""}change/${
+        draft.uuid
+      }">${trans.change}</a></li></ul>`,
     };
 
     (async () => {
@@ -57,4 +73,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json({ order: { ...order }, draft });
 };
 
-//TODO: Translate all email
+//TODO: Translate all email using the i18n

@@ -15,7 +15,7 @@ const Home = ({ t }) => {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    return <Splash confetti={true} content={t("confetti")}></Splash>;
+    return <Splash confetti={true} content={t("splash.confetti")}></Splash>;
   }
 
   return (

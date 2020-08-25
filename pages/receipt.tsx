@@ -8,10 +8,11 @@ import { downloadPdfDocument } from "../components/Download";
 
 const Receipt = (props) => {
   const router = useRouter();
+  const { t } = props;
   const { data, isLoading } = useOrder(router.query.session_id);
 
   if (isLoading) {
-    return <Splash content={"Henter kvittering"}></Splash>;
+    return <Splash content={t("splash.receipt")}></Splash>;
   }
 
   const { draft, order } = data;
@@ -22,11 +23,11 @@ const Receipt = (props) => {
         <title>InkTemplate - Receipt</title>
       </Head>
       <div className="content">
-        <h2>Takk for betalingen!</h2>
-        <p>Vi har sendt print på mail til {order.customer.email}</p>
+        <h2>{t("receipt.header")}</h2>
+        <p>{t("receipt.intro", { email: order.customer.email })}</p>
         <div>
           <button onClick={() => downloadPdfDocument(draft)}>
-            Download PDF
+            {t("receipt.button.download")}
           </button>
         </div>
       </div>

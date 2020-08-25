@@ -13,6 +13,7 @@
   "previous": "Previous",
   "next": "Next",
   "page": "Page",
+  "preview": "Preview print",
   "create": {
     "button": {
       "previewPDF": "Create PDF",

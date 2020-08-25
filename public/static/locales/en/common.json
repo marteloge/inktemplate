@@ -45,9 +45,17 @@
     "placecard": { "name": "Place card" },
     "invitation": { "name": "Invitation" }
   },
+  "receipt": {
+    "header": "Print receipt",
+    "intro": "We sent you an email to {{email}}",
+    "button": { "download": "Download PDF" }
+  },
   "languages": {
     "no": "Norwegian",
     "en": "English"
   },
-  "confetti": "Finding pencils and crayons!"
+  "splash": {
+    "confetti": "Finding pencils and crayons!",
+    "receipt": "Fetching your receipt"
+  }
 }

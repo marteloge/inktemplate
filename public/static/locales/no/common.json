@@ -1,7 +1,12 @@
 {
   "changeLang": "Bytt språk",
   "home": {
-    "nav": "Hjem"
+    "nav": "Hjem",
+    "header": "Gratis design for print!",
+    "intro": "Finn en template som passer til anledningen - bryllup, bursdag eller annet - det skal være noe her for alle. Velg design og send oss din gjesteliste så skal vi ordne resten.",
+    "button": {
+      "create": "Kom i gang"
+    }
   },
   "about": {
     "nav": "Om oss",
@@ -9,7 +14,8 @@
   },
   "contact": {
     "nav": "Kontakt",
-    "header": "Er det noe du vil fortelle?"
+    "header": "Er det noe du vil fortelle?",
+    "intro": "Send oss en email til hello (at) inktemplate.com om det er noe du lurer på."
   },
   "language": {
     "nav": "Språk",
@@ -22,21 +28,34 @@
   },
   "generate": {
     "nav": "Lag PDF",
-    "header": "Lag PDF",
-    "intro": "",
+    "header": "Oppgrader",
+    "intro": "Dette ser nydelig ut! Du kan laste ned print eller oppgradere:",
     "premium": {
-      "benefits": "",
-      "price": ""
+      "benefit": {
+        "logo": "Fjerne inkTemplate logo",
+        "edit": "Mulighet for å endre tekst i etterkant",
+        "email": "Email med print"
+      },
+      "price": "Pris"
     }
   },
   "products": {
-    "nav": "Templates",
-    "header": "Alle templates",
+    "nav": "Produkter",
+    "header": "Alle produkter",
     "placecard": { "name": "Bordkort" },
     "invitation": { "name": "Invitasjon" }
+  },
+  "receipt": {
+    "header": "Kvittering",
+    "intro": "Vi har sendt en mail til {{email}} med link til print, samt link for å endre print i etterkant. Lykke til med ditt arrangement!",
+    "button": { "download": "Last ned" }
   },
   "languages": {
     "no": "Norsk",
     "en": "Engelsk"
+  },
+  "splash": {
+    "confetti": "Finner frem papir, malekoster og penner!",
+    "receipt": "Henter kvittering"
   }
 }

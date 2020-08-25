@@ -167,7 +167,7 @@ const Create = (props) => {
         </div>
 
         <div id="render">
-          <h2>Preview print</h2>
+          <h2>{t("product:preview")}</h2>
           <div className="cards">
             {text
               .slice(0, text.length - 1)
