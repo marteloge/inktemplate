@@ -15,7 +15,7 @@ type Props = {
   width?: number;
   height?: number;
   useDesign?: boolean;
-  selectedDesign?: string;
+  selectedDesign?: number;
   backgroundColor?: string;
   scale?: number;
   fonts?: Array<{ src: string; font: string; color: string }>;
@@ -27,7 +27,7 @@ export const newCanvas = (props: Props) => {
     width: props.width || 400,
     height: props.width || 256,
     useDesign: props.useDesign || true,
-    selectedDesign: props.selectedDesign || "template4",
+    selectedDesign: props.selectedDesign || 4,
     backgroundColor: props.backgroundColor || "#FF8A65",
     scale: props.scale || 0.5,
     content: [
@@ -64,7 +64,7 @@ export const newDraft = (product, uuid): Draft => {
   return {
     uuid,
     useDesign: true,
-    backgroundImage: "template4",
+    backgroundImage: 4,
     backgroundColor: {
       color: "#FF8A65",
       colorPickerOpen: false,

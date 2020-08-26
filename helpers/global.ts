@@ -221,32 +221,9 @@ export const fonts = [
 // Bilbo
 // League Script
 
-export const cardDesigns = [
-  "template1",
-  "template2",
-  "template3",
-  "template4",
-  "template5",
-  "template6",
-  "template7",
-  "template8",
-  "template9",
-  "template10",
-  "template11",
-  "template12",
-  "template13",
-  "template14",
-  "template15",
-  "template16",
-  "template17",
-  "template18",
-  "template19",
-  "template20",
-  "template21",
-  "template22",
-];
+export const numDesigns = 22;
 
-export const imageRoute = "/static/templates/";
+export const imageRoute = "/static/templates";
 
 export const updateField = (state, handler, field, value) =>
   handler({ ...state, [field]: value });

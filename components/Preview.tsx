@@ -39,7 +39,7 @@ const Preview = (props: Props) => {
           background-size: cover;
           background-position: center;
           background-image: ${useDesign
-            ? `url(${imageRoute + image}-small.jpg)`
+            ? `url(${imageRoute}/template${image}-small.jpg)`
             : "none"};
         }
 

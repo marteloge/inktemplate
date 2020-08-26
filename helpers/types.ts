@@ -56,7 +56,7 @@ export type Rotation = "landscape" | "portrait";
 export type Draft = {
   uuid: string;
   useDesign: boolean;
-  backgroundImage?: string;
+  backgroundImage?: number;
   backgroundColor?: {
     colorPickerOpen: boolean;
     color: string;

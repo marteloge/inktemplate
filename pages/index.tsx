@@ -36,7 +36,7 @@ const Home = ({ t }) => {
             height={draft.product.height}
             scale={1}
             useDesign={draft.useDesign}
-            selectedDesign={"template4"}
+            selectedDesign={4}
             backgroundColor={"white"}
             content={[
               {

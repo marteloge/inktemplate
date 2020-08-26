@@ -6,7 +6,7 @@ type Props = {
   width: number;
   height: number;
   useDesign: boolean;
-  selectedDesign: string;
+  selectedDesign: number;
   backgroundColor?: string;
   content?: Array<Content>;
   text?: string;
@@ -23,7 +23,7 @@ const Canvas = (props: Props) => {
     <div className="preview">
       <div id="canvas">
         {useDesign && (
-          <img src={`${imageRoute + selectedDesign}-small.jpg`}></img>
+          <img src={`${imageRoute}/template${selectedDesign}-small.jpg`}></img>
         )}
         <div className="text">
           {content &&

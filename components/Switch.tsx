@@ -41,7 +41,7 @@ const Switch = (props) => {
 
         .pattern {
           box-shadow: ${useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
-          background-image: url(${imageRoute + image + "-small.jpg"});
+          background-image: url(${imageRoute}/template${image}-small.jpg);
           background-position: center;
         }
 

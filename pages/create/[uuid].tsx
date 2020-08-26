@@ -23,7 +23,7 @@ const Create = (props) => {
 
   const [popup, setPopup] = useState<boolean>(false);
 
-  const [selectedDesign, setSelectedDesign] = useState<string>(
+  const [selectedDesign, setSelectedDesign] = useState<number>(
     draft.backgroundImage
   );
   const [text, setText] = useState<string>(draft.text);
@@ -174,15 +174,6 @@ const Create = (props) => {
               width={draft.product.width}
             />
           </div>
-          {/* <div className="image-preview">
-            {useDesign && (
-              <DesignImagePreview
-                setSelectedDesign={setSelectedDesign}
-                width={draft.product.width}
-                height={draft.product.height}
-              />
-            )}
-          </div> */}
         </div>
 
         <div id="render">

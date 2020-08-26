@@ -1,4 +1,3 @@
-import DesignImagePreview from "./DesignImagePreview";
 import { calculateResponsiveSize } from "../helpers/global";
 
 const Popup = (props) => {
@@ -13,6 +12,7 @@ const Popup = (props) => {
       <p className="cross" onClick={() => setOpen(false)}>
         X
       </p>
+
       {props.children}
       <style jsx>{`
         .cross {

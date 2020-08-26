@@ -2,13 +2,12 @@ import { withTranslation } from "../helpers/i18n";
 import { newCanvas } from "../helpers/products";
 
 import Canvas from "./Canvas";
-import products from "../pages/products";
-import { cardDesigns } from "../helpers/global";
 
 const Carousel = (props) => {
   const { t } = props;
 
   const texts = [t("product:nameText"), t("product:subText")];
+  const designs = [...Array(20)];
 
   return (
     <div className="carousel">
@@ -19,12 +18,12 @@ const Carousel = (props) => {
         <p>{"<"}</p>
       </div>
       <div className="examples">
-        {cardDesigns.map((t, i) => (
+        {designs.map((t, i) => (
           <Canvas
             key={i}
             {...newCanvas({
               texts,
-              selectedDesign: "template" + (i + 1),
+              selectedDesign: i + 1,
             })}
           ></Canvas>
         ))}
