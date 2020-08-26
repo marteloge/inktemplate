@@ -59,7 +59,9 @@ const Preview = (props) => {
       </Head>
       <Sticky>
         <div className="actions">
-          <button onClick={() => downloadPdfDocument(draft)}>Download</button>
+          <button onClick={() => downloadPdfDocument(draft)}>
+            {t("generate.download")}
+          </button>
           <button
             onClick={() =>
               Router.push(
@@ -68,7 +70,7 @@ const Preview = (props) => {
               )
             }
           >
-            Edit
+            {t("generate.change")}
           </button>
         </div>
       </Sticky>

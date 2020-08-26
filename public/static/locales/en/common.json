@@ -30,6 +30,8 @@
     "nav": "Generate PDF",
     "header": "Upgrade",
     "intro": "Looking good! You can download your print or upgrade to premium.",
+    "download": "Download",
+    "change": "Change",
     "premium": {
       "benefit": {
         "logo": "Remove inkTemplate logo",
@@ -57,6 +59,7 @@
   },
   "splash": {
     "confetti": "Finding pencils and crayons!",
-    "receipt": "Fetching your receipt"
+    "receipt": "Fetching your receipt",
+    "preparing": "Preparing your design"
   }
 }

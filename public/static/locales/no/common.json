@@ -30,6 +30,8 @@
     "nav": "Lag PDF",
     "header": "Oppgrader",
     "intro": "Dette ser nydelig ut! Du kan laste ned print eller oppgradere:",
+    "download": "Last ned",
+    "change": "Endre",
     "premium": {
       "benefit": {
         "logo": "Fjerne inkTemplate logo",
@@ -57,6 +59,7 @@
   },
   "splash": {
     "confetti": "Finner frem papir, malekoster og penner!",
-    "receipt": "Henter kvittering"
+    "receipt": "Henter kvittering",
+    "preparing": "Rydder bort malekoster og fargeblyanter"
   }
 }
