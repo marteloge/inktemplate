@@ -46,12 +46,12 @@ export const newCanvas = (props: Props) => {
       {
         order: 2,
         name: "subText",
-        font: (props.fonts && props.fonts[0].font) || "Raleway",
+        font: (props.fonts && props.fonts[1].font) || "Raleway",
         fontSize: 20,
         fontSrc:
-          (props.fonts && props.fonts[0].src) || "raleway-v17-latin-regular",
-        color: (props.fonts && props.fonts[0].color) || "#000000",
-        text: (props.texts && props.texts[0]) || i18n.t("product:subText"),
+          (props.fonts && props.fonts[1].src) || "raleway-v17-latin-regular",
+        color: (props.fonts && props.fonts[1].color) || "#000000",
+        text: (props.texts && props.texts[1]) || i18n.t("product:subText"),
         colorPickerOpen: false,
       },
     ],
