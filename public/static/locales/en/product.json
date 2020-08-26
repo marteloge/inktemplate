@@ -15,6 +15,15 @@
   "page": "Page",
   "preview": "Preview print",
   "pattern": "Pattern",
+  "filter": {
+    "celebration": "Celebration",
+    "abstract": "Abstract",
+    "flowers": "Flowers",
+    "nature": "Nature",
+    "popular": "Popular",
+    "borders": "Borders",
+    "all": "All"
+  },
   "create": {
     "button": {
       "previewPDF": "Create PDF",

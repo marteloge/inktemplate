@@ -15,6 +15,15 @@
   "page": "Side",
   "preview": "Forhåndsvisning",
   "pattern": "Mønster",
+  "filter": {
+    "celebration": "Feiring",
+    "abstract": "Abstrakt",
+    "flowers": "Blomster",
+    "nature": "Natur",
+    "popular": "Populære",
+    "borders": "Border",
+    "all": "Alle"
+  },
   "create": {
     "button": {
       "previewPDF": "Lag PDF",

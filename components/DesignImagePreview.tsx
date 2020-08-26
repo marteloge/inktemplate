@@ -1,23 +1,11 @@
 import { withTranslation } from "../helpers/i18n";
 import { useState } from "react";
-import { numDesigns } from "../helpers/global";
+import { filters } from "../helpers/global";
 
 const DesignImagePreview = (props) => {
   const { setSelectedDesign, width, height, t } = props;
 
   const [filter, setFilter] = useState("popular");
-
-  const filters = {
-    wedding: [1, 2, 3, 4],
-    holiday: [1, 2, 4],
-    creative: [1, 6, 8, 9, 10],
-    food: [10, 11, 12],
-    nature: [13, 14, 15, 16],
-    popular: [12, 2, 21, 22],
-    all: Array.from(Array(numDesigns), (_, i) => i + 1),
-  };
-
-  const all = 22;
 
   return (
     <div className="designs">
@@ -28,7 +16,7 @@ const DesignImagePreview = (props) => {
             key={i}
             onClick={() => setFilter(f)}
           >
-            {f}
+            {t(`product:filter.${f}`)}
           </button>
         ))}
       </div>
@@ -78,11 +66,11 @@ const DesignImagePreview = (props) => {
         .selected,
         button:hover {
           background-color: transparent;
-          border: 3px solid white;
+          border: 2px solid white;
         }
       `}</style>
     </div>
   );
 };
 
-export default withTranslation("common")(DesignImagePreview);
+export default withTranslation(["common", "product"])(DesignImagePreview);
