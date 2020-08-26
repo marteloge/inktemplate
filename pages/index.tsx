@@ -9,6 +9,7 @@ import { useState } from "react";
 import Splash from "../components/Splash";
 import { newUUID, calculateResponsiveSize } from "../helpers/global";
 import { createOrUpdateDraft } from "../helpers/api";
+import Carousel from "../components/Carousel";
 
 const Home = ({ t }) => {
   const draft: Draft = newDraft("PLACECARD", "uuid");
@@ -89,119 +90,9 @@ const Home = ({ t }) => {
         </div>
       </div>
 
-      <div className="carousel">
-        <div className="scroll right">
-          <p>{">"}</p>
-        </div>
-
-        <div className="scroll left">
-          <p>{"<"}</p>
-        </div>
-
-        <div className="examples">
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template1",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template2",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template3",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template4",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template5",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template6",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template7",
-            })}
-          ></Canvas>
-          <Canvas
-            {...newCanvas({
-              texts: [t("product:nameText"), t("product:subText")],
-              selectedDesign: "template8",
-            })}
-          ></Canvas>
-        </div>
-      </div>
+      <Carousel />
 
       <style jsx>{`
-        .scroll {
-          position: absolute;
-          padding: 10px;
-          width: 2%;
-          background-color: #f2eeeb;
-          min-height: 120px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 0 10px 10px rgb(242, 238, 235);
-        }
-
-        .scroll.left {
-          left: 0;
-          border-top-right-radius: 100px;
-          border-bottom-right-radius: 100px;
-        }
-
-        .scroll.right {
-          right: 0;
-          border-top-left-radius: 100px;
-          border-bottom-left-radius: 100px;
-        }
-
-        .scroll p {
-          height: 100%;
-          font-size: 20px;
-          color: #726a61;
-        }
-
-        .carousel {
-          width: 100%;
-          margin: 5% 0;
-          padding-bottom: 1%;
-          display: flex;
-          overflow-y: scroll;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .carousel::-webkit-scrollbar {
-          display: none;
-        }
-
-        .examples {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
         .content {
           padding-top: 5%;
           display: flex;
@@ -230,7 +121,7 @@ const Home = ({ t }) => {
         .create {
           margin-top: 5%;
           font-family: "Dawning of a New Day";
-          font-size: ${calculateResponsiveSize(25, 35)};
+          font-size: ${calculateResponsiveSize(22, 30)};
         }
 
         @media (max-width: 750px) {
@@ -243,10 +134,6 @@ const Home = ({ t }) => {
 
           .content div {
             margin-top: 5%;
-          }
-
-          .carousel {
-            display: none;
           }
 
           .start {
@@ -277,6 +164,10 @@ const Home = ({ t }) => {
         @media (max-width: 750px) {
           .examples div.preview {
             margin-right: 0;
+          }
+
+          .carousel {
+            display: none !important;
           }
         }
 

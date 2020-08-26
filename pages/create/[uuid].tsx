@@ -15,10 +15,13 @@ import DesignImagePreview from "../../components/DesignImagePreview";
 import NameList from "../../components/NameList";
 import Sticky from "../../components/Sticky";
 import Splash from "../../components/Splash";
+import Popup from "../../components/Popup";
 
 const Create = (props) => {
   const t = props.t;
   const draft: Draft = props.draft;
+
+  const [popup, setPopup] = useState<boolean>(false);
 
   const [selectedDesign, setSelectedDesign] = useState<string>(
     draft.backgroundImage
@@ -41,6 +44,11 @@ const Create = (props) => {
     content,
   };
 
+  const changeDesign = (design) => {
+    setPopup(false);
+    setSelectedDesign(design);
+  };
+
   const generatePreviewAndRedirect = (pdfData: Draft) => {
     setLoadPreview(true);
     createOrUpdateDraft(pdfData.uuid, pdfData).then(() => {
@@ -53,6 +61,18 @@ const Create = (props) => {
 
   if (loadPreview) {
     return <Splash content={"Preparing your design"}></Splash>;
+  }
+
+  if (popup) {
+    return (
+      <Popup open={popup} setOpen={setPopup}>
+        <DesignImagePreview
+          setSelectedDesign={changeDesign}
+          width={draft.product.width}
+          height={draft.product.height}
+        />
+      </Popup>
+    );
   }
 
   return (
@@ -69,9 +89,7 @@ const Create = (props) => {
         >
           {t("product:create.button.previewPDF")}
         </button>
-        {/* <a className="button" href="#render">
-          {t("product:create.button.previewPrint")}
-        </a> */}
+
         <button
           onClick={() => {
             setSavingDraft(true);
@@ -105,6 +123,7 @@ const Create = (props) => {
           </div>
           <div id="intro">
             <Switch
+              setPopup={setPopup}
               setUseDesign={setUseDesign}
               useDesign={useDesign}
               color={color.color}
@@ -155,7 +174,7 @@ const Create = (props) => {
               width={draft.product.width}
             />
           </div>
-          <div className="image-preview">
+          {/* <div className="image-preview">
             {useDesign && (
               <DesignImagePreview
                 setSelectedDesign={setSelectedDesign}
@@ -163,7 +182,7 @@ const Create = (props) => {
                 height={draft.product.height}
               />
             )}
-          </div>
+          </div> */}
         </div>
 
         <div id="render">

@@ -22,43 +22,52 @@ const Canvas = (props: Props) => {
   return (
     <div className="preview">
       <div id="canvas">
-        {content &&
-          content.map((c, i) => (
-            <p
-              key={i}
-              style={{
-                fontFamily: c.font,
-                fontSize: c.fontSize * scale,
-                color: c.color,
-              }}
-            >
-              {c.text}
-            </p>
-          ))}
+        {useDesign && (
+          <img src={`${imageRoute + selectedDesign}-small.jpg`}></img>
+        )}
+        <div className="text">
+          {content &&
+            content.map((c, i) => (
+              <p
+                key={i}
+                style={{
+                  fontFamily: c.font,
+                  fontSize: c.fontSize * scale,
+                  color: c.color,
+                }}
+              >
+                {c.text}
+              </p>
+            ))}
+        </div>
       </div>
 
       <style jsx>
         {`
-        #canvas {
-          height: ${calculateResponsiveSize(height * 0.75, height)};
-          width: ${calculateResponsiveSize(width * 0.75, width)};
+          #canvas {
+            height: ${calculateResponsiveSize(height * 0.75, height)};
+            width: ${calculateResponsiveSize(width * 0.75, width)};
 
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-          background-image: ${
-            useDesign
-              ? `url(${imageRoute + selectedDesign}-small.jpg);`
-              : "none;"
+            box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.3);
+            background-color: ${!useDesign ? `${backgroundColor}` : "initial"};
           }
-          background-repeat: no-repeat;
-          background-size: cover;
-          box-shadow: 2px 2px 4px rgb(0,0,0, 0.3);
-          background-color: ${!useDesign ? `${backgroundColor}` : "initial"}
-        }
-      `}
+
+          #canvas .text {
+            position: absolute;
+            text-align: center;
+          }
+
+          img {
+            height: ${calculateResponsiveSize(height * 0.75, height)};
+            width: ${calculateResponsiveSize(width * 0.75, width)};
+            position: relative;
+          }
+        `}
       </style>
     </div>
   );

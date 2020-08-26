@@ -2,14 +2,20 @@ import { imageRoute } from "../helpers/global";
 import { withTranslation } from "../helpers/i18n";
 
 const Switch = (props) => {
-  const { setUseDesign, useDesign, color, image, t } = props;
+  const { setUseDesign, setPopup, useDesign, color, image, t } = props;
 
   return (
     <div id="switch">
       <button className="color" onClick={() => setUseDesign(false)}>
         {t("product:color")}
       </button>
-      <button className="pattern" onClick={() => setUseDesign(true)}>
+      <button
+        className="pattern"
+        onClick={() => {
+          setPopup(true);
+          setUseDesign(true);
+        }}
+      >
         {t("product:pattern")}
       </button>
 
@@ -36,6 +42,7 @@ const Switch = (props) => {
         .pattern {
           box-shadow: ${useDesign ? "4px 4px 4px rgb(0,0,0,0.6)" : "none"};
           background-image: url(${imageRoute + image + "-small.jpg"});
+          background-position: center;
         }
 
         .color {
