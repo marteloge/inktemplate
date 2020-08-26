@@ -10,6 +10,9 @@ export const updateContent = (handler, contents, content, index) => {
 
 export const newUUID = () => createUuid.v4();
 
+export const randomColor = () =>
+  "#" + ((Math.random() * 0xffffff) << 0).toString(16);
+
 export const fonts = [
   {
     value: "dawningofanewday",

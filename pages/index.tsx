@@ -1,18 +1,47 @@
 import Layout from "../components/Layout";
 import Head from "next/head";
 
-import { withTranslation, Link, Router } from "../helpers/i18n";
+import { withTranslation, Router } from "../helpers/i18n";
 import Canvas from "../components/Canvas";
-import { newDraft, newCanvas } from "../helpers/products";
+import { newDraft } from "../helpers/products";
 import { Draft } from "../helpers/types";
 import { useState } from "react";
 import Splash from "../components/Splash";
-import { newUUID, calculateResponsiveSize } from "../helpers/global";
+import {
+  newUUID,
+  calculateResponsiveSize,
+  numDesigns,
+  fonts,
+  randomColor,
+} from "../helpers/global";
 import { createOrUpdateDraft } from "../helpers/api";
-import Carousel from "../components/Carousel";
+
+const randomChange = (draft: Draft): Draft => {
+  const font1 = fonts[Math.floor(Math.random() * fonts.length)];
+  const font2 = fonts[Math.floor(Math.random() * fonts.length)];
+
+  return {
+    ...draft,
+    backgroundImage: Math.floor(Math.random() * numDesigns + 1),
+    content: [
+      {
+        ...draft.content[0],
+        fontSrc: font1.src,
+        font: font1.label,
+        color: randomColor(),
+      },
+      {
+        ...draft.content[1],
+        fontSrc: font2.src,
+        font: font2.label,
+        color: randomColor(),
+      },
+    ],
+  };
+};
 
 const Home = ({ t }) => {
-  const draft: Draft = newDraft("PLACECARD", "uuid");
+  const [draft, setDraft] = useState<Draft>(newDraft("PLACECARD", "uuid"));
   const [loading, setLoading] = useState(false);
 
   if (loading) {
@@ -36,31 +65,18 @@ const Home = ({ t }) => {
             height={draft.product.height}
             scale={1}
             useDesign={draft.useDesign}
-            selectedDesign={4}
+            selectedDesign={draft.backgroundImage}
             backgroundColor={"white"}
             content={[
-              {
-                order: 1,
-                name: "nameText",
-                font: "Dawning of a New Day",
-                fontSize: 35,
-                fontSrc: "dawning-of-a-new-day-v11-latin-regular",
-                color: "#000000",
-                text: t("product:nameText"),
-                colorPickerOpen: false,
-              },
-              {
-                order: 2,
-                name: "subText",
-                font: "Raleway",
-                fontSize: 20,
-                fontSrc: "raleway-v17-latin-regular",
-                color: "#000000",
-                text: t("product:subText"),
-                colorPickerOpen: false,
-              },
+              { ...draft.content[0], text: t("product:nameText") },
+              { ...draft.content[1], text: t("product:subText") },
             ]}
           ></Canvas>
+          <img
+            className="refresh"
+            src="/static/images/arrow.png"
+            onClick={() => setDraft(randomChange(draft))}
+          />
         </div>
         <div className="start">
           <h1>{t("home.header")}</h1>
@@ -71,26 +87,22 @@ const Home = ({ t }) => {
               const start = new Date();
               setLoading(true);
               const uuid = newUUID();
-              createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
-                (uuid) => {
-                  setTimeout(
-                    () =>
-                      Router.push(
-                        `/create/[uuid]?uuid=${uuid}`,
-                        `/create/${uuid}`
-                      ),
-                    2500 - (new Date().getTime() - start.getTime())
-                  );
-                }
-              );
+              createOrUpdateDraft(uuid, { ...draft, uuid }).then((uuid) => {
+                setTimeout(
+                  () =>
+                    Router.push(
+                      `/create/[uuid]?uuid=${uuid}`,
+                      `/create/${uuid}`
+                    ),
+                  2500 - (new Date().getTime() - start.getTime())
+                );
+              });
             }}
           >
             {t("home.button.create")}
           </button>
         </div>
       </div>
-
-      <Carousel />
 
       <style jsx>{`
         .content {
@@ -107,6 +119,23 @@ const Home = ({ t }) => {
         }
         .start button {
           width: 95%;
+        }
+
+        .refresh {
+          margin-top: 5px;
+          cursor: pointer;
+          width: ${calculateResponsiveSize(30, 45)};
+          opacity: 0.6;
+        }
+
+        .refresh:hover {
+          opacity: 1;
+        }
+
+        div.preview {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         button {
