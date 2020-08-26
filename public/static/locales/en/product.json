@@ -14,6 +14,7 @@
   "next": "Next",
   "page": "Page",
   "preview": "Preview print",
+  "pattern": "Pattern",
   "create": {
     "button": {
       "previewPDF": "Create PDF",
