@@ -233,6 +233,17 @@ export const cardDesigns = [
   "template9",
   "template10",
   "template11",
+  "template12",
+  "template13",
+  "template14",
+  "template15",
+  "template16",
+  "template17",
+  "template18",
+  "template19",
+  "template20",
+  "template21",
+  "template22",
 ];
 
 export const imageRoute = "/static/templates/";
