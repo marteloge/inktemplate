@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { Router, withTranslation } from "../../helpers/i18n";
 import { ColorPickerDesign, Draft, Content } from "../../helpers/types";
-import { colorPickerStyles } from "../../helpers/global";
+import { colorPickerStyles, newUUID } from "../../helpers/global";
 import { getDraft, createOrUpdateDraft } from "../../helpers/api";
 
 import TextDesignComponent from "../../components/TextDesign";
@@ -16,23 +16,24 @@ import NameList from "../../components/NameList";
 import Sticky from "../../components/Sticky";
 import Splash from "../../components/Splash";
 import Popup from "../../components/Popup";
+import { newDraft } from "../../helpers/products";
+import { downloadPdfDocument } from "../../components/Download";
 
 const Create = (props) => {
   const t = props.t;
   const draft: Draft = props.draft;
 
-  const [popup, setPopup] = useState<boolean>(false);
-
-  const [selectedDesign, setSelectedDesign] = useState<number>(
-    draft.backgroundImage
-  );
   const [text, setText] = useState<string>(draft.text);
   const [useDesign, setUseDesign] = useState<boolean>(draft.useDesign);
   const [color, setColor] = useState<ColorPickerDesign>(draft.backgroundColor);
   const [content, setContent] = useState<Array<Content>>(draft.content);
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
-
   const [loadPreview, setLoadPreview] = useState(false);
+  const [popup, setPopup] = useState<boolean>(false);
+  const [loadNewPrint, setLoadNewPrint] = useState<boolean>(false);
+  const [selectedDesign, setSelectedDesign] = useState<number>(
+    draft.backgroundImage
+  );
 
   const pdfData: Draft = {
     ...draft,
@@ -60,7 +61,78 @@ const Create = (props) => {
   };
 
   if (loadPreview) {
-    return <Splash content={"Preparing your design"}></Splash>;
+    return <Splash content={t("splash.preparing")}></Splash>;
+  }
+
+  if (loadNewPrint) {
+    return <Splash confetti content={t("splash.create")}></Splash>;
+  }
+
+  if (draft.paid) {
+    return (
+      <Popup open={true}>
+        <div
+          className="paid"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>{t("create.popup.paid")}</h2>
+          <p>{t("create.popup.info")}</p>
+          <br></br>
+          <br></br>
+
+          <Canvas
+            useDesign={draft.useDesign}
+            width={draft.product.width}
+            height={draft.product.height}
+            selectedDesign={draft.backgroundImage}
+            backgroundColor={draft.backgroundColor.color}
+            content={[
+              { ...draft.content[0], text: t("product:nameText") },
+              { ...draft.content[1], text: t("product:subText") },
+            ]}
+            scale={1}
+          ></Canvas>
+          <br></br>
+          <br></br>
+          <p>{t("create.popup.new")}</p>
+          <br></br>
+          <br></br>
+
+          <div className="buttons">
+            <button
+              style={{ marginRight: "10px" }}
+              onClick={() => {
+                setLoadNewPrint(true);
+                const uuid = newUUID();
+                const start = new Date();
+
+                createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
+                  (uuid) => {
+                    setTimeout(() => {
+                      Router.push(
+                        `/create/[uuid]?uuid=${uuid}`,
+                        `/create/${uuid}`
+                      ).then(() => Router.reload());
+                    }, 2000 - (new Date().getTime() - start.getTime()));
+                  }
+                );
+              }}
+            >
+              {t("create.button.create")}
+            </button>
+            <button onClick={() => downloadPdfDocument(draft)}>
+              {t("create.button.download")}
+            </button>
+          </div>
+        </div>
+      </Popup>
+    );
   }
 
   if (popup) {
@@ -166,14 +238,10 @@ const Create = (props) => {
             </div>
           </div>
         </div>
-        <div id="bottom">
-          <div className="name-list">
-            <NameList
-              list={text}
-              handler={setText}
-              width={draft.product.width}
-            />
-          </div>
+
+        <div className="name-list">
+          <h2>{t("product:textHeader")}</h2>
+          <NameList list={text} handler={setText} width={draft.product.width} />
         </div>
 
         <div id="render">
@@ -214,6 +282,10 @@ const Create = (props) => {
 
         footer {
           display: none !important;
+        }
+
+        textarea {
+          width: 100%;
         }
       `}</style>
 
@@ -282,15 +354,11 @@ const Create = (props) => {
               justify-content: center;
             }
 
-            #bottom {
-              flex-direction: column;
-            }
-
             #preview {
               width: 100%;
             }
 
-            #bottom .name-list {
+            .name-list {
               order: 2;
               margin-top: 20px;
             }

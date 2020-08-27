@@ -8,13 +8,15 @@ import { Draft } from "../../../helpers/types";
 const emails = {
   en: {
     subject: "InkTemplate - Print is ready!",
-    receipt: "receipt",
-    intro: "Hello, <br><br>Your print is ready for you :) Happy printing! <br>",
+    receipt: "here",
+    intro:
+      "Hello, <br><br>Your print is ready for you :) Happy printing! Manage your print ",
   },
   no: {
     subject: "InkTemplate - Klar for printeren!",
-    receipt: "kvittering",
-    intro: "Hei, <br>Ditt trykk er nå klar for å printes!<br>",
+    receipt: "her",
+    intro:
+      "Hei, <br>Ditt trykk er nå klar for å printes! Du kan laste ned og administrere print ",
   },
 };
 
@@ -47,9 +49,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       subject: trans.subject,
       html: `${trans.intro} <a target="_blank" href="http://${
         req.headers.host
-      }/${draft.language === "en" ? "" : draft.language + "/"}download/${
-        draft.uuid
-      }">${trans.receipt}</a>. <br><br> InkTemplate team`,
+      }/${
+        draft.language === "en" ? "" : draft.language + "/"
+      }receipt?paid=true&session_id=${session_id}">${
+        trans.receipt
+      }</a>. <br><br> InkTemplate team`,
     };
 
     (async () => {

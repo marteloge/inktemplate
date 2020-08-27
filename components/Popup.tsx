@@ -9,9 +9,11 @@ const Popup = (props) => {
 
   return (
     <div className="popup">
-      <p className="cross" onClick={() => setOpen(false)}>
-        X
-      </p>
+      {props.setOpen && (
+        <p className="cross" onClick={() => setOpen(false)}>
+          X
+        </p>
+      )}
 
       {props.children}
       <style jsx>{`

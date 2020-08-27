@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     line_items: [{ price: req.body.price_id, quantity: 1 }],
     mode: "payment",
     metadata: { uuid: req.body.uuid },
-    success_url: `${req.headers.origin}/${langSlug}preview/${req.body.uuid}?paid=true&session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${req.headers.origin}/${langSlug}receipt?paid=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${req.headers.origin}/${langSlug}preview/${req.body.uuid}`,
   });
 
