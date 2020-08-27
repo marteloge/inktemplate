@@ -8,15 +8,13 @@ import { Draft } from "../../../helpers/types";
 const emails = {
   en: {
     subject: "InkTemplate - Print is ready!",
-    download: "Download",
-    change: "Change",
+    receipt: "receipt",
     intro: "Hello, <br><br>Your print is ready for you :) Happy printing! <br>",
   },
   no: {
     subject: "InkTemplate - Klar for printeren!",
-    download: "Last ned",
-    change: "Endre",
-    intro: "Hello, <br>Ditt trykk er nå klar for å printes! Lykke til! <br>",
+    receipt: "kvittering",
+    intro: "Hei, <br>Ditt trykk er nå klar for å printes!<br>",
   },
 };
 
@@ -47,13 +45,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       to: (order.customer as Stripe.Customer).email,
       from: process.env.EMAIL,
       subject: trans.subject,
-      html: `${trans.intro} <ul><li><a href="http://${req.headers.host}/${
-        draft.language !== "en" ? draft.language + "/" : ""
-      }download/${draft.uuid}">${trans.download}</a></li><li><a href="http://${
+      html: `${trans.intro} <a target="_blank" href="http://${
         req.headers.host
-      }/${draft.language !== "en" ? draft.language + "/" : ""}change/${
+      }/${draft.language === "en" ? "" : draft.language + "/"}download/${
         draft.uuid
-      }">${trans.change}</a></li></ul>`,
+      }">${trans.receipt}</a>. <br><br> InkTemplate team`,
     };
 
     (async () => {

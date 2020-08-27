@@ -6,12 +6,13 @@ import dynamic from "next/dynamic";
 import { withTranslation, Router } from "../../helpers/i18n";
 import { getDraft } from "../../helpers/api";
 import { downloadPdfDocument } from "../../components/Download";
-import Splash from "../../components/Splash";
-import Layout from "../../components/Layout";
-import Sticky from "../../components/Sticky";
 import { Draft } from "../../helpers/types";
 import { usePrices } from "../../helpers/hooks";
 import { calculateResponsiveSize } from "../../helpers/global";
+
+import Splash from "../../components/Splash";
+import Layout from "../../components/Layout";
+import Sticky from "../../components/Sticky";
 
 const PreviewPDF = dynamic(import("../../components/PreviewPDF"), {
   ssr: false,
@@ -23,12 +24,13 @@ const getPrice = (prices, currency) => {
   return prices.data.find((p) => p.currency === currency);
 };
 
-const toCheckout = async (uuid, currency, prices) => {
+const toCheckout = async (draft, currency, prices) => {
   const { session_id } = await fetch("/api/checkout/session", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      uuid,
+      language: draft.language,
+      uuid: draft.uuid,
       price_id: getPrice(prices, currency).id,
     }),
   }).then((res) => res.json());
@@ -43,7 +45,7 @@ const Preview = (props) => {
   const { t } = props;
   const draft: Draft = props.draft;
 
-  const { prices, isLoading } = usePrices();
+  const { prices, isLoadingPrices } = usePrices();
 
   const [loadingPayment, setLoadingPayment] = useState(false);
 
@@ -99,7 +101,7 @@ const Preview = (props) => {
               {"> " + t("generate.premium.benefit.email")}
             </p>
 
-            {!isLoading && (
+            {!isLoadingPrices && (
               <>
                 <p className="price">
                   {t("generate.premium.price")}:
@@ -109,7 +111,7 @@ const Preview = (props) => {
                   className="checkout"
                   onClick={() => {
                     setLoadingPayment(true);
-                    toCheckout(draft.uuid, "usd", prices);
+                    toCheckout(draft, "usd", prices);
                   }}
                 >
                   {t("generate.premium.upgrade")}
