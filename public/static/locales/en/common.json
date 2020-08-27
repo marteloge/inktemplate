@@ -24,7 +24,13 @@
   "create": {
     "nav": "Create new",
     "header": "Create your own design",
-    "intro": "Create your own design for your print! Maybe you find some nice designs from our library? Play with fonts, text and colors to get your own custom design! Click on the preview button when you are ready."
+    "intro": "Create your own design for your print! Maybe you find some nice designs from our library? Play with fonts, text and colors to get your own custom design! Click on the preview button when you are ready.",
+    "popup": {
+      "paid": "You already paid for this print!",
+      "info": "When purchased we sent you a link to the print by email.",
+      "new": "Do you want to create a new? Or download?"
+    },
+    "button": { "create": "Create new", "download": "Download" }
   },
   "generate": {
     "nav": "Generate PDF",
@@ -50,8 +56,9 @@
   },
   "receipt": {
     "header": "Print receipt",
-    "intro": "We sent you an email to {{email}}",
-    "button": { "download": "Download PDF" }
+    "intro": "We sent you an email to {{email}}! You can always get back here to change your guest list or download a new copy. Happy printing!",
+    "change": "Change text",
+    "button": { "download": "Download PDF", "save": "Save" }
   },
   "languages": {
     "no": "Norwegian",
@@ -60,6 +67,9 @@
   "splash": {
     "confetti": "Finding pencils and crayons!",
     "receipt": "Fetching your receipt",
-    "preparing": "Preparing your design"
+    "preparing": "Preparing your design",
+    "payment": "Preparing payment",
+    "saving": "Saving changes",
+    "create": "Creating new"
   }
 }

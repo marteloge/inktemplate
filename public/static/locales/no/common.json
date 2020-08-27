@@ -24,7 +24,13 @@
   "create": {
     "nav": "Lag ny",
     "header": "Lag ny",
-    "intro": "Lag ditt eget design for print! Velg mellom flotte bakgrunnsfarger og bilder. Lek deg med tekst, fonter og farger for sette ditt personlige preg."
+    "intro": "Lag ditt eget design for print! Velg mellom flotte bakgrunnsfarger og bilder. Lek deg med tekst, fonter og farger for sette ditt personlige preg.",
+    "popup": {
+      "paid": "Du har allerede betalt",
+      "info": "Vi har sendt deg link til print på mail da du betalte. Du kan ikke endre design etter du har betalt.",
+      "new": "Vil du lage ny?"
+    },
+    "button": { "create": "Lag ny", "download": "Last ned" }
   },
   "generate": {
     "nav": "Lag PDF",
@@ -50,8 +56,9 @@
   },
   "receipt": {
     "header": "Kvittering",
-    "intro": "Vi har sendt en mail til {{email}} med link til print, samt link for å endre print i etterkant. Lykke til med ditt arrangement!",
-    "button": { "download": "Last ned" }
+    "intro": "Vi har sendt en mail til {{email}} med link til print, samt link for å endre print i etterkant. Du kan alltid endre din gjesteliste og laste ned en ny kopi. Lykke til med ditt arrangement!",
+    "change": "Oppdater tekst",
+    "button": { "download": "Last ned PDF", "save": "Save" }
   },
   "languages": {
     "no": "Norsk",
@@ -60,6 +67,9 @@
   "splash": {
     "confetti": "Finner frem papir, malekoster og penner!",
     "receipt": "Henter kvittering",
-    "preparing": "Rydder bort malekoster og fargeblyanter"
+    "preparing": "Rydder bort malekoster og fargeblyanter",
+    "payment": "Forbereder betaling",
+    "saving": "Lagrer endringer",
+    "create": "Lager ny"
   }
 }

@@ -1,9 +1,0 @@
-{
-  "payment": {
-    "success": {
-      "html": "Hello,<br/>Here is your uuid: {{uuid}}. You can download your prints <a href={{download}}>here</a> and edit your print <a href={{edit}}>here</a>.",
-      "text": "Hello, \nHere is your uuid: {{uuid}}. \nYou can download your prints here: {{download}} and edit your print here {{edit}}",
-      "subject": "InkTemplate - Your print is ready!"
-    }
-  }
-}
