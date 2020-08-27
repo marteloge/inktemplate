@@ -8,14 +8,15 @@ export const updateContent = (handler, contents, content, index) => {
   return handler(contents.map((c, i) => (i !== index ? c : content)));
 };
 
-export const numDesigns = 45;
+export const numDesigns = 55;
 
+// prettier-ignore
 export const filters = {
   celebration: [4, 5, 17, 19, 20, 21],
   abstract: [3, 7, 8, 13, 14, 15, 16, 44, 45],
-  flowers: [1, 2, 10, 9, 11, 12, 18, 28, 29, 30, 31, 43],
-  nature: [1, 2, 9, 10, 11, 12, 13, 15, 18, 28, 29, 30, 31, 43],
-  popular: [4, 5, 11, 22, 28, 31, 37, 38],
+  flowers: [1, 2, 10, 9, 11, 12, 18, 28, 29, 30, 31, 43, 48, 49, 50, 51, 52, 53, 54, 55],
+  nature: [1, 2, 9, 10, 11, 12, 13, 15, 18, 28, 29, 30, 31, 43, 48, 49, 50, 51, 52, 53, 54, 55],
+  popular: [4, 5, 11, 22, 28, 31, 37, 38, 53],
   borders: [26, 25, 24, 23, 22, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32],
   all: Array.from(Array(numDesigns), (_, i) => i + 1),
 };
