@@ -64,16 +64,18 @@ const Preview = (props) => {
           <button onClick={() => downloadPdfDocument(draft)}>
             {t("generate.download")}
           </button>
-          <button
-            onClick={() =>
-              Router.push(
-                `/create/[uuid]?uuid=${draft.uuid}`,
-                `/create/${draft.uuid}`
-              )
-            }
-          >
-            {t("generate.change")}
-          </button>
+          {!draft.paid && (
+            <button
+              onClick={() =>
+                Router.push(
+                  `/create/[uuid]?uuid=${draft.uuid}`,
+                  `/create/${draft.uuid}`
+                )
+              }
+            >
+              {t("generate.change")}
+            </button>
+          )}
         </div>
       </Sticky>
 
@@ -88,34 +90,38 @@ const Preview = (props) => {
         <div className="upgrade">
           <div className="premium">
             <h1>{t("generate.header")}</h1>
-
-            <p>{t("generate.intro")}</p>
-
-            <p className="benefit">
-              {"> " + t("generate.premium.benefit.logo")}
-            </p>
-            <p className="benefit">
-              {"> " + t("generate.premium.benefit.edit")}
-            </p>
-            <p className="benefit">
-              {"> " + t("generate.premium.benefit.email")}
-            </p>
-
-            {!isLoadingPrices && (
+            {draft.paid && <p>{t("create.paid")}</p>}
+            {!draft.paid && (
               <>
-                <p className="price">
-                  {t("generate.premium.price")}:
-                  {` $ ${getPrice(prices, "usd").unit_amount / 100}USD`}
+                <p>{t("generate.intro")}</p>
+
+                <p className="benefit">
+                  {"> " + t("generate.premium.benefit.logo")}
                 </p>
-                <button
-                  className="checkout"
-                  onClick={() => {
-                    setLoadingPayment(true);
-                    toCheckout(draft, "usd", prices);
-                  }}
-                >
-                  {t("generate.premium.upgrade")}
-                </button>
+                <p className="benefit">
+                  {"> " + t("generate.premium.benefit.edit")}
+                </p>
+                <p className="benefit">
+                  {"> " + t("generate.premium.benefit.email")}
+                </p>
+
+                {!isLoadingPrices && (
+                  <>
+                    <p className="price">
+                      {t("generate.premium.price")}:
+                      {` $ ${getPrice(prices, "usd").unit_amount / 100}USD`}
+                    </p>
+                    <button
+                      className="checkout"
+                      onClick={() => {
+                        setLoadingPayment(true);
+                        toCheckout(draft, "usd", prices);
+                      }}
+                    >
+                      {t("generate.premium.upgrade")}
+                    </button>
+                  </>
+                )}
               </>
             )}
           </div>
