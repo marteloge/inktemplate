@@ -1,12 +1,10 @@
 import { calculateResponsiveSize } from "../helpers/global";
-import { withTranslation } from "../helpers/i18n";
 
 const NameList = (props) => {
-  const { list, handler, width, t } = props;
+  const { list, handler, t } = props;
 
   return (
     <div id="names">
-      <h2>{t("product:textHeader")}</h2>
       <textarea
         value={list}
         onChange={(e) => handler(e.target.value)}
@@ -17,12 +15,13 @@ const NameList = (props) => {
         }
 
         textarea {
-          width: ${calculateResponsiveSize(width * 0.75, width)};
           height: ${calculateResponsiveSize(150, 240)};
           border: none;
           border-radius: 5px;
           padding: 10px;
+          box-sizing: border-box;
         }
+
         @media (max-width: 850px) {
           width: 100%;
 
@@ -35,4 +34,4 @@ const NameList = (props) => {
   );
 };
 
-export default withTranslation("common")(NameList);
+export default NameList;

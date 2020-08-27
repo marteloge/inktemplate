@@ -23,10 +23,6 @@ const Navbar = (props) => {
         </Link>
       </div>
       <div id="nav">
-        {/* <Link href="/products">
-          <a>{t("products.nav")}</a>
-        </Link> */}
-
         <a
           onClick={() => {
             setLoading(true);

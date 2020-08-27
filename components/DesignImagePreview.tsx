@@ -56,6 +56,7 @@ const DesignImagePreview = (props) => {
           height: ${height * 0.37}px;
           margin: 1px 2px 1px 0;
           border: 1px solid #f2eeeb;
+          cursor: pointer;
         }
 
         button {
