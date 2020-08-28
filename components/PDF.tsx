@@ -50,11 +50,21 @@ const styles = (draft: Draft) => {
       minWidth: printWidth + "cm",
       minHeight: printHeight + "cm",
       maxHeight: printHeight + "cm",
+      backgroundColor: "white",
     },
     background: {
       minWidth: printWidth + "cm",
       minHeight: printHeight + "cm",
       backgroundColor: backgroundColor.color,
+      opacity: draft.opacity || 1,
+    },
+    overlay: {
+      backgroundColor: "white",
+      opacity: 1 - (draft.opacity || 0),
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      top: 0,
     },
     content: {
       width: "100%",
@@ -123,10 +133,13 @@ const PDF = (draft: Draft) => {
                   <View>
                     <View style={style.front}>
                       {draft.useDesign ? (
-                        <Image
-                          style={style.image}
-                          src={`/static/templates/template${draft.backgroundImage}.jpg`}
-                        ></Image>
+                        <View>
+                          <Image
+                            style={style.image}
+                            src={`/static/templates/template${draft.backgroundImage}.jpg`}
+                          ></Image>
+                          <View style={style.overlay}></View>
+                        </View>
                       ) : (
                         <View style={style.background}></View>
                       )}

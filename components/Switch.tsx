@@ -20,19 +20,14 @@ const Switch = (props) => {
       </button>
 
       <style jsx>{`
-        #switch {
-          margin: 0 0 20px 10%;
-        }
-
         #switch button {
-          width: 150px;
+          width: 48%;
           height: 80px;
           border-radius: 5px;
           outline: none;
           cursor: pointer;
           border: none;
           padding: 0;
-          margin: 0 20px 0 5px;
         }
 
         #switch button:hover {
@@ -52,17 +47,12 @@ const Switch = (props) => {
 
         @media (max-width: 850px) {
           #switch {
-            display: flex;
-            margin: 0;
-            flex-direction: row;
-            width: 95%;
-            margin: 5% 0;
-            justify-content: start;
+            margin-top: 5%;
           }
+
           #switch button {
-            height: 45px;
+            height: 60px;
             margin: 0;
-            margin-right: 3%;
           }
         }
       `}</style>

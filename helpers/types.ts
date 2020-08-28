@@ -74,4 +74,5 @@ export type Draft = {
   premium?: boolean;
   created?: Date;
   updated?: Date;
+  opacity?: number;
 };

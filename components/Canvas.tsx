@@ -11,10 +11,18 @@ type Props = {
   content?: Array<Content>;
   text?: string;
   scale: number;
+  opacity?: number;
 };
 
 const Canvas = (props: Props) => {
-  const { content, selectedDesign, useDesign, backgroundColor, scale } = props;
+  const {
+    content,
+    selectedDesign,
+    useDesign,
+    backgroundColor,
+    scale,
+    opacity,
+  } = props;
 
   const width = props.width * scale;
   const height = props.height * scale;
@@ -25,6 +33,7 @@ const Canvas = (props: Props) => {
         {useDesign && (
           <img src={`${imageRoute}/template${selectedDesign}-small.jpg`}></img>
         )}
+        {!useDesign && <div className="background"></div>}
         <div className="text">
           {content &&
             content.map((c, i) => (
@@ -54,7 +63,14 @@ const Canvas = (props: Props) => {
             align-items: center;
 
             box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.3);
-            background-color: ${!useDesign ? `${backgroundColor}` : "initial"};
+            background-color: white;
+          }
+
+          .background {
+            height: ${calculateResponsiveSize(height * 0.75, height)};
+            width: ${calculateResponsiveSize(width * 0.75, width)};
+            background-color: ${backgroundColor};
+            opacity: ${opacity || 1};
           }
 
           #canvas .text {
@@ -66,6 +82,7 @@ const Canvas = (props: Props) => {
             height: ${calculateResponsiveSize(height * 0.75, height)};
             width: ${calculateResponsiveSize(width * 0.75, width)};
             position: relative;
+            opacity: ${opacity || 1};
           }
         `}
       </style>

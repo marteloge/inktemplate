@@ -26,6 +26,8 @@ const Create = (props) => {
   const [text, setText] = useState<string>(draft.text);
   const [useDesign, setUseDesign] = useState<boolean>(draft.useDesign);
   const [color, setColor] = useState<ColorPickerDesign>(draft.backgroundColor);
+  const [opacity, setOpacity] = useState<number>(draft.opacity * 100);
+
   const [content, setContent] = useState<Array<Content>>(draft.content);
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
   const [loadPreview, setLoadPreview] = useState(false);
@@ -40,6 +42,7 @@ const Create = (props) => {
     useDesign,
     backgroundImage: selectedDesign,
     backgroundColor: color,
+    opacity: opacity / 100,
     updated: new Date(),
     text,
     content,
@@ -181,6 +184,7 @@ const Create = (props) => {
       <div className="content">
         <h1>{t("create.header")}</h1>
         <p>{t("create.intro")}</p>
+
         <div className="hero">
           <div id="preview">
             <Canvas
@@ -191,6 +195,7 @@ const Create = (props) => {
               useDesign={useDesign}
               backgroundColor={color.color}
               selectedDesign={selectedDesign}
+              opacity={opacity / 100}
             />
           </div>
           <div id="intro">
@@ -201,6 +206,16 @@ const Create = (props) => {
               color={color.color}
               image={selectedDesign}
             />
+            <div className="opacity">
+              <input
+                type="range"
+                min="1"
+                max="100"
+                value={opacity}
+                onChange={(i) => setOpacity(parseInt(i.target.value))}
+              />
+            </div>
+
             <div>
               {content.map((c: Content, i: number) => (
                 <TextDesignComponent
@@ -238,12 +253,10 @@ const Create = (props) => {
             </div>
           </div>
         </div>
-
         <div className="name-list">
           <h2>{t("product:textHeader")}</h2>
           <NameList list={text} handler={setText} width={draft.product.width} />
         </div>
-
         <div id="render">
           <h2>{t("product:preview")}</h2>
           <div className="cards">
@@ -260,6 +273,7 @@ const Create = (props) => {
                       backgroundColor={color.color}
                       selectedDesign={selectedDesign}
                       useDesign={useDesign}
+                      opacity={opacity / 100}
                       content={content.map((c, i) => {
                         return {
                           ...c,
@@ -287,10 +301,60 @@ const Create = (props) => {
         textarea {
           width: 100%;
         }
+
+        div.preview,
+        div.preview {
+          opacity: ${opacity} !important;
+        }
+
+        #switch {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
       `}</style>
 
       <style jsx>
         {`
+          .opacity {
+            display: flex;
+            margin: 5% 0;
+          }
+
+          input[type="range"] {
+            width: 100%;
+            background: #f2eeeb;
+            -webkit-appearance: none;
+          }
+
+          input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            border: none;
+            border-radius: 3px;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            // background: #32c0b0;
+            background: darkslategray;
+            margin-top: -4px;
+            cursor: pointer;
+          }
+
+          input[type="range"]:focus {
+            outline: none;
+          }
+
+          input[type="range"]:focus::-webkit-slider-runnable-track {
+            background: #ccc;
+          }
+
           #render {
             margin: 5% 0;
             min-height: 20vh;
@@ -351,7 +415,6 @@ const Create = (props) => {
 
             #intro {
               width: 100%;
-              justify-content: center;
             }
 
             #preview {

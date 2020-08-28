@@ -30,6 +30,7 @@ export const newCanvas = (props: Props) => {
     selectedDesign: props.selectedDesign || 4,
     backgroundColor: props.backgroundColor || "#FF8A65",
     scale: props.scale || 0.5,
+    opacity: 1,
     content: [
       {
         order: 1,
@@ -69,6 +70,7 @@ export const newDraft = (product, uuid): Draft => {
       color: "#FF8A65",
       colorPickerOpen: false,
     },
+    opacity: 1,
     content: [
       {
         order: 1,
