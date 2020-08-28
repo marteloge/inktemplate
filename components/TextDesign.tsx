@@ -60,7 +60,9 @@ const TextDesignComponent = (props: Props) => {
             index
           )
         }
-      />
+      >
+        {colorPickerOpen && <p className="cross">x</p>}
+      </div>
 
       {colorPickerOpen && (
         <ColorPicker
@@ -117,6 +119,21 @@ const TextDesignComponent = (props: Props) => {
             margin: 0 10px;
             padding: 0;
           }
+
+          .cross {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: black;
+          }
+
+          .cross:hover {
+            color: white;
+          }
+
           @media (max-width: 850px) {
             justify-content: start;
 

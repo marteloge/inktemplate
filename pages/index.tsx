@@ -83,7 +83,7 @@ const Home = ({ t }) => {
           ></Canvas>
           <img
             className="refresh"
-            src="/static/images/reload8.png"
+            src="/static/images/reload.png"
             onClick={() => {
               clearInterval(intervalId.current);
               setDraft(randomChange(draft));
