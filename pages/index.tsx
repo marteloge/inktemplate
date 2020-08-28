@@ -5,7 +5,7 @@ import { withTranslation, Router } from "../helpers/i18n";
 import Canvas from "../components/Canvas";
 import { newDraft } from "../helpers/products";
 import { Draft } from "../helpers/types";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Splash from "../components/Splash";
 import {
   newUUID,
@@ -44,6 +44,15 @@ const Home = ({ t }) => {
   const [draft, setDraft] = useState<Draft>(newDraft("PLACECARD", "uuid"));
   const [loading, setLoading] = useState(false);
 
+  const intervalId = useRef();
+
+  useEffect(() => {
+    (intervalId as any).current = setInterval(() => {
+      setDraft(randomChange(draft));
+    }, 3500);
+    return () => clearInterval(intervalId.current);
+  }, []);
+
   if (loading) {
     return <Splash confetti={true} content={t("splash.confetti")}></Splash>;
   }
@@ -74,15 +83,18 @@ const Home = ({ t }) => {
           ></Canvas>
           <img
             className="refresh"
-            src="/static/images/arrow.png"
-            onClick={() => setDraft(randomChange(draft))}
+            src="/static/images/reload8.png"
+            onClick={() => {
+              clearInterval(intervalId.current);
+              setDraft(randomChange(draft));
+            }}
           />
         </div>
         <div className="start">
           <h1>{t("home.header")}</h1>
           <p>{t("home.intro")}</p>
           <button
-            className="button create"
+            className="button create strike"
             onClick={() => {
               const start = new Date();
               setLoading(true);
@@ -117,19 +129,25 @@ const Home = ({ t }) => {
         .content div {
           margin: 10px;
         }
-        .start button {
-          width: 95%;
+
+        @keyframes spin-animation {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
 
         .refresh {
-          margin-top: 5px;
+          margin-top: 15px;
           cursor: pointer;
-          width: ${calculateResponsiveSize(30, 45)};
-          opacity: 0.6;
+          width: ${calculateResponsiveSize(30, 35)};
         }
 
         .refresh:hover {
-          opacity: 1;
+          animation: spin-animation 4s infinite;
+          display: inline-block;
         }
 
         div.preview {
@@ -140,17 +158,34 @@ const Home = ({ t }) => {
 
         button {
           border: none;
-          background: transparent;
-          padding: 10px 40px;
-          box-shadow: 5px 5px 15px rgb(255 255 255);
-          border: 2px solid rgb(256, 256, 256, 0.6);
-          border-radius: 10px;
         }
 
-        .create {
-          margin-top: 5%;
-          font-family: "Dawning of a New Day";
-          font-size: ${calculateResponsiveSize(22, 30)};
+        .strike {
+          display: inline-block;
+          position: relative;
+          font-size: 30px;
+          background-color: transparent;
+          z-index: 1;
+          padding: 10px 0;
+        }
+
+        .strike::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 7px;
+          background: #32c0b0;
+          position: absolute;
+          bottom: 30%;
+          box-shadow: 0px 0px 2px 2px #32c0b0;
+          border-radius: 1px;
+          z-index: -1;
+        }
+
+        .strike:hover ::after {
+          transform: scaleX(1.09);
+          padding-left: 10px;
+          transition: all 0.4s ease-in-out 0s;
         }
 
         @media (max-width: 750px) {
@@ -173,9 +208,6 @@ const Home = ({ t }) => {
           }
 
           .start p {
-            width: 70%;
-          }
-          .start button {
             width: 70%;
           }
         }
