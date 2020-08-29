@@ -61,10 +61,8 @@ const Home = ({ t }) => {
     <Layout>
       <Head>
         <title>{t("meta:index.title")}</title>
-        <meta
-          name="description"
-          content="Create free printable templates for your invitation, place cards and menus."
-        />
+        <meta name="description" content={t("meta:index.description")} />
+        <meta name="robots" content="index" />
       </Head>
 
       <div className="content">

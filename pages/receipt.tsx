@@ -29,7 +29,9 @@ const Receipt = (props) => {
   return (
     <Layout>
       <Head>
-        <title>InkTemplate - Receipt</title>
+        <title>{t("meta:receipt.title")}</title>
+        <meta name="description" content={t("meta:receipt.description")} />
+        <meta name="robots" content="noindex" />
       </Head>
 
       <div className="content">
@@ -130,7 +132,7 @@ Receipt.getInitialProps = async ({ query, req }) => {
   return {
     order,
     draft,
-    namespacesRequired: ["common", "product", "meta"],
+    namespacesRequired: ["common", "meta"],
   };
 };
 

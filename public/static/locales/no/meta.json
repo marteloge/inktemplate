@@ -1,17 +1,40 @@
 {
   "index": {
-    "title": "Inktemplate - Vi gjør print lettere"
+    "title": "Inktemplate - Vi gjør print lettere",
+    "description": "Gratis design for print for dine invitasjoner, bordkort, navelapper og menyer. Vi har design for alle eventer som bryllup, bursdag og sosiale sammenkomster."
   },
-  "about": {
-    "title": "InkTemplate - Om oss"
-  },
-  "create": {
-    "title": "InkTemplate - Lag ny template"
+  "receipt": {
+    "title": "InkTemplate - Kvittering",
+    "description": "Her er kvittering for ditt kjøp."
   },
   "products": {
-    "title": "InkTemplate - Alle templates"
+    "title": "InkTemplate - Alle produkter",
+    "description": "Alle maler til forskjellige type kort. Vi kan lage bordkort, menyer, invitasjoner og mer."
   },
-  "generate": {
-    "title": "InkTemplate - Lag PDF"
+  "product": {
+    "placecard": {
+      "tittle": "InkTemplate - Bordkort",
+      "description": "Lag ditt design for bordkort. Kom meg gjestelisten og vi vil orne resten. Et bordkort vil gjøre at dine gjester førler seg ekstra velkommen!"
+    }
+  },
+  "language": {
+    "title": "InkTemplate - Endre språk",
+    "description": "Bytt til et språk du foretrekker"
+  },
+  "contact": {
+    "title": "InkTemplate - Kontakt oss",
+    "description": "Har du ønsker eller noe du vil dele med oss? Eller har du problem med vår tjeneste? Ta kontakt."
+  },
+  "about": {
+    "title": "InkTemplate - Om oss",
+    "description": "Hva er InkTemplate? Vi er en gratis tjeneste som omformer dine gjestelister til nydelige maler du kan printe."
+  },
+  "preview": {
+    "title": "InkTemplate - Forhåndsvis print",
+    "description": "Forhåndsvis"
+  },
+  "create": {
+    "title": "InkTemplate - Lag ny print",
+    "description": "Lag nytt"
   }
 }

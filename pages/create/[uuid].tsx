@@ -155,6 +155,7 @@ const Create = (props) => {
       <Head>
         <title>{t("meta:create.title")}</title>
         <meta name="description" content={t("meta:create.description")} />
+        <meta name="robots" content="noindex" />
       </Head>
 
       <Sticky>
@@ -442,5 +443,3 @@ Create.getInitialProps = async ({ query }) => {
 };
 
 export default withTranslation("common")(Create);
-
-//TODO: If paid for - should not be able to save draft

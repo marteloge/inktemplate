@@ -56,8 +56,9 @@ const Preview = (props) => {
   return (
     <Layout>
       <Head>
-        <title>{t("meta:generate.title")}</title>
-        <meta name="description" content={t("meta:generate.description")} />
+        <title>{t("meta:preview.title")}</title>
+        <meta name="description" content={t("meta:preview.description")} />
+        <meta name="robots" content="noindex" />
       </Head>
       <Sticky>
         <div className="actions">

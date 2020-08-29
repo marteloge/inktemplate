@@ -7,6 +7,7 @@ const About = ({ t }) => (
     <Head>
       <title>{t("meta:about.title")}</title>
       <meta name="description" content={t("meta:about.description")} />
+      <meta name="robots" content="index" />
     </Head>
     <div className="content">
       <h1>{t("about.header")}</h1>

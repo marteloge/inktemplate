@@ -9,9 +9,10 @@ const Products = ({ t }) => (
     <Head>
       <title>{t("meta:products.title")}</title>
       <meta name="description" content={t("meta:products.description")} />
+      <meta name="robots" content="index" />
     </Head>
     <div className="content">
-      <h1>{t("products.header")}</h1>
+      {/* <h1>{t("products.header")}</h1>
 
       <Link href="/product/[name]?name=placecard" as="/product/placecard">
         <a>{t("products.placecard.name")}</a>
@@ -19,7 +20,7 @@ const Products = ({ t }) => (
 
       <Link href="/product/[name]?name=invitation" as="/product/invitation">
         <a>{t("products.invitation.name")}</a>
-      </Link>
+      </Link>*/}
     </div>
 
     <style jsx>{`

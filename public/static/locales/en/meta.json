@@ -1,17 +1,40 @@
 {
   "index": {
-    "title": "InkTemplate - Templates for all prints"
+    "title": "InkTemplate - Templates for all prints",
+    "description": "Free printable templates for your invitation, place cards, name tags and menus. Design for all events like wedding, birthdays, or work events."
   },
-  "about": {
-    "title": "InkTemplate - About us"
-  },
-  "create": {
-    "title": "InkTemplate - Create new template"
+  "receipt": {
+    "title": "InkTemplate - Receipt",
+    "description": "Receipt for your print"
   },
   "products": {
-    "title": "InkTemplate - All templates"
+    "title": "InkTemplate - All templates",
+    "description": "Find a free template for place cards, invitations and name tags"
   },
-  "generate": {
-    "title": "InkTemplate - Generate PDF"
+  "product": {
+    "placecard": {
+      "tittle": "InkTemplate - Place Card",
+      "description": "Create your place card for your wedding, birthday, party or social gathering. Make your guests feel welcome!"
+    }
+  },
+  "language": {
+    "title": "InkTemplate - Change language",
+    "description": "Change to your prefered language"
+  },
+  "contact": {
+    "title": "InkTemplate - Contact",
+    "description": "Do you have something on your mind or having a problem with our service? Contact InkTemplate!"
+  },
+  "about": {
+    "title": "InkTemplate - About us",
+    "description": "What is InkTemplate? We are a free service creating printable templates for your cards."
+  },
+  "preview": {
+    "title": "InkTemplate - Generate PDF",
+    "description": "Preview your print"
+  },
+  "create": {
+    "title": "InkTemplate - Create new template",
+    "description": "Create your print"
   }
 }
