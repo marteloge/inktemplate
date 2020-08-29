@@ -6,12 +6,14 @@ const createSitemap = (
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         ${languages
           .map((lang) => {
-            return links.map((link) => {
-              if (lang === "en") {
-                return `<url><loc>http://${host}${link}</loc></url>`;
-              }
-              return `<url><loc>http://${host}/${lang}${link}</loc></url>`;
-            });
+            return links
+              .map((link) => {
+                if (lang === "en") {
+                  return `<url><loc>http://www.${host}${link}</loc></url>`;
+                }
+                return `<url><loc>http://www.${host}/${lang}${link}</loc></url>`;
+              })
+              .join("");
           })
           .join("")}
     </urlset>
