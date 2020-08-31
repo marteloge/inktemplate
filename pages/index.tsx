@@ -212,7 +212,6 @@ const Home = ({ t }) => {
       `}</style>
       <style jsx global>{`
         .container {
-          min-height: 100vh;
           background-color: #f2eeeb;
         }
 
