@@ -39,6 +39,7 @@ const DesignImagePreview = (props) => {
           justify-content: center;
           flex-direction: column;
           padding: 5%;
+          padding-bottom: 80px;
         }
 
         .filters,
