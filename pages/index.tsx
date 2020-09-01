@@ -158,34 +158,6 @@ const Home = ({ t }) => {
           border: none;
         }
 
-        .strike {
-          display: inline-block;
-          position: relative;
-          font-size: 30px;
-          background-color: transparent;
-          z-index: 1;
-          padding: 10px 0;
-        }
-
-        .strike::after {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 7px;
-          background: #32c0b0;
-          position: absolute;
-          bottom: 30%;
-          box-shadow: 0px 0px 2px 2px #32c0b0;
-          border-radius: 1px;
-          z-index: -1;
-        }
-
-        .strike:hover ::after {
-          transform: scaleX(1.09);
-          padding-left: 10px;
-          transition: all 0.4s ease-in-out 0s;
-        }
-
         @media (max-width: 750px) {
           .content {
             flex-direction: column;
