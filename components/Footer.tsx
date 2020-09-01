@@ -11,6 +11,9 @@ const Footer = (props) => {
         <Link href="/contact">
           <a>{t("contact.nav")}</a>
         </Link>
+        <Link href="/products">
+          <a>{t("products.nav")}</a>
+        </Link>
         <Link href="/language">
           <a>{t("language.nav")}</a>
         </Link>
@@ -19,29 +22,6 @@ const Footer = (props) => {
         <p>Copyright {new Date().getFullYear()} - InkTemplate</p>
       </div>
       <style jsx>{`
-        // footer {
-        //   bottom: 0;
-        //   position: absolute;
-        //   background-color: white;
-        //   width: 100%;
-        //   display: flex;
-        //   justify-content: center;
-        //   align-items: center;
-        //   flex-direction: column;
-        //   background-color: #f2eeeb;
-        // }
-
-        // footer div {
-        //   width: 100%;
-        //   display: flex;
-        //   justify-content: center;
-        //   margin-bottom: 10px;
-        // }
-
-        // footer a {
-        //   margin: 0 2%;
-        // }
-
         .links,
         .copyrights {
           width: 100%;

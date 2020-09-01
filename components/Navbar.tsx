@@ -1,19 +1,10 @@
 import { useState } from "react";
 
-import { Link, Router, withTranslation, i18n } from "../helpers/i18n";
-import { calculateResponsiveSize, newUUID } from "../helpers/global";
-import { createOrUpdateDraft } from "../helpers/api";
-import { newDraft } from "../helpers/products";
-
-import Splash from "./Splash";
+import { Link, withTranslation } from "../helpers/i18n";
+import { calculateResponsiveSize } from "../helpers/global";
 
 const Navbar = (props) => {
   const { t } = props;
-  const [loading, setLoading] = useState(false);
-
-  if (loading) {
-    return <Splash confetti={true} content={t("splash.confetti")}></Splash>;
-  }
 
   return (
     <div id="navbar">
@@ -23,28 +14,9 @@ const Navbar = (props) => {
         </Link>
       </div>
       <div id="nav">
-        <a
-          onClick={() => {
-            setLoading(true);
-            const uuid = newUUID();
-            const start = new Date();
-
-            createOrUpdateDraft(uuid, newDraft("PLACECARD", uuid)).then(
-              (uuid) => {
-                setTimeout(
-                  () =>
-                    Router.push(
-                      `/create/[uuid]?uuid=${uuid}`,
-                      `/create/${uuid}`
-                    ),
-                  2500 - (new Date().getTime() - start.getTime())
-                );
-              }
-            );
-          }}
-        >
-          {t("create.nav")}
-        </a>
+        <Link href="/products">
+          <a>{t("create.nav")}</a>
+        </Link>
       </div>
 
       <style jsx>{`
