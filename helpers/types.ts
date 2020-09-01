@@ -31,13 +31,21 @@ export type PDFProps = {
 
 export type Product = {
   name: string;
-  printWidth: string;
-  printHeight: string;
   height: number;
   width: number;
 };
 
-// export type Languages = "no" | "en";
+export type Papersize = "A4" | "A5";
+export type Orientation = "landscape" | "portrait";
+
+export type Print = {
+  printWidth: string;
+  printHeight: string;
+  twosided: boolean;
+  paperSize: Papersize;
+  orientation: Orientation;
+  printPerPage: number;
+};
 
 export type Content = {
   order?: number;
@@ -49,9 +57,6 @@ export type Content = {
   text: string;
   colorPickerOpen: boolean;
 };
-
-export type Papersize = "A4" | "A5";
-export type Rotation = "landscape" | "portrait";
 
 export type Draft = {
   uuid: string;
@@ -65,9 +70,7 @@ export type Draft = {
   text: string;
   content: Array<Content>;
   product: Product;
-  twosided: boolean;
-  paperSize: Papersize;
-  rotation: Rotation;
+  print: Print;
   sentReceipt?: boolean;
   language?: string;
   paid?: boolean;

@@ -12,8 +12,8 @@ import { Draft, Content } from "../helpers/types";
 import { toTextArray } from "../helpers/global";
 
 const styles = (draft: Draft) => {
-  const { backgroundColor } = draft;
-  const { printWidth, printHeight } = draft.product;
+  const { backgroundColor, print } = draft;
+  const { printWidth, printHeight } = draft.print;
 
   return StyleSheet.create({
     page: {
@@ -26,7 +26,9 @@ const styles = (draft: Draft) => {
     },
     card: {
       width: printWidth + "cm",
-      height: 2 * parseFloat(printHeight) + "cm",
+      height: print.twosided
+        ? 2 * parseFloat(printHeight) + "cm"
+        : parseFloat(printHeight) + "cm",
       display: "table",
       border: 0.5,
       borderStyle: "dotted",
@@ -98,19 +100,20 @@ const PDF = (draft: Draft) => {
   });
 
   const text = toTextArray(draft.text);
+  const printPerPage = draft.print.printPerPage || 6;
 
   return (
     <Document>
-      {[...Array(Math.ceil(text.length / 6))].map((p, pageNum) => {
+      {[...Array(Math.ceil(text.length / printPerPage))].map((p, pageNum) => {
         return (
           <Page
             key={"page-" + pageNum}
-            size="A4"
-            orientation="landscape"
+            size={draft.print.paperSize || "A4"}
+            orientation={draft.print.orientation || "landscape"}
             style={style.page}
           >
-            {[...Array(6)].map((e, cardNum) => {
-              if (pageNum * 6 + cardNum + 1 > text.length) {
+            {[...Array(printPerPage)].map((e, cardNum) => {
+              if (pageNum * printPerPage + cardNum + 1 > text.length) {
                 return;
               }
               return (
@@ -118,18 +121,20 @@ const PDF = (draft: Draft) => {
                   style={style.card}
                   key={"card-" + pageNum + "-" + cardNum}
                 >
-                  <View style={style.back}>
-                    {!draft.paid && (
-                      <Text
-                        style={{
-                          textAlign: "center",
-                          transform: "rotate(-180deg)",
-                        }}
-                      >
-                        www.inktemplate.com
-                      </Text>
-                    )}
-                  </View>
+                  {draft.print.twosided && (
+                    <View style={style.back}>
+                      {!draft.paid && (
+                        <Text
+                          style={{
+                            textAlign: "center",
+                            transform: "rotate(-180deg)",
+                          }}
+                        >
+                          www.inktemplate.com
+                        </Text>
+                      )}
+                    </View>
+                  )}
                   <View>
                     <View style={style.front}>
                       {draft.useDesign ? (
@@ -146,11 +151,27 @@ const PDF = (draft: Draft) => {
                     </View>
                     <View style={style.content}>
                       <Text style={style.nameText}>
-                        {text[6 * pageNum + cardNum].split(",")[0]}
+                        {text[printPerPage * pageNum + cardNum].split(",")[0]}
                       </Text>
                       <Text style={style.subText}>
-                        {text[6 * pageNum + cardNum].split(",")[1]}
+                        {text[printPerPage * pageNum + cardNum].split(",")[1]}
                       </Text>
+
+                      {!draft.paid && !draft.print.twosided && (
+                        <Text
+                          style={{
+                            position: "absolute",
+                            textAlign: "center",
+                            width: "100%",
+                            height: "100%",
+                            fontSize: 7,
+                            bottom: 0,
+                            top: "92%",
+                          }}
+                        >
+                          www.inktemplate.com
+                        </Text>
+                      )}
                     </View>
                   </View>
                 </View>

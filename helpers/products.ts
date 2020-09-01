@@ -4,10 +4,32 @@ import { Draft } from "./types";
 export const PRODUCTS = {
   PLACECARD: {
     name: "PLACECARD",
-    printWidth: 8.05,
-    printHeight: 5.15,
     width: 400,
     height: 256,
+  },
+  NAMETAG: {
+    name: "NAMETAG",
+    width: 400,
+    height: 256,
+  },
+};
+
+export const PRINT = {
+  PLACECARD: {
+    printWidth: 8.05,
+    printHeight: 5.15,
+    twosided: true,
+    printPerPage: 6,
+    orientation: "landscape",
+    paperSize: "A4",
+  },
+  NAMETAG: {
+    printWidth: 8.05,
+    printHeight: 5.15,
+    twosided: false,
+    printPerPage: 12,
+    orientation: "landscape",
+    paperSize: "A4",
   },
 };
 
@@ -94,10 +116,8 @@ export const newDraft = (product, uuid): Draft => {
       },
     ],
     text: i18n.t("product:defaultText"),
-    twosided: true,
-    paperSize: "A4",
     product: PRODUCTS[product],
-    rotation: "landscape",
+    print: PRINT[product],
     language: i18n.language,
     premium: true,
     paid: false,
