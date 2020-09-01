@@ -9,8 +9,14 @@
     }
   },
   "about": {
-    "nav": "About us",
-    "header": "About us"
+    "nav": "About",
+    "header": "Hello there!",
+    "intro": "My name is Marte Løge and I am the creator of InkTemplate - thanks for stopping by. I'm a Norwegian sailing digital nomad - meaning I live in my sailboat 'Hello World' while traveling the world working as a software developer. Currently sailing around in the Caribbean. I work as a freelancer and create software and apps. I hope you enjoy InkTemplate and please say hello (at) inktemplate.com if you have something on your mind.",
+
+    "feature": {
+      "header": "What is InkTemplate?",
+      "content": "InkTemplate comes from 'ink' and 'template' - that's basically what we are! We make templates for cards that you can print on paper with ink. We provide a big range of designs so you can create the perfect print for your event. Create content once and we will prepare the print for you to cut. It's a cheap 'Do it yourself/DIY' method. We offer the help to create table cards, invitations, name tags, and a number of other templates that you can print yourself. I'm sure you will find a design and product that suits your event! I personally wish you the best of luck with your event :)"
+    }
   },
   "contact": {
     "nav": "Contact",

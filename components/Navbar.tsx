@@ -23,13 +23,13 @@ const Navbar = (props) => {
         #navbar {
           width: 100%;
           top: 0;
-          background-color: white;
+          background-color: #f2eeeb;
           padding: 10px 0;
           margin-bottom: 10px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          box-shadow: 0px 0px 20px 20px rgba(255, 255, 255, 1);
+          // box-shadow: 0px 0px 20px 20px rgba(255, 255, 255, 1);
         }
 
         a {

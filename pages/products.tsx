@@ -71,9 +71,8 @@ const Products = ({ t }) => {
                   {t("products.placecard.header")}
                 </a>
               </Link>
+              <p>{t("products.placecard.description")}</p>
             </div>
-            <div></div>
-            <p>{t("products.placecard.description")}</p>
             <div className="link">
               <img src="/static/images/placecard.jpg"></img>
               <button
@@ -92,8 +91,8 @@ const Products = ({ t }) => {
               <Link href="/product/[name]?name=nametag" as="/product/nametag">
                 <a className="header strike">{t("products.nametag.header")}</a>
               </Link>
+              <p>{t("products.nametag.description")}</p>
             </div>
-            <p>{t("products.nametag.description")}</p>
             <div className="link">
               <img src="/static/images/nametag.jpg"></img>
               <button
@@ -117,8 +116,8 @@ const Products = ({ t }) => {
                   {t("products.invitation.header")}
                 </a>
               </Link>
+              <p>{t("products.invitation.description")}</p>
             </div>
-            <p>{t("products.invitation.description")}</p>
 
             <div className="link">
               <img src="/static/images/invitation.jpg"></img>
@@ -146,8 +145,8 @@ const Products = ({ t }) => {
                   {t("products.savethedate.header")}
                 </a>
               </Link>
+              <p>{t("products.savethedate.description")}</p>
             </div>
-            <p>{t("products.savethedate.description")}</p>
 
             <div className="link">
               <img src="/static/images/savethedate.jpg"></img>
@@ -187,7 +186,6 @@ const Products = ({ t }) => {
           margin: 0 1% 1% 0;
           background-color: white;
           border-radius: 10px;
-
           display: flex;
           flex-direction: column;
           justify-content: space-between;

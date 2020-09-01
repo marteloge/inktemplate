@@ -200,11 +200,6 @@ const Home = ({ t }) => {
             display: none !important;
           }
         }
-
-        .container div#navbar {
-          box-shadow: none;
-          background-color: transparent;
-        }
       `}</style>
     </Layout>
   );

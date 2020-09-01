@@ -21,8 +21,8 @@ const Language = ({ t }) => {
           {allLanguages.map((lang, i) => (
             <button
               key={i}
+              className="strike"
               type="button"
-              style={{ backgroundColor: "rgba(256, 256, 256, 1)" }}
               onClick={() => {
                 i18n.changeLanguage(lang).then(() => {
                   location.replace("/");
@@ -37,7 +37,7 @@ const Language = ({ t }) => {
 
       <style jsx global>{`
         .container {
-          background-color: rgba(238, 233, 231, 0.8);
+          background-color: #f2eeeb;
         }
       `}</style>
 
@@ -47,19 +47,13 @@ const Language = ({ t }) => {
         }
 
         .languages {
-          width: 100%;
           display: flex;
         }
 
         button {
           border: none;
-          padding: 10px 40px;
-          box-shadow: 3px 3px 3px 5px rgb(255 255 255);
-          border: 2px solid rgb(256, 256, 256, 0.6);
-          border-radius: 10px;
-          margin-right: 3%;
-          font-family: "Dawning of a New Day";
-          font-size: ${calculateResponsiveSize(20, 30)};
+          margin-right: 2%;
+          background: #f2eeeb;
         }
       `}</style>
     </Layout>

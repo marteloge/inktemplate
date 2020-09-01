@@ -10,7 +10,12 @@
   },
   "about": {
     "nav": "Om oss",
-    "header": "Om oss"
+    "header": "Hei!",
+    "intro": "Jeg heter Marte Løge og er skaperen av InkTemplate - takk for at du titter innom! Jeg er en norsk seilende digital nomade noe som betyr at jeg bor i seilbåten min 'Hello World' mens jeg reiser verden rundt og jobber som programmerer. For øyeblikket er jeg seilende rundt i karibien. Jeg jobber som frilanser og lager programvare og apper. Jeg håper du liker InkTemplate og vennligst si hei på mail hello(at)inktemplate.com hvis det er noe du lurer på.",
+    "feature": {
+      "header": "Hva er InkTemplate?",
+      "content": "InkTemplate kommer fra 'blekk' og 'mal' - det er i grunn det vi er! Vi lager maler for kort som du selv kan printe med blekk og papir. Du skal slippe å lage design og gjøre klipp og lim pr kort. Lag innhold en gang og vi skal lage klart print for deg. Det er en billig måte å lage fine kort med en 'gjør det selv' metode. Vi tilbyr å hjelpe deg med å lage bordkort, invitasjoner, navnelapper og en rekke andre maler som du selv kan printe. Jeg er sikker på at finner et design som passer ditt arrangement! Personlig ønsker jeg deg masse lykke til med ditt event :)"
+    }
   },
   "contact": {
     "nav": "Kontakt",
@@ -78,7 +83,7 @@
       "header": "Save the date"
     },
     "popup": {
-      "sorry": "Beklager - vi har ikke implementert dette produktet riktig enda. Vi har registrert ditt ønske og jobbet med saken!"
+      "sorry": "Beklager - vi har ikke implementert dette produktet riktig enda. Vi har registrert ditt ønske og jobber med saken!"
     }
   },
   "receipt": {

@@ -10,12 +10,39 @@ const About = ({ t }) => (
       <meta name="robots" content="index" />
     </Head>
     <div className="content">
-      <h1>{t("about.header")}</h1>
+      <div className="intro">
+        <div>
+          <h1>{t("about.header")}</h1>
+          <p style={{ whiteSpace: "pre-line" }}>{t("about.intro")}</p>
+        </div>
+        <img src="/static/images/marte.jpg"></img>
+      </div>
+
+      <div className="about">
+        <h2>{t("about.feature.header")}</h2>
+        <p>{t("about.feature.content")}</p>
+      </div>
     </div>
 
     <style jsx>{`
       .content {
-        margin: 10%;
+        max-width: 650px;
+        margin: 0 auto;
+        padding: 5% 5% 20% 5%;
+      }
+
+      img {
+        border-radius: 100%;
+        max-width: 300px;
+        box-shadow: 5px 5px 15px gray;
+      }
+      .intro {
+        display: flex;
+      }
+    `}</style>
+    <style jsx global>{`
+      .container {
+        background-color: #f2eeeb;
       }
     `}</style>
   </Layout>
