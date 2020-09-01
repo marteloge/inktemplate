@@ -1,11 +1,12 @@
 import { Draft } from "./types";
 import fire from "./db";
 
-// import firebase from "firebase/app";
-// import "firebase/firestore";
-
 export const logEvent = (event: string) => {
-  fire.analytics().logEvent(event);
+  try {
+    fire.analytics().logEvent(event);
+  } catch (e) {
+    console.error("Could not log analytics event");
+  }
 };
 
 export const getDraft = (uuid: string) => {
