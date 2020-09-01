@@ -18,7 +18,7 @@
   "filter": {
     "celebration": "Feiring",
     "abstract": "Abstrakt",
-    "flowers": "Blomster",
+    "baby": "Baby",
     "nature": "Natur",
     "popular": "Populære",
     "borders": "Border",
@@ -30,6 +30,24 @@
       "previewPrint": "Forhåndsvis",
       "saveDraft": "Lagre",
       "savingDraft": "...Lagrer"
+    }
+  },
+  "product": {
+    "placecard": {
+      "header": "Bordkort",
+      "intro": ""
+    },
+    "nametag": {
+      "header": "Navnelapp",
+      "intro": ""
+    },
+    "invitation": {
+      "header": "Invitasjon",
+      "intro": ""
+    },
+    "savethedate": {
+      "header": "Save the date",
+      "intro": ""
     }
   }
 }

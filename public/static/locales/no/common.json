@@ -52,8 +52,34 @@
   "products": {
     "nav": "Produkter",
     "header": "Alle produkter",
-    "placecard": { "name": "Bordkort" },
-    "invitation": { "name": "Invitasjon" }
+    "intro": "Her er en rekke maler for en rekke produkter. Kanskje du vil ha bordkort til dine gjester for å vise hvor de skal sitte? Eller kanskje lage en personlig invitasjon? Her har du flere muligheter!",
+    "placecard": {
+      "create": "Lag bordkort",
+      "description": "Lag bordkort til ditt event! Eneten om det er for bryllup, bursdag, jobb eller annet. La gjestene dine føle seg spesielle og ønsket. Kortet er et stående kort og du kan selv velge mellom en rekke flotte design. Kortene kan brukes for å indikere hvor dine gjester skal sitte eller kanskje du vil markere mat på serveringsbord? Det er bare kreativiteten som kan stoppe deg.",
+      "name": "Bordkort",
+      "header": "Bordkort"
+    },
+    "nametag": {
+      "create": "Lag navnelapper",
+      "description": "Lag navnelapper til ditt arrangement! Du kan lage lapper på klister, til plastikk holdere eller i bare vanlig papir. Finn ditt design og kom med gjestelisten så skal vi lage print som du kan printe selv.",
+      "name": "Navnelapp",
+      "header": "Navnelapp"
+    },
+    "invitation": {
+      "create": "Lag invitasjon",
+      "description": "Vil du lage personlige invitasjoner som du kan printe selv? Lag invitasjon til bursdag, bryllup eller andre selskaper. Velg mellom en rekke design og fine farger for å sette ditt personlige preg!",
+      "name": "Invitasjon",
+      "header": "Invitasjon"
+    },
+    "savethedate": {
+      "create": "Lag Save the date",
+      "description": "Vil du at dine gjester skal holde av den spesielle dagen? Vi har et stort utvalg av design for fine kort. Send oss din tekst og gjesteliste så ordner vi resten!",
+      "name": "Save the date",
+      "header": "Save the date"
+    },
+    "popup": {
+      "sorry": "Beklager - vi har ikke implementert dette produktet riktig enda. Vi har registrert ditt ønske og jobbet med saken!"
+    }
   },
   "receipt": {
     "header": "Kvittering",

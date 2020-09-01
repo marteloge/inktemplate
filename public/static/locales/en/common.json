@@ -50,10 +50,36 @@
     }
   },
   "products": {
-    "nav": "Templates",
-    "header": "All templates",
-    "placecard": { "name": "Place card" },
-    "invitation": { "name": "Invitation" }
+    "nav": "Products",
+    "header": "All products",
+    "intro": "Here is all the different kind of prints we can make for you! Select design and provide the text you want and we will do the rest of the work to create a print for you.",
+    "placecard": {
+      "create": "Create place cards",
+      "description": "Create a place card for your event. The card is a two sided folded card. The table card can be placed on the table to indicate where you want to place your guest. Or maybe you want to label food on the table?",
+      "name": "Place card",
+      "header": "Place card"
+    },
+    "nametag": {
+      "create": "Create nametags",
+      "description": "Create nametags for your event. You can print the paper for plastic badges, stickers or necklace. Bring the guest list and we will prepare your print.",
+      "name": "Nametag",
+      "header": "Nametag"
+    },
+    "invitation": {
+      "create": "Create invitations",
+      "description": "Do you want to create personal invites for your wedding, party or event? Select between beautiful designs and send us your guest list.",
+      "name": "Invitation",
+      "header": "Invitation"
+    },
+    "savethedate": {
+      "create": "Create save the date",
+      "description": "Do you want your guests to save the date? We have a selction of design you can use for your invitations. Send us the text and your guest list and we will make prepare them for you.",
+      "name": "Save the date",
+      "header": "Save the date"
+    },
+    "popup": {
+      "sorry": "Sorry - we have not implemented this print yet. We have registred your interest and we are working on it!"
+    }
   },
   "receipt": {
     "header": "Print receipt",

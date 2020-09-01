@@ -13,8 +13,20 @@
   },
   "product": {
     "placecard": {
-      "tittle": "InkTemplate - Place Card",
+      "title": "InkTemplate - Place Card",
       "description": "Create your place card for your wedding, birthday, party or social gathering. Make your guests feel welcome!"
+    },
+    "nametag": {
+      "title": "InkTemplate - Nametag",
+      "description": "Create your place card for your wedding, birthday, party or social gathering. Make your guests feel welcome!"
+    },
+    "invitation": {
+      "title": "InkTemplate - Invitation",
+      "description": "Create a personal invitation for your wedding, birthday, party or social gathering. Make your guests feel welcome!"
+    },
+    "savethedate": {
+      "title": "InkTemplate - Save the Date",
+      "description": "Create an save the date card to make sure your guest can attend your wedding, birthday, party or social gathering. Make sure they want to the date!"
     }
   },
   "language": {

@@ -18,13 +18,26 @@ const Product = ({ t }) => {
         />
         <meta name="robots" content="index" />
       </Head>
-      <h1>Product - {name}</h1>
+      <div className="content">
+        <h1>{t(`product:product.${name}.header`)}</h1>
+        <p>{t(`product:product.${name}.intro`)}</p>
+      </div>
+      <style jsx>{`
+        .content {
+          margin: 5% 10%;
+        }
+      `}</style>
+      <style jsx global>{`
+        .container {
+          background-color: #f2eeeb;
+        }
+      `}</style>
     </Layout>
   );
 };
 
 Product.getInitialProps = async () => ({
-  namespacesRequired: ["meta"],
+  namespacesRequired: ["common", "product", "meta"],
 });
 
-export default withTranslation("meta")(Product);
+export default withTranslation("common")(Product);

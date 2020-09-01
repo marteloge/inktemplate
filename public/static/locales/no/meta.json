@@ -15,6 +15,18 @@
     "placecard": {
       "tittle": "InkTemplate - Bordkort",
       "description": "Lag ditt design for bordkort. Kom meg gjestelisten og vi vil orne resten. Et bordkort vil gjøre at dine gjester førler seg ekstra velkommen!"
+    },
+    "nametag": {
+      "title": "InkTemplate - Navnelapp",
+      "description": "Lag ditt bordkort til bryllup, bursdag, fest eller sosialte sammenkoster. La gjestene dine føle seg velkommen!"
+    },
+    "invitation": {
+      "title": "InkTemplate - Invitasjon",
+      "description": "Lag en personlig invitasjon for bryllup, bursdag, fest eller andre sosiale sammenkoster. La gjestene dine føle seg ekstra ønsket med en personlig invitasjon!"
+    },
+    "savethedate": {
+      "title": "InkTemplate - Save the Date",
+      "description": "Lag et kort for å sikre at gjestene dine kan delta på bryllupet, bursdagen, festen eller den sosiale sammenkomsten. Sørg for at alle holder av datoen!"
     }
   },
   "language": {

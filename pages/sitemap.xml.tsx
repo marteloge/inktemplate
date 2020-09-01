@@ -23,7 +23,22 @@ const Sitemap = () => {};
 
 Sitemap.getInitialProps = ({ res, req }) => {
   res.setHeader("Content-Type", "text/xml");
-  res.write(createSitemap(req.headers.host, ["", "/about"], ["en", "no"]));
+
+  res.write(
+    createSitemap(
+      req.headers.host,
+      [
+        "",
+        "/about",
+        "/products",
+        "/product/placecard",
+        "/product/nametag",
+        "/product/invitation",
+        "/product/savethedate",
+      ],
+      ["en", "no"]
+    )
+  );
   res.end();
   return res;
 };

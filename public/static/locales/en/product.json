@@ -1,7 +1,7 @@
 {
   "nameText": "Janelle",
   "subText": "Table 1",
-  "defaultText": "Janelle, Table 1; Harold, Table2; Jeff, Table 3;",
+  "defaultText": "Janelle, Table 1\nHarold, Table2\nJeff, Table 3\n",
   "backgroundColor": "Background color",
   "painting": "Painting your print!",
   "selectDesign": "Select design",
@@ -18,7 +18,7 @@
   "filter": {
     "celebration": "Celebration",
     "abstract": "Abstract",
-    "flowers": "Flowers",
+    "baby": "Baby",
     "nature": "Nature",
     "popular": "Popular",
     "borders": "Borders",
@@ -30,6 +30,24 @@
       "previewPrint": "Preview",
       "saveDraft": "Save",
       "savingDraft": "...Saving"
+    }
+  },
+  "product": {
+    "placecard": {
+      "header": "Place card/Table card",
+      "intro": ""
+    },
+    "nametag": {
+      "header": "Nametag",
+      "intro": ""
+    },
+    "invitation": {
+      "header": "Invitation",
+      "intro": ""
+    },
+    "savethedate": {
+      "header": "Save the date",
+      "intro": ""
     }
   }
 }
