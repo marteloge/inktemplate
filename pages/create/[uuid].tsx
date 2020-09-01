@@ -262,8 +262,8 @@ const Create = (props) => {
           <h2>{t("product:preview")}</h2>
           <div className="cards">
             {text
-              .slice(0, text.length - 1)
-              .split(";")
+              .slice(0, text.length)
+              .split("\n")
               .map((t, i) => {
                 return (
                   <div key={"canvas-" + i} className="card">

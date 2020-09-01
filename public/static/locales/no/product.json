@@ -1,7 +1,7 @@
 {
   "nameText": "Marte",
   "subText": "Bord 1",
-  "defaultText": "Marte, Bord 1; Håkon, Bord 2; Ole, Bord 3;",
+  "defaultText": "Marte, Bord 1\nHåkon, Bord\nOle, Bord 3",
   "backgroundColor": "Bakgrunnsfarge",
   "painting": "Tegner skisser for print!",
   "selectDesign": "Velg design",

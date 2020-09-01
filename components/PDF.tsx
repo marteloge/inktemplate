@@ -9,7 +9,6 @@ import {
 } from "@react-pdf/renderer";
 
 import { Draft, Content } from "../helpers/types";
-import { toTextArray } from "../helpers/global";
 
 const styles = (draft: Draft) => {
   const { backgroundColor, print } = draft;
@@ -99,7 +98,7 @@ const PDF = (draft: Draft) => {
     };
   });
 
-  const text = toTextArray(draft.text);
+  const text = draft.text.split("\n");
   const printPerPage = draft.print.printPerPage || 6;
 
   return (

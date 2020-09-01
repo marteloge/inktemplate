@@ -244,13 +244,6 @@ export const updateField = (state, handler, field, value) =>
 
 export const update = (handler, nextState) => handler(nextState);
 
-export const toTextArray = (text: string): Array<string> => {
-  if (text.slice(-1) === ";") {
-    return text.slice(0, text.length - 1).split(";");
-  }
-  return text.split(";");
-};
-
 type StylesDictionary = {
   [Key: string]: CSSProperties;
 };
