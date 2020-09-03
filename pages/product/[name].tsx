@@ -27,11 +27,6 @@ const Product = ({ t }) => {
           margin: 5% 10%;
         }
       `}</style>
-      <style jsx global>{`
-        .container {
-          background-color: #f2eeeb;
-        }
-      `}</style>
     </Layout>
   );
 };

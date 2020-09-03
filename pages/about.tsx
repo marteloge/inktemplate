@@ -28,21 +28,32 @@ const About = ({ t }) => (
       .content {
         max-width: 650px;
         margin: 0 auto;
-        padding: 5% 5% 20% 5%;
+        padding: 5%;
       }
 
       img {
         border-radius: 100%;
-        max-width: 300px;
-        box-shadow: 5px 5px 15px gray;
+        max-width: 250px;
+        margin: 1%;
       }
+
       .intro {
         display: flex;
       }
+
+      .about {
+        margin: 5% 0;
+      }
+
+      @media (max-width: 550px) {
+        .intro {
+          flex-direction: column;
+        }
+      }
     `}</style>
     <style jsx global>{`
-      .container {
-        background-color: #f2eeeb;
+      footer {
+        position: absolute;
       }
     `}</style>
   </Layout>

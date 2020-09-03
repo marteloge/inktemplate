@@ -183,10 +183,6 @@ const Home = ({ t }) => {
         }
       `}</style>
       <style jsx global>{`
-        .container {
-          background-color: #f2eeeb;
-        }
-
         .examples div.preview {
           margin-right: 10px;
         }

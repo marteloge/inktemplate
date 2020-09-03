@@ -291,10 +291,6 @@ const Create = (props) => {
       </div>
 
       <style jsx global>{`
-        .container {
-          background-color: rgb(238, 233, 231, 0.8);
-        }
-
         footer {
           display: none !important;
         }

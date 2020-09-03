@@ -227,12 +227,6 @@ const Products = ({ t }) => {
           }
         }
       `}</style>
-
-      <style jsx global>{`
-        .container {
-          background-color: #f2eeeb;
-        }
-      `}</style>
     </Layout>
   );
 };

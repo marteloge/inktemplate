@@ -19,6 +19,12 @@ const Contact = ({ t }) => (
         margin: 10%;
       }
     `}</style>
+
+    <style jsx global>{`
+      footer {
+        position: absolute;
+      }
+    `}</style>
   </Layout>
 );
 

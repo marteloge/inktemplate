@@ -195,10 +195,6 @@ const Preview = (props) => {
           z-index: 1;
         }
 
-        .container {
-          background-color: rgb(242, 238, 235);
-        }
-
         .content {
           height: 100%;
           width: 100%;

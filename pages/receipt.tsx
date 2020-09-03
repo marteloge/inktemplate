@@ -100,10 +100,6 @@ const Receipt = (props) => {
             width: 100%;
           }
 
-          .container {
-            background-color: rgb(238, 233, 231, 0.8);
-          }
-
           .react-pdf__Page__svg {
             max-width: 100vw;
             border-radius: 5px;

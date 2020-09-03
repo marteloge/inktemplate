@@ -36,8 +36,8 @@ const Language = ({ t }) => {
       </div>
 
       <style jsx global>{`
-        .container {
-          background-color: #f2eeeb;
+        footer {
+          position: absolute;
         }
       `}</style>
 

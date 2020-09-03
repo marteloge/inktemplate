@@ -13,10 +13,28 @@ const MyApp = ({ Component, pageProps }) => (
     <Component {...pageProps} />
 
     <style jsx global>{`
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        font-size: ${calculateResponsiveSize(12, 16)};
+        min-height: 100%;
+        width: 100%;
+      }
+
+      html {
+        min-height: 100%;
+        width: 100%;
+      }
+
       .container {
         position: absolute;
         min-height: 100%;
         width: 100%;
+        background-color: #f2eeeb;
       }
 
       @font-face {
@@ -476,16 +494,6 @@ const MyApp = ({ Component, pageProps }) => (
             format("woff2"),
           url("/static/fonts/lobster-v22-latin-regular.woff") format("woff"),
           url("/static/fonts/lobster-v22-latin-regular.ttf") format("truetype");
-      }
-      * {
-        margin: 0;
-      }
-
-      html,
-      body {
-        min-height: 100vh;
-        margin: 0;
-        font-size: ${calculateResponsiveSize(12, 16)};
       }
 
       a,
