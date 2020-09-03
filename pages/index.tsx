@@ -200,6 +200,10 @@ const Home = ({ t }) => {
             display: none !important;
           }
         }
+
+        footer {
+          position: absolute;
+        }
       `}</style>
     </Layout>
   );

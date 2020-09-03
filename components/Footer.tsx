@@ -38,6 +38,11 @@ const Footer = (props) => {
           font-weight: bold;
           margin-bottom: 2%;
         }
+
+        footer {
+          bottom: 0;
+          width: 100%;
+        }
       `}</style>
     </footer>
   );
