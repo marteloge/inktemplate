@@ -539,6 +539,12 @@ const MyApp = ({ Component, pageProps }) => (
         cursor: pointer;
       }
 
+      button:disabled {
+        background-color: lightgrey;
+        border: none;
+        color: white;
+      }
+
       .strike {
         display: inline-block;
         position: relative;

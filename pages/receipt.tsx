@@ -79,12 +79,6 @@ const Receipt = (props) => {
             min-width: 200px;
           }
 
-          button:disabled {
-            background-color: lightgrey;
-            border: none;
-            color: white;
-          }
-
           .content {
             padding: 5% 5%;
             max-width: 1030px;
