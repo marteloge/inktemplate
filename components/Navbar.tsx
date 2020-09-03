@@ -29,7 +29,6 @@ const Navbar = (props) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          // box-shadow: 0px 0px 20px 20px rgba(255, 255, 255, 1);
         }
 
         a {
@@ -37,6 +36,7 @@ const Navbar = (props) => {
           font-weight: 400;
           font-size: ${calculateResponsiveSize(14, 18)};
           margin: 1.8vmin;
+          margin-right: ${calculateResponsiveSize(15, 100)};
         }
 
         #logo a {
