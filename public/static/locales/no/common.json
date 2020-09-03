@@ -89,8 +89,26 @@
   "receipt": {
     "header": "Kvittering",
     "intro": "Vi har sendt en mail til {{email}} med link til print, samt link for å endre print i etterkant. Du kan alltid endre din gjesteliste og laste ned en ny kopi. Lykke til med ditt arrangement!",
-    "change": "Oppdater tekst",
-    "button": { "download": "Last ned PDF", "save": "Save" }
+    "change": "Endre tekst",
+    "button": {
+      "download": "Last ned PDF",
+      "save": "Save",
+      "upload": "Last opp fra fil",
+      "revert": "Fjern endring"
+    },
+    "download": {
+      "header": "Last ned",
+      "intro": "Er du fornøyd med print nå? Når du er klar kan du trykke på linken under for å laste ned fil som du kan printe ut. Du kan endre tekst, men husk å lagre endringer før du laster ned."
+    }
+  },
+  "upload": {
+    "dragndrop": "Drag 'n' drop xcel fil her eller klikk",
+    "question": "Usikker på format på fil som skal lastes opp?",
+    "download": "Last ned xcel mal her",
+    "new": "Ny tekst",
+    "close": "Avbryt",
+    "save": "Legg til ny tekst",
+    "help": "Du må lagre endringer eller fjerne endringer før du kan laste ned pdf"
   },
   "languages": {
     "no": "Norsk",

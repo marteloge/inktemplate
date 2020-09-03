@@ -532,6 +532,7 @@ const MyApp = ({ Component, pageProps }) => (
         outline: none;
         box-shadow: none;
         border: 1px solid black;
+        min-height: 45px;
       }
 
       a,
@@ -540,6 +541,7 @@ const MyApp = ({ Component, pageProps }) => (
       }
 
       button:disabled {
+        padding: 10px 20px;
         background-color: lightgrey;
         border: none;
         color: white;
@@ -552,6 +554,7 @@ const MyApp = ({ Component, pageProps }) => (
         background-color: transparent;
         z-index: 1;
         padding: 10px 0;
+        border: none;
       }
 
       .strike::after {
@@ -571,6 +574,18 @@ const MyApp = ({ Component, pageProps }) => (
         transform: scaleX(1.09);
         padding-left: 10px;
         transition: all 0.4s ease-in-out 0s;
+      }
+
+      button.strike:disabled {
+        background-color: transparent;
+        padding: 0;
+        color: gray;
+        cursor: not-allowed;
+      }
+
+      .strike:disabled::after {
+        box-shadow: none;
+        height: 0;
       }
     `}</style>
   </>

@@ -4,5 +4,5 @@ import PDF from "./PDF";
 
 export const downloadPdfDocument = async (draft) => {
   const blob = await pdf(<PDF {...draft} />).toBlob();
-  saveAs(blob, "filename");
+  saveAs(blob, "inktemplate");
 };

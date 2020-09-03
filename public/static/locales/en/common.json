@@ -88,10 +88,28 @@
     }
   },
   "receipt": {
-    "header": "Print receipt",
+    "header": "Your receipt",
     "intro": "We sent you an email to {{email}}! You can always get back here to change your guest list or download a new copy. Happy printing!",
     "change": "Change text",
-    "button": { "download": "Download PDF", "save": "Save" }
+    "download": {
+      "header": "Download",
+      "intro": "Are you happy with the print? When you are ready you can click to download a pdf you can print. You can also change the text for your print. Make sure to save all changes before downloading."
+    },
+    "button": {
+      "download": "Download PDF",
+      "save": "Save",
+      "upload": "Upload from file",
+      "revert": "Revert"
+    }
+  },
+  "upload": {
+    "dragndrop": "Drag 'n' drop xcel file here, or click to",
+    "question": "Dont know what file to upload?",
+    "download": "Download template file",
+    "new": "New text",
+    "close": "Cancel",
+    "save": "Apply new text",
+    "help": "You need to save text changes or revert them before you can download"
   },
   "languages": {
     "no": "Norwegian",

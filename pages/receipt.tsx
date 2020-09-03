@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 
-import { withTranslation, Router } from "../helpers/i18n";
+import { withTranslation } from "../helpers/i18n";
 import { downloadPdfDocument } from "../components/Download";
 import { Draft } from "../helpers/types";
 
@@ -9,6 +9,7 @@ import Layout from "../components/Layout";
 import Splash from "../components/Splash";
 import dynamic from "next/dynamic";
 import NameList from "../components/NameList";
+import FileUpload from "../components/FileUploader";
 import { createOrUpdateDraft } from "../helpers/api";
 
 const PreviewPDF = dynamic(import("../components/PreviewPDF"), {
@@ -21,9 +22,23 @@ const Receipt = (props) => {
   const [draft, setDraft] = useState<Draft>(props.draft);
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
   const [text, setText] = useState<string>(draft.text);
+  const [upload, setUpload] = useState<boolean>(false);
+
+  const changed = text !== draft.text;
 
   if (savingDraft) {
     return <Splash content={t("splash.saving")}></Splash>;
+  }
+
+  if (upload) {
+    return (
+      <FileUpload
+        text={text}
+        setText={setText}
+        open={upload}
+        setOpen={setUpload}
+      />
+    );
   }
 
   return (
@@ -38,45 +53,78 @@ const Receipt = (props) => {
         <div className="intro">
           <h1>{t("receipt.header")}</h1>
           <p>{t("receipt.intro", { email: order.customer.email })}</p>
+        </div>
 
-          <button onClick={() => downloadPdfDocument(draft)}>
+        <div className="download">
+          <h2>{t("receipt.download.header")}</h2>
+          <p>{t("receipt.download.intro")}</p>
+          <button
+            disabled={changed}
+            style={{
+              fontSize: "20px",
+              minWidth: "100px",
+            }}
+            className="strike"
+            onClick={() => downloadPdfDocument(draft)}
+          >
             {t("receipt.button.download")}
           </button>
+          {changed && <p>({t("upload.help")})</p>}
         </div>
 
         <div className="names">
           <h2>{t("receipt.change")}</h2>
           <NameList className="text" list={text} handler={setText}></NameList>
 
-          <button
-            disabled={text === draft.text}
-            onClick={() => {
-              setSavingDraft(true);
-              createOrUpdateDraft(draft.uuid, { ...draft, text }).then(() => {
-                setDraft({ ...draft, text });
-                setSavingDraft(false);
-              });
-            }}
-          >
-            {t("receipt.button.save")}
-          </button>
+          <div style={{ display: "flex", justifyContent: "end" }}>
+            <button onClick={() => setUpload(true)}>
+              <img
+                src="/static/images/xcel.png"
+                style={{
+                  width: "20px",
+                  marginRight: "10px",
+                }}
+              ></img>
+              {t("receipt.button.upload")}
+            </button>
+            {changed && (
+              <button
+                onClick={() => {
+                  setSavingDraft(true);
+                  createOrUpdateDraft(draft.uuid, { ...draft, text }).then(
+                    () => {
+                      setDraft({ ...draft, text });
+                      setSavingDraft(false);
+                    }
+                  );
+                }}
+              >
+                {t("receipt.button.save")}
+              </button>
+            )}
+            {changed && (
+              <button onClick={() => setText(draft.text)}>
+                {t("receipt.button.revert")}
+              </button>
+            )}
+          </div>
         </div>
 
-        <div className="pdf">
-          <PreviewPDF draft={draft} />
-        </div>
+        <div className="pdf">{!changed && <PreviewPDF draft={draft} />}</div>
       </div>
 
       <style jsx>
         {`
           .intro,
-          .names {
+          .names,
+          .download {
             margin-bottom: 5%;
           }
 
           button {
             margin-top: 20px;
             min-width: 200px;
+            margin-right: 10px;
           }
 
           .content {
@@ -111,6 +159,8 @@ const Receipt = (props) => {
 };
 
 Receipt.getInitialProps = async ({ query, req }) => {
+  console.log(req !== undefined);
+
   const { order, draft } = await fetch(
     `http://${req.headers.host}/api/checkout/${query.session_id}`,
     {

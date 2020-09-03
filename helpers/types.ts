@@ -73,7 +73,7 @@ export type Draft = {
   print: Print;
   sentReceipt?: boolean;
   language?: string;
-  paid?: boolean;
+  paid: boolean;
   premium?: boolean;
   created?: Date;
   updated?: Date;

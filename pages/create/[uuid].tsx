@@ -19,6 +19,8 @@ import Popup from "../../components/Popup";
 import { newDraft } from "../../helpers/products";
 import { downloadPdfDocument } from "../../components/Download";
 
+import FileUploader from "../../components/FileUploader";
+
 const Create = (props) => {
   const t = props.t;
   const draft: Draft = props.draft;
@@ -31,11 +33,13 @@ const Create = (props) => {
   const [content, setContent] = useState<Array<Content>>(draft.content);
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
   const [loadPreview, setLoadPreview] = useState(false);
-  const [popup, setPopup] = useState<boolean>(false);
   const [loadNewPrint, setLoadNewPrint] = useState<boolean>(false);
   const [selectedDesign, setSelectedDesign] = useState<number>(
     draft.backgroundImage
   );
+
+  const [popup, setPopup] = useState<boolean>(false);
+  const [upload, setUpload] = useState<boolean>(false);
 
   const pdfData: Draft = {
     ...draft,
@@ -69,6 +73,17 @@ const Create = (props) => {
 
   if (loadNewPrint) {
     return <Splash confetti content={t("splash.create")}></Splash>;
+  }
+
+  if (upload) {
+    return (
+      <FileUploader
+        text={text}
+        open={upload}
+        setOpen={setUpload}
+        setText={setText}
+      />
+    );
   }
 
   if (draft.paid) {
@@ -257,6 +272,25 @@ const Create = (props) => {
         <div className="name-list">
           <h2>{t("product:textHeader")}</h2>
           <NameList list={text} handler={setText} width={draft.product.width} />
+          <button
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "10px",
+            }}
+            onClick={() => setUpload(true)}
+          >
+            <img
+              src="/static/images/xcel.png"
+              style={{
+                width: "20px",
+                marginRight: "10px",
+              }}
+            ></img>
+            Upload from file
+          </button>
         </div>
         <div id="render">
           <h2>{t("product:preview")}</h2>

@@ -21,7 +21,7 @@ const PreviewPDF = dynamic(import("../../components/PreviewPDF"), {
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const getPrice = (prices, currency) => {
-  return prices.data.find((p) => p.currency === currency);
+  return prices ? prices.data.find((p) => p.currency === currency) : null;
 };
 
 const toCheckout = async (draft, currency, prices) => {
@@ -44,13 +44,15 @@ const toCheckout = async (draft, currency, prices) => {
 const Preview = (props) => {
   const { t } = props;
   const draft: Draft = props.draft;
-
   const { prices, isLoadingPrices } = usePrices();
-
   const [loadingPayment, setLoadingPayment] = useState(false);
 
   if (loadingPayment) {
     return <Splash content={"Forbereder betaling"}></Splash>;
+  }
+
+  if (!draft) {
+    return <></>;
   }
 
   return (
