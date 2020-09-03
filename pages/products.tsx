@@ -164,18 +164,10 @@ const Products = ({ t }) => {
       </div>
 
       <style jsx>{`
-        .content {
-          margin: 5% 10%;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          display: relative;
-        }
-
         .products {
           display: flex;
-          flex-direction: row;
           flex-wrap: wrap;
+          justify-content: center;
           margin: 20px 0 5% 0;
         }
 
@@ -231,6 +223,13 @@ const Products = ({ t }) => {
       <style jsx global>{`
         .container {
           background-color: #f2eeeb;
+          min-height: 100%;
+        }
+        .content {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
       `}</style>
     </Layout>

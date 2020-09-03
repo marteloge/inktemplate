@@ -44,6 +44,7 @@ const toCheckout = async (draft, currency, prices) => {
 const Preview = (props) => {
   const { t } = props;
   const draft: Draft = props.draft;
+  console.log(draft);
 
   const { prices, isLoadingPrices } = usePrices();
 

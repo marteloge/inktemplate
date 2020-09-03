@@ -39,6 +39,16 @@
     },
     "button": { "create": "Create new", "download": "Download" }
   },
+  "upload": {
+    "dragndrop": "Drag 'n' drop xcel file here, or click to",
+    "question": "Dont know what file to upload?",
+    "download": "Download template file",
+    "header": "Place card",
+    "old": "Old text",
+    "new": "New text",
+    "close": "Cancel",
+    "save": "Save new text"
+  },
   "generate": {
     "nav": "Generate PDF",
     "header": "Upgrade",

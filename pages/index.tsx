@@ -121,7 +121,6 @@ const Home = ({ t }) => {
           justify-content: center;
           max-width: 800px;
           margin: 0 auto;
-          min-height: 100%;
         }
 
         .content div {
@@ -199,6 +198,10 @@ const Home = ({ t }) => {
           .carousel {
             display: none !important;
           }
+        }
+
+        footer {
+          position: absolute;
         }
       `}</style>
     </Layout>

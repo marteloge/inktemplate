@@ -51,7 +51,7 @@ const Switch = (props) => {
           }
 
           #switch button {
-            height: 60px;
+            height: 80px;
             margin: 0;
           }
         }

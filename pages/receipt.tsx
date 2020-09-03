@@ -10,6 +10,7 @@ import Splash from "../components/Splash";
 import dynamic from "next/dynamic";
 import NameList from "../components/NameList";
 import { createOrUpdateDraft } from "../helpers/api";
+import UploadFile from "../components/UploadFile";
 
 const PreviewPDF = dynamic(import("../components/PreviewPDF"), {
   ssr: false,
@@ -21,9 +22,21 @@ const Receipt = (props) => {
   const [draft, setDraft] = useState<Draft>(props.draft);
   const [savingDraft, setSavingDraft] = useState<boolean>(false);
   const [text, setText] = useState<string>(draft.text);
+  const [upload, setUpload] = useState<boolean>(false);
 
   if (savingDraft) {
     return <Splash content={t("splash.saving")}></Splash>;
+  }
+
+  if (upload) {
+    return (
+      <UploadFile
+        text={text}
+        setText={setText}
+        open={upload}
+        setOpen={setUpload}
+      />
+    );
   }
 
   return (
@@ -60,6 +73,7 @@ const Receipt = (props) => {
           >
             {t("receipt.button.save")}
           </button>
+          <button onClick={() => setUpload(true)}>Upload from file</button>
         </div>
 
         <div className="pdf">
@@ -77,12 +91,6 @@ const Receipt = (props) => {
           button {
             margin-top: 20px;
             min-width: 200px;
-          }
-
-          button:disabled {
-            background-color: lightgrey;
-            border: none;
-            color: white;
           }
 
           .content {

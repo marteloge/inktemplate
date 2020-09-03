@@ -137,14 +137,18 @@ const TextDesignComponent = (props: Props) => {
           @media (max-width: 850px) {
             justify-content: start;
 
+            .color-circle {
+              margin-right: 10px;
+            }
+          }
+
+          @media (max-width: 500px) {
             input {
               display: none;
             }
+
             .select {
               margin-left: 2%;
-            }
-            .color-circle {
-              margin-right: 10px;
             }
           }
         `}
