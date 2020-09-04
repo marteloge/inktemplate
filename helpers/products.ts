@@ -187,6 +187,14 @@ export const curatedDesigns: Array<Curated> = [
     content: [{ font: 38, color: "#FFFFFF" }],
   },
   {
+    image: 128,
+    content: [{ font: 39, color: "#95A225" }],
+  },
+  {
+    image: 124,
+    content: [{ font: 24, color: "#000000" }],
+  },
+  {
     image: 60,
     content: [
       { font: 32, color: "#FFFFFF" },
