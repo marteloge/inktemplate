@@ -5,7 +5,7 @@ import { filters } from "../helpers/global";
 const DesignImagePreview = (props) => {
   const { setSelectedDesign, width, height, t } = props;
 
-  const [filter, setFilter] = useState("popular");
+  const [filter, setFilter] = useState("abstract");
 
   return (
     <div className="designs">
