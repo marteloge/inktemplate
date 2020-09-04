@@ -79,3 +79,8 @@ export type Draft = {
   updated?: Date;
   opacity?: number;
 };
+
+export type Curated = {
+  image: number;
+  content: Array<{ font: number; color: string }>;
+};

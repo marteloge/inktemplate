@@ -1,5 +1,5 @@
 import { i18n } from "./i18n";
-import { Draft } from "./types";
+import { Draft, Curated } from "./types";
 
 export const PRODUCTS = {
   PLACECARD: {
@@ -125,3 +125,72 @@ export const newDraft = (product, uuid): Draft => {
     updated: date,
   };
 };
+
+export const curatedDesigns: Array<Curated> = [
+  {
+    image: 53,
+    content: [
+      { font: 0, color: "#0B660D" },
+      { font: 1, color: "#83B167" },
+    ],
+  },
+  {
+    image: 114,
+    content: [
+      { font: 14, color: "#750404" },
+      { font: 16, color: "#CB6464" },
+    ],
+  },
+  {
+    image: 4,
+    content: [
+      { font: 0, color: "#000000" },
+      { font: 1, color: "#000000" },
+    ],
+  },
+  {
+    image: 14,
+    content: [{ font: 4, color: "#F5D985" }],
+  },
+  {
+    image: 86,
+    content: [
+      { font: 10, color: "#FBD366" },
+      { font: 10, color: "#88BED2" },
+    ],
+  },
+  {
+    image: 65,
+    content: [{ font: 26, color: "#FFFFFF" }],
+  },
+  {
+    image: 112,
+    content: [
+      { font: 10, color: "#3F66AF" },
+      { font: 1, color: "#54ADDE" },
+    ],
+  },
+  {
+    image: 44,
+    content: [{ font: 25, color: "#3FABAF" }],
+  },
+  {
+    image: 59,
+    content: [{ font: 14, color: "#F0B486" }],
+  },
+  {
+    image: 11,
+    content: [{ font: 24, color: "#397B17" }],
+  },
+  {
+    image: 57,
+    content: [{ font: 38, color: "#FFFFFF" }],
+  },
+  {
+    image: 60,
+    content: [
+      { font: 32, color: "#FFFFFF" },
+      { font: 1, color: "#257B3F" },
+    ],
+  },
+];

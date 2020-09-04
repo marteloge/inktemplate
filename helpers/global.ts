@@ -1,4 +1,6 @@
 import { CSSProperties } from "react";
+import { curatedDesigns } from "./products";
+import { Draft, Curated } from "./types";
 const createUuid = require("uuid");
 
 export const calculateResponsiveSize = (min: number, max: number) =>
@@ -246,6 +248,22 @@ export const update = (handler, nextState) => handler(nextState);
 
 type StylesDictionary = {
   [Key: string]: CSSProperties;
+};
+
+export const getCuratedDesign = (draft: Draft) => {
+  const selected: Curated =
+    curatedDesigns[Math.floor(Math.random() * curatedDesigns.length)];
+
+  return {
+    ...draft,
+    backgroundImage: selected.image,
+    content: selected.content.map((c, i) => ({
+      ...draft.content[i],
+      font: fonts[c.font].label,
+      fontSrc: fonts[c.font].src,
+      color: c.color,
+    })),
+  };
 };
 
 export const colorPickerStyles = (color: string): StylesDictionary => {

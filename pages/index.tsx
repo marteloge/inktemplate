@@ -1,44 +1,18 @@
-import Layout from "../components/Layout";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 
-import { withTranslation, Router } from "../helpers/i18n";
-import Canvas from "../components/Canvas";
-import { newDraft } from "../helpers/products";
-import { Draft } from "../helpers/types";
-import { useState, useEffect, useRef } from "react";
-import Splash from "../components/Splash";
 import {
   newUUID,
   calculateResponsiveSize,
-  numDesigns,
-  fonts,
-  randomColor,
+  getCuratedDesign,
 } from "../helpers/global";
 import { createOrUpdateDraft } from "../helpers/api";
-
-const randomChange = (draft: Draft): Draft => {
-  const font1 = fonts[Math.floor(Math.random() * fonts.length)];
-  const font2 = fonts[Math.floor(Math.random() * fonts.length)];
-
-  return {
-    ...draft,
-    backgroundImage: Math.floor(Math.random() * numDesigns + 1),
-    content: [
-      {
-        ...draft.content[0],
-        fontSrc: font1.src,
-        font: font1.label,
-        color: randomColor(),
-      },
-      {
-        ...draft.content[1],
-        fontSrc: font2.src,
-        font: font2.label,
-        color: randomColor(),
-      },
-    ],
-  };
-};
+import { withTranslation, Router } from "../helpers/i18n";
+import { newDraft } from "../helpers/products";
+import { Draft } from "../helpers/types";
+import Layout from "../components/Layout";
+import Canvas from "../components/Canvas";
+import Splash from "../components/Splash";
 
 const Home = ({ t }) => {
   const [draft, setDraft] = useState<Draft>(newDraft("PLACECARD", "uuid"));
@@ -48,7 +22,7 @@ const Home = ({ t }) => {
 
   useEffect(() => {
     (intervalId as any).current = setInterval(() => {
-      setDraft(randomChange(draft));
+      setDraft(getCuratedDesign(newDraft("PLACECARD", "uuid")));
     }, 3500);
     return () => clearInterval(intervalId.current);
   }, []);
@@ -74,17 +48,24 @@ const Home = ({ t }) => {
             useDesign={draft.useDesign}
             selectedDesign={draft.backgroundImage}
             backgroundColor={"white"}
-            content={[
-              { ...draft.content[0], text: t("product:nameText") },
-              { ...draft.content[1], text: t("product:subText") },
-            ]}
+            content={
+              draft.content.length === 1
+                ? [
+                    { ...draft.content[0], text: t("product:nameText") },
+                    { ...draft.content[0], text: "" },
+                  ]
+                : [
+                    { ...draft.content[0], text: t("product:nameText") },
+                    { ...draft.content[1], text: t("product:subText") },
+                  ]
+            }
           ></Canvas>
           <img
             className="refresh"
             src="/static/images/reload.png"
             onClick={() => {
               clearInterval(intervalId.current);
-              setDraft(randomChange(draft));
+              setDraft(getCuratedDesign(newDraft("PLACECARD", "uuid")));
             }}
           />
         </div>
@@ -97,7 +78,18 @@ const Home = ({ t }) => {
               const start = new Date();
               setLoading(true);
               const uuid = newUUID();
-              createOrUpdateDraft(uuid, { ...draft, uuid }).then((uuid) => {
+
+              createOrUpdateDraft(uuid, {
+                ...draft,
+                content:
+                  draft.content.length === 1
+                    ? [
+                        draft.content[0],
+                        newDraft("PLACECARD", "uuid").content[1],
+                      ]
+                    : draft.content,
+                uuid,
+              }).then((uuid) => {
                 setTimeout(
                   () =>
                     Router.push(
