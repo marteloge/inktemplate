@@ -51,7 +51,7 @@ const Receipt = (props) => {
 
       <div className="content">
         <div className="intro">
-          <h1>{t("receipt.header")}</h1>
+          <h1 className="strike">{t("receipt.header")}</h1>
           <p>{t("receipt.intro", { email: order.customer.email })}</p>
         </div>
 

@@ -553,7 +553,7 @@ const MyApp = ({ Component, pageProps }) => (
         font-size: 30px;
         background-color: transparent;
         z-index: 1;
-        padding: 10px 0;
+        padding: 0 0 ${calculateResponsiveSize(10, 15)} 0;
         border: none;
       }
 

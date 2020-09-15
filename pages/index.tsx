@@ -17,7 +17,6 @@ import Splash from "../components/Splash";
 const Home = ({ t }) => {
   const [draft, setDraft] = useState<Draft>(newDraft("PLACECARD", "uuid"));
   const [loading, setLoading] = useState(false);
-
   const intervalId = useRef();
 
   useEffect(() => {
@@ -70,10 +69,11 @@ const Home = ({ t }) => {
           />
         </div>
         <div className="start">
-          <h1>{t("home.header")}</h1>
+          <h1 className="strike">{t("home.header")}</h1>
           <p>{t("home.intro")}</p>
+
           <button
-            className="button create strike"
+            className="button create"
             onClick={() => {
               const start = new Date();
               setLoading(true);
@@ -147,7 +147,11 @@ const Home = ({ t }) => {
         }
 
         button {
-          border: none;
+          border: 3px solid #32c0b0;
+          background: transparent;
+          margin: 8% 0;
+          min-width: 200px;
+          font-size: ${calculateResponsiveSize(18, 20)};
         }
 
         @media (max-width: 750px) {
