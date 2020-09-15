@@ -6,7 +6,7 @@ import {
   calculateResponsiveSize,
   getCuratedDesign,
 } from "../helpers/global";
-import { createOrUpdateDraft } from "../helpers/api";
+import { createOrUpdateDraft, logEvent } from "../helpers/api";
 import { withTranslation, Router } from "../helpers/i18n";
 import { newDraft } from "../helpers/products";
 import { Draft } from "../helpers/types";
@@ -78,7 +78,7 @@ const Home = ({ t }) => {
               const start = new Date();
               setLoading(true);
               const uuid = newUUID();
-
+              logEvent("landingpage_create_placecard");
               createOrUpdateDraft(uuid, {
                 ...draft,
                 content:

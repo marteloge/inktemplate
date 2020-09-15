@@ -4,7 +4,7 @@ import Head from "next/head";
 import { Router, withTranslation } from "../../helpers/i18n";
 import { ColorPickerDesign, Draft, Content } from "../../helpers/types";
 import { colorPickerStyles, newUUID } from "../../helpers/global";
-import { getDraft, createOrUpdateDraft } from "../../helpers/api";
+import { getDraft, createOrUpdateDraft, logEvent } from "../../helpers/api";
 
 import TextDesignComponent from "../../components/TextDesign";
 import ColorPicker from "../../components/ColorPicker";
@@ -144,7 +144,12 @@ const Create = (props) => {
             >
               {t("create.button.create")}
             </button>
-            <button onClick={() => downloadPdfDocument(draft)}>
+            <button
+              onClick={() => {
+                logEvent("create_download");
+                downloadPdfDocument(draft);
+              }}
+            >
               {t("create.button.download")}
             </button>
           </div>
@@ -183,6 +188,7 @@ const Create = (props) => {
 
         <button
           onClick={() => {
+            logEvent("create_save");
             setSavingDraft(true);
             createOrUpdateDraft(pdfData.uuid, pdfData).then(() =>
               setSavingDraft(false)
@@ -280,7 +286,10 @@ const Create = (props) => {
               alignItems: "center",
               marginTop: "10px",
             }}
-            onClick={() => setUpload(true)}
+            onClick={() => {
+              logEvent("create_upload");
+              setUpload(true);
+            }}
           >
             <img
               src="/static/images/xcel.png"

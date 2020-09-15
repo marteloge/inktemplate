@@ -10,7 +10,7 @@ import Splash from "../components/Splash";
 import dynamic from "next/dynamic";
 import NameList from "../components/NameList";
 import FileUpload from "../components/FileUploader";
-import { createOrUpdateDraft } from "../helpers/api";
+import { createOrUpdateDraft, logEvent } from "../helpers/api";
 
 const PreviewPDF = dynamic(import("../components/PreviewPDF"), {
   ssr: false,
@@ -61,11 +61,12 @@ const Receipt = (props) => {
           <button
             disabled={changed}
             style={{
-              fontSize: "20px",
-              minWidth: "100px",
+              minWidth: "200px",
             }}
-            className="strike"
-            onClick={() => downloadPdfDocument(draft)}
+            onClick={() => {
+              logEvent("receipt_download");
+              downloadPdfDocument(draft);
+            }}
           >
             {t("receipt.button.download")}
           </button>
@@ -77,7 +78,12 @@ const Receipt = (props) => {
           <NameList className="text" list={text} handler={setText}></NameList>
 
           <div style={{ display: "flex", justifyContent: "end" }}>
-            <button onClick={() => setUpload(true)}>
+            <button
+              onClick={() => {
+                logEvent("receipt_upload");
+                setUpload(true);
+              }}
+            >
               <img
                 src="/static/images/xcel.png"
                 style={{

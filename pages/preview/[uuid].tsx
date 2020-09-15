@@ -4,7 +4,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 
 import { withTranslation, Router } from "../../helpers/i18n";
-import { getDraft } from "../../helpers/api";
+import { getDraft, logEvent } from "../../helpers/api";
 import { downloadPdfDocument } from "../../components/Download";
 import { Draft } from "../../helpers/types";
 import { usePrices } from "../../helpers/hooks";
@@ -64,17 +64,23 @@ const Preview = (props) => {
       </Head>
       <Sticky>
         <div className="actions">
-          <button onClick={() => downloadPdfDocument(draft)}>
+          <button
+            onClick={() => {
+              logEvent("preview_download");
+              downloadPdfDocument(draft);
+            }}
+          >
             {t("generate.download")}
           </button>
           {!draft.paid && (
             <button
-              onClick={() =>
+              onClick={() => {
+                logEvent("preview_change");
                 Router.push(
                   `/create/[uuid]?uuid=${draft.uuid}`,
                   `/create/${draft.uuid}`
-                )
-              }
+                );
+              }}
             >
               {t("generate.change")}
             </button>
@@ -117,6 +123,7 @@ const Preview = (props) => {
                     <button
                       className="checkout"
                       onClick={() => {
+                        logEvent("preview_upgrade");
                         setLoadingPayment(true);
                         toCheckout(draft, "usd", prices);
                       }}
