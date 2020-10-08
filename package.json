@@ -17,7 +17,7 @@
     "file-saver": "^2.0.2",
     "firebase": "^7.17.2",
     "i18next": "^19.6.3",
-    "next": "9.5.2",
+    "next": "9.5.4",
     "next-i18next": "^6.0.2",
     "nodemailer": "^6.4.11",
     "react": "16.13.1",
